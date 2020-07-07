@@ -5,31 +5,87 @@
       xmlns:h="http://java.sun.com/jsf/html"
 	  xmlns:p="http://primefaces.org/ui"> 
 
+<ui:composition>
 	<h:head>
+		
 		<h:outputStylesheet library="styles" name="bootstrap.css"></h:outputStylesheet>
 		
+		
+		<h:outputStylesheet library="styles" name="monstyle.css"></h:outputStylesheet>
+
+		<style> 
+			#row-header{
+				background-color: #28536B;
+				padding-top:5px;
+				padding-bottom : 5px;
+				color: white;
+			}
+			#logo-header{
+			
 	
+				font-size : 1.3em;
+				text-align:center;
+				
+			
+			}
+			#choix-categorie{
+			
+			
+			}
+			.form-control{
+		
+    			width:85%;
+    			float:left;
+    			
+    			
+			}
+			.btn btn-dark{
+				float:left;
+			}
+			#seconnecter{
+			vertical-align: middle;
+			text-align:center;
+			}
+			#panier{
+			vertical-align: middle;
+			text-align:center;
+			
+			}
+		</style>
 	</h:head> 
+	
 	<body>
-		<ui:composition>
-			<div class="container">
-				<div class="row">
-					<div class="col-3">
-						<h3>e-commerce</h3>
+			<div class="container-fluid" >
+				<div class="row" id="row-header">
+					<div class="col-1" >
+					<h1 id="logo-header">e-commerce</h1>
 					</div>
-					<div class="col-9">
-						<h:form>    <p:growl id="messages" />
-					    	<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
-					        	<p:outputLabel for="basic" value="Basic:" />
-					       	    <p:splitButton id="basic" value="Save" action="#">
-					            	<p:menuitem value="Update" action="#"/>
-					            	<p:menuitem value="Delete" action="#"/>
-					        </p:splitButton>  
-       				  	</h:panelGrid>
-       				 </h:form>
+					<div class="col-2" id="choix-categorie">
+					<h:form><p:growl id="messages" />
+						<h:panelGrid columns="2">
+					   		<p:splitButton id="basic" value="Toutes les catégories" action="#">
+							    <p:menuitem value="Livre" action="#"/>
+							    <p:menuitem value="Film" action="#"/>
+							    <p:menuitem value="Musique" action="#"/>
+					   		</p:splitButton>  
+						</h:panelGrid>
+					</h:form>
 					</div>
+					<div class="col-6" >
+						<h:form>
+								<h:inputText type="text" class="form-control"></h:inputText>
+								<div><h:commandButton  class="btn btn-dark" action="#" value="Rechercher"></h:commandButton></div>
+						</h:form>
+					</div>
+					<div class="col-2" id="seconnecter">
+					<h:outputLabel>Se connecter</h:outputLabel>
+					</div>	
+					<div class="col-1" id="panier"> 
+					<h:outputLabel>Panier</h:outputLabel>
+					</div>	
 				</div>
-			</div>	
-		</ui:composition>
+			</div>
 	</body>	
+</ui:composition>
+
 </html>
