@@ -11,6 +11,9 @@
 		
 		<h:outputStylesheet library="css" name="monstyle.css" target="body" ></h:outputStylesheet>
 		
+		<style>
+		
+		</style>
 	
 	
 	</h:head>
@@ -41,25 +44,64 @@
 						</h:form>
 					</div>
 					<div class="col-2" id="seconnecter">
-					<h:outputLabel>Se connecter</h:outputLabel>
+					 <h:link><span style="color: white">Se connecter</span></h:link>
 					</div>	
 					<div class="col-1" id="panier"> 
-					<h:outputLabel>Panier <span style="color:orange; font-size: 1em; font-weight: bold;">2</span></h:outputLabel>
+					 <h:link><span style="color: white">Consulter le panier</span></h:link>
+					<span style="color:orange; font-size: 1em; font-weight: bold;"><h:outputLabel value="12"></h:outputLabel></span>
 					</div>	
 				</div>
-			<!-- //////////////////////////////////////////// Side Bar /////////////////////////////////////////////////////// -->
-			<div class="container"></div>
-				<div class="row"></div>
+			<!-- //////////////////////////////////////////// Contenu /////////////////////////////////////////////////////// -->
+				<div class="container">
+					<br/><br/>
+					<!-- Début du modèle à répéter -->
+					<div class="row" style="border-top: 1px black solid">
+							<h:panelGrid columns="2" border="0" cellspacing="10" cellpadding="10" columnClasses="style-image,style-contenu">
+								<f:facet name="header">
+								
+								</f:facet>
+								<p:graphicImage library="images" name="imagetest.jpg"></p:graphicImage>
+								<h:panelGrid colums="1" border="0" width="50%" >
+									
+									<h:link><span id="nom-produit">Intitulé du produit</span></h:link>	
+									
+									<h:outputLabel value="Prix"/>
+																
+									<h:outputLabel value="Chosir une quantité" for="dd" />
+									 
+									<p:autoComplete id="dd" dropdown="true" value="#{dropButton.items}" completeMethod="#{dropButton.completeText}" />
+		        					 
+		        					<h:commandButton value="Ajouter au panier"></h:commandButton>
+							 
+							  </h:panelGrid>
+						</h:panelGrid>
+					</div>
+					<!-- Fin du modèle à répéter -->
+					<div class="row" style="border-top: 1px black solid">
+							<h:panelGrid columns="2" border="0" cellspacing="10" cellpadding="10" columnClasses="style-image,style-contenu">
+								<f:facet name="header">
+								
+								</f:facet>
+								<p:graphicImage library="images" name="imagetest.jpg"></p:graphicImage>
+								<h:panelGrid colums="1" border="0" width="50%" >
+									
+									<h:link><span id="nom-produit">Intitulé du produit</span></h:link>	
+									
+									<h:outputLabel value="Prix"/>
+																
+									<h:outputLabel value="Chosir une quantité" for="dd1" />
+									 
+									<p:autoComplete id="dd1" dropdown="true" value="#{dropButton.items}" completeMethod="#{dropButton.completeText}" />
+		        					 
+		        					<h:commandButton value="Ajouter au panier"></h:commandButton>
+							 
+							  </h:panelGrid>
+						</h:panelGrid>
+					</div>			
+				</div>
 				
-		
-		
-		
-		
-		
-		
-		
-		
-		
+			
+			
 		</div>
 	</h:body>
 </html>
