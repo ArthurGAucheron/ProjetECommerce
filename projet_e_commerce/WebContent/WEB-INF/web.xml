@@ -13,6 +13,8 @@
  <servlet-mapping>
   	<servlet-name>Faces Servlet</servlet-name>
   	<url-pattern>*.xhtml</url-pattern>
+  
+  	
   </servlet-mapping>
  
  <servlet>
@@ -23,7 +25,7 @@
  
  
  <welcome-file-list>
-  <welcome-file>page-principale.xhtml</welcome-file>
+  <welcome-file>login-utilisateur.xhtml</welcome-file>
  </welcome-file-list>
  
  

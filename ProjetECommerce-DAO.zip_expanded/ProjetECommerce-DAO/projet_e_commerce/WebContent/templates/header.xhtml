@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:p="http://primefaces.org/ui"> 
+
+	<h:head>
+		<h:outputStylesheet library="styles" name="bootstrap.css"></h:outputStylesheet>
+		
+	
+	</h:head> 
+	<body>
+		<ui:composition>
+			<div class="container">
+				<div class="row">
+					<div class="col-3">
+						<h3>e-commerce</h3>
+					</div>
+					<div class="col-9">
+						<h:form>    <p:growl id="messages" />
+					    	<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+					        	<p:outputLabel for="basic" value="Basic:" />
+					       	    <p:splitButton id="basic" value="Save" action="#">
+					            	<p:menuitem value="Update" action="#"/>
+					            	<p:menuitem value="Delete" action="#"/>
+					        </p:splitButton>  
+       				  	</h:panelGrid>
+       				 </h:form>
+					</div>
+				</div>
+			</div>	
+		</ui:composition>
+	</body>	
+</html>

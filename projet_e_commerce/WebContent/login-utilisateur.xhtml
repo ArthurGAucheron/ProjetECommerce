@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Login - utilisateur</title>
+	<h:outputStylesheet library="css" name="bootstrap.css"/>
+	<h:outputStylesheet library="css" name="mon-style"></h:outputStylesheet>
+	<style>
+		.login{
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			text-align: center;
+		
+		}
+	
+	</style>
+   
+     
+</h:head> 
+<body class="login">
+    <p:graphicImage library="images" name="login.png"></p:graphicImage>
+    <br></br><br></br>
+    <h:form>
+		<h:panelGrid columns="1" cellpadding="2" cellspacing="5" width="100%">
+			
+		
+			
+			<h:outputLabel for="idLogin" value="Identifiant : " />
+			<p:inputText id="idLogin" required="true" requiredMessage="Identifiant obligatoire" value="" />
+			<h:message for="idLogin" styleClass="error"/>
+			
+			
+			<h:outputLabel for="idMdp" value="Mot de passe : " />
+			<p:password id="idMdp" required="true" requiredMessage="Mot de passe obligatoire" value="#"/>
+			<h:message for="idMdp" styleClass="error"/>
+			
+			<f:facet name="footer">
+				<p:button action="#" value="Se Connecter" ></p:button>
+			</f:facet>
+			
+		</h:panelGrid>
+	</h:form>
+     
+    
+    
+    
+   <p>&copy; 2017-2020</p>
+
+
+</body>
+
+</html>
