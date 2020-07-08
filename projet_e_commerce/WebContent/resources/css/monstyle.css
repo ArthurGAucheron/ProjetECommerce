@@ -1,0 +1,42 @@
+
+#row-header{
+				background-color: #28536B;
+				padding-top:5px;
+				padding-bottom : 5px;
+				color: white;
+}
+			
+#logo-header{
+	font-size : 1.3em;
+	text-align:center;
+	}
+	
+.form-control{
+	width:85%;
+	float:left;
+}
+
+.btn btn-dark{
+				
+	float:left;
+}
+
+#seconnecter{
+	vertical-align: middle;
+	text-align:center;
+}
+
+#panier{
+	
+	vertical-align: middle;
+	text-align:center;
+
+}
+
+#sidebar{
+	min-width: 250px;
+    max-width: 250px;
+    border: 1px black solid;
+    background: #7386D5;
+    color: #fff;
+}
