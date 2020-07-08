@@ -37,7 +37,7 @@ public class UtilisateurDAOImpl implements IUtilisateurDAO {
 			
 			while(rs.next()) {
 				
-				utilisateur = new Utilisateur(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getBoolean(4));
+				utilisateur = new Utilisateur(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4));
 				listeUtilisateursBDD.add(utilisateur);
 				
 			}//end while
@@ -68,7 +68,7 @@ public class UtilisateurDAOImpl implements IUtilisateurDAO {
 	@Override
 	public Utilisateur getById(Integer pIdUtilisateur) {
 		try {
-			ps = this.connection.prepareStatement("SELECT * FROM utilisateurs WHERE id_client = ?");
+			ps = this.connection.prepareStatement("SELECT * FROM utilisateurs WHERE id_utilisateur=?");
 			
 			ps.setInt(1, pIdUtilisateur);
 			
@@ -78,7 +78,7 @@ public class UtilisateurDAOImpl implements IUtilisateurDAO {
 			
 			while(rs.next()) {
 				
-				utilisateur = new Utilisateur(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getBoolean(4));
+				utilisateur = new Utilisateur(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4));
 
 			}//end while
 			
@@ -112,7 +112,7 @@ public class UtilisateurDAOImpl implements IUtilisateurDAO {
 			
 			ps.setString(1, pUtilisateur.getNomUtilisateur());
 			ps.setString(2, pUtilisateur.getPasswordUtilisateur());
-			ps.setBoolean(3, pUtilisateur.isActived());
+			ps.setInt(3, pUtilisateur.getActived());
 	
 			int verif = ps.executeUpdate();
 			
@@ -145,7 +145,7 @@ public class UtilisateurDAOImpl implements IUtilisateurDAO {
 			
 			ps.setString(1, pUtilisateur.getNomUtilisateur());
 			ps.setString(2, pUtilisateur.getPasswordUtilisateur());
-			ps.setBoolean(3, pUtilisateur.isActived());
+			ps.setInt(3, pUtilisateur.getActived());
 			ps.setInt(4, pUtilisateur.getIdUtilisateur());
 			
 			int verif = ps.executeUpdate();
