@@ -17,18 +17,6 @@ create table commandes(id_commande int NOT NULL AUTO_INCREMENT, date_commande da
 						constraint pk_commande primary key (id_commande),
                         constraint fk_client foreign key (client_id) references clients(id_client));
                         
-<<<<<<< HEAD
-create table lignes_commandes (id_ligne_commande int NOT NULL AUTO_INCREMENT, quantite int, prix double, produit_id int, commande_id int,
-							   constraint pk_ligne_commande primary key (id_ligne_commande),
-                               constraint fk_commande_ligne foreign key (commande_id) references commandes(id_commande),
-                               constraint fk_commande_produit foreign key (produit_id) references produits(id_produit) on delete cascade on update cascade);
-                        
-create table panier(id_panier int not null auto_increment, ligne_id int,
-					constraint pk_panier primary key (id_panier),
-                    constraint fk_panier foreign key (ligne_id) references lignes_commandes(id_ligne_commande));
-                    
-
-=======
 create table panier(id_panier int not null auto_increment, 
 					constraint pk_panier primary key (id_panier));
                         
@@ -37,4 +25,4 @@ create table lignes_commandes (id_ligne_commande int NOT NULL AUTO_INCREMENT, qu
                                constraint fk_commande_ligne foreign key (commande_id) references commandes(id_commande),
                                constraint fk_commande_produit foreign key (produit_id) references produits(id_produit) on delete cascade on update cascade,
                                constraint fk_commande_panier foreign key (panier_id) references panier(id_panier));
->>>>>>> origin
+

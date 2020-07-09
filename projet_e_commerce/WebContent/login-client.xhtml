@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:p="http://primefaces.org/ui"
+  	  xmlns:c="http://java.sun.com/jsp/jstl/core">
+  	  
+  	  
+<h:head>
+		<title>Login - client</title>
+		
+		<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
+		
+		<h:outputStylesheet library="css" name="mon-style.css" target="body" ></h:outputStylesheet>
+		
+</h:head> 
+<body> 
+	<div class="container-fluid">
+		<div class="row" id="row-header">
+			<div class="col-12">
+				<br></br>
+				<br></br>
+			</div>
+			
+		</div>
+			<div class="row justify-content-md-center">
+			 <h:form>
+						<h:panelGrid columns="1" cellpadding="2" cellspacing="5" width="100%">
+						<f:facet name="header"><span style="font-size: 2em">S'identifier</span></f:facet>
+						<h:outputLabel for="idLogin" value="Adresse e-mail : " />
+						<p:inputText id="idLogin" required="true" requiredMessage="Identifiant obligatoire" value="" />
+						<h:message for="idLogin" styleClass="error"/>
+						
+						
+						<h:outputLabel for="idMdp" value="Mot de passe : " />
+						<p:password id="idMdp" required="true" requiredMessage="Mot de passe obligatoire" value="#"/>
+						<h:message for="idMdp" styleClass="error"/>
+						
+						<f:facet name="footer">
+							<h:button class="btn btn-dark" action="#" value="Se connecter"></h:button>
+						</f:facet>
+					</h:panelGrid>
+			</h:form>
+		  </div>
+		  <br/><br/>
+		  <br/><br/>
+		  <div class="row justify-content-md-center">
+		  	<div class="col-md-auto" style="border-top: 1px grey solid; padding-right: 100px; padding-left: 100px;">
+		  	<h:form>
+		  		<h:panelGrid colums="1" cellpadding="2" cellspacing="5" width="100%">
+		  			<f:facet name="header"> Nouveau chez nous ?</f:facet>
+		  			<f:facet name="footer">
+		  			<h:button class="btn btn-dark" action="#" value="créer votre compte"></h:button>
+		  			</f:facet>
+		  		</h:panelGrid>
+		  	</h:form>
+		  	</div>
+		  </div>
+	</div>
+
+</body> 
+</html>
