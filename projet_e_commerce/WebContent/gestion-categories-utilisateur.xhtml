@@ -3,21 +3,20 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
-       
+      xmlns:p="http://primefaces.org/ui"> 
 
 <h:head>
-	<title>Accueil - utilisateur</title>
-	
+	<title>Gestion categories - utilisateur</title>
+		
 	<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
 	<h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />		
 	<h:outputStylesheet library="css" name="mon-style.css"></h:outputStylesheet>
-	<h:outputStylesheet library="css" name="utilisateur.css"></h:outputStylesheet>		
+	<h:outputStylesheet library="css" name="utilisateur.css"></h:outputStylesheet>	
 	
 </h:head> 
 
 <body> 
-		
+
 		<div class="container-fluid" >
 		
 		<!-- //////////////////////////////////////////// HEADER /////////////////////////////////////////////////////// -->			
@@ -66,39 +65,64 @@
 					</h:form>
 				
 				</div>
-				
+	
 		<!-- //////////////////////////////////////////// CONTENU /////////////////////////////////////////////////////// -->			
-				<br/><br/><br/>
-				
-				<div class="row">
-					
-					<div class="col-6">
-						<h:outputLink value="gestion-categories-utilisateur.xhtml" style="color:#696969; font-size:16pt;"><b>Gestion des catégories</b></h:outputLink>
-						<br/><br/>
-						<h:graphicImage style="width:100%; 
-										height:400px; 
-										padding-left:50px; 
-										border: 2px black dotted;" 
-										styleClass="imgaccueil" 
-										library="images" name="categories.jpg"></h:graphicImage>
-					</div>
-					
-					<div class="col-6">
-						<h:outputLink value="" style="color:#696969; font-size:16pt;"><b>Gestion des produits</b></h:outputLink>
-						<br/><br/>
-						<h:graphicImage  style="width:100%; 
-										 height:400px; 
-										 padding-left:50px; 
-										 border: 2px black dotted;" 
-										 styleClass="imgaccueil" 
-										 library="images" name="produits.png"></h:graphicImage>
-					</div>
-				
-				</div>
-				
-				<br/><br/><br/>				
 		
-		</div>
+		<!-- affichage des messages -->
+		<p:messages globalOnly="true" showDetail="true" infoStyle="color: green;" fatalStyle="color: red;"/>
+				
+		<br/><br/><br/>
+
+	</div>
+		
+	<div class="container" >	
+		
+	<!-- liste des catégories -->
+				
+<h:form id="form">
+
+    <p:carousel value="#{gestionCategoriesBean.afficherCategories()}" headerText="Liste des catégories" var="categorie" itemStyle="text-align:center" responsive="true">
+       
+        <p:panelGrid columns="1" style="width:100%;margin:10px 0px" columnClasses="label,value" layout="grid" styleClass="ui-panelgrid-blank">
+          
+            <f:facet name="header">
+                <p:graphicImage name="demo/images/categories/#{categorie.photo}.gif"/> 
+            </f:facet>
+ 
+            <h:outputText value="#{categorie.idCategorie}" />
+ 
+            <h:outputText value="#{categorie.nomCategorie}" />
+ 
+            <h:outputText value="#{categorie.description}" style="font-style:italic;"/>
+            
+            <br/>
+            
+            <p:growl id="growl" life="2000" />
+            
+    		<p:commandButton id="update" action="updatecat" actionListener="#{gestionCategoriesBean.selectionnerCategorie}" update="growl" style="margin-right:20px;" icon="pi pi-pencil" title="Modifier">
+				<f:param id="updateID" name="id" value="#{categorie.idCategorie}"/>
+			</p:commandButton>
+				
+    		<p:commandButton id="delete" action="deletecat" actionListener="#{gestionCategoriesBean.supprimerCategorie}" update="growl" style="margin-right:20px;" icon="pi pi-trash" title="Supprimer">
+				<f:param id="deleteID" name="id" value="#{categorie.idCategorie}"/>
+			</p:commandButton>
+			<br/><br/>
+
+        </p:panelGrid>
+ 
+    </p:carousel>
+
+
+<br/><br/><br/>
+	
+	<!-- ajout d'une nouvelle catégorie -->
+	
+	<h:commandButton action="#{gestionCategoriesBean.initialiserCategorie()}" value="Ajouter une nouvelle catégorie" />
+
+</h:form>
+
+	<br/><br/><br/>
+</div>
 
 </body> 
 </html>

@@ -1,2 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<PROCESS model-entity="JSFProcess"/>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#gestion-categories-utilisateur.xhtml"
+  PATH="/gestion-categories-utilisateur.xhtml" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#gestion-categories-utilisateur.xhtml:0"
+   NAME="item" PATH="/gestion-categories-utilisateur.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="deletecat::#gestion-categories-utilisateur.xhtml" NAME="output"
+    PATH="/gestion-categories-utilisateur.xhtml"
+    TARGET="rules:#gestion-categories-utilisateur.xhtml"
+    TITLE="deletecat" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="updatecat::#modification-categorie-utilisateur.xhtml"
+    NAME="output1" PATH="/modification-categorie-utilisateur.xhtml"
+    TARGET="rules:#modification-categorie-utilisateur.xhtml"
+    TITLE="updatecat" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#modification-categorie-utilisateur.xhtml"
+  PATH="/modification-categorie-utilisateur.xhtml" SHAPE="256,33,0,0" model-entity="JSFProcessGroup"/>
+</PROCESS>

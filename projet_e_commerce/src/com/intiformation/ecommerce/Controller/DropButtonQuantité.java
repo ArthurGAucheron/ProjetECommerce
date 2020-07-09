@@ -1,4 +1,4 @@
-package com.intiformation.ecommerce.Controller;
+package com.intiformation.ecommerce.controller;
 
 import java.io.Serializable;
 import java.util.ArrayList;
