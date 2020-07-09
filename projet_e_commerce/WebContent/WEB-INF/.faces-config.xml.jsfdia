@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PROCESS model-entity="JSFProcess">
- <PROCESS-ITEM NAME="rules:#login-client" PATH="/login-client"
-  SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
-  <PROCESS-ITEM ID="rules:#login-client:0" NAME="item"
-   PATH="/login-client" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT ID="siteWeb::#page-principale.xhtml"
-    NAME="output" PATH="/page-principale.xhtml"
-    TARGET="rules:#page-principale.xhtml" TITLE="siteWeb" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT ID="relogin::#login-client" NAME="output1"
-    PATH="/login-client" TARGET="rules:#login-client" TITLE="relogin" model-entity="JSFProcessItemOutput"/>
+ <PROCESS-ITEM NAME="rules:#creation-client.xhtml"
+  PATH="/creation-client.xhtml" SHAPE="240,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#login-client.xhtml"
+  PATH="/login-client.xhtml" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#login-client.xhtml:0" NAME="item"
+   PATH="/login-client.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="register::#creation-client.xhtml"
+    NAME="output" PATH="/creation-client.xhtml"
+    TARGET="rules:#creation-client.xhtml" TITLE="register" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#page-principale.xhtml"
-  PATH="/page-principale.xhtml" SHAPE="240,33,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>

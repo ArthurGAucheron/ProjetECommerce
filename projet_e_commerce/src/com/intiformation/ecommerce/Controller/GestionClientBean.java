@@ -6,13 +6,16 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+
 import javax.servlet.http.HttpSession;
 
 
+import com.intiformation.ecommerce.modeles.Client;
 import com.intiformation.ecommerce.service.ClientServiceImpl;
 import com.intiformation.ecommerce.service.IClientService;
+import com.sun.corba.se.spi.orbutil.fsm.Action;
 
- @ManagedBean(name="loginClientBean")
+ @ManagedBean(name="gestionClientBean")
  @SessionScoped
  
 /**
@@ -20,15 +23,21 @@ import com.intiformation.ecommerce.service.IClientService;
  * @author arthu
  *
  */
-public class LoginClientBean implements Serializable{
+public class GestionClientBean implements Serializable{
 	
 	
-	private String emailClient;
+	 private String nomClient;
+	 private String adresseClient;
+	 private String emailClient;
+	 private String telClient;
 	private String passWordClient;
+	
+	
+	private Client client;
 	
 	private IClientService clientService;
 	
-	public LoginClientBean() {
+	public GestionClientBean() {
 	
 		clientService = new ClientServiceImpl();
 	}// end LoginClientBean
@@ -59,7 +68,7 @@ public class LoginClientBean implements Serializable{
 			
 	
 			// -> navigation vers la page principale du site "page-principale.xhtml'
-			return "page-principale.xhtml";
+			return "page-principale.xhtml?faces-redirect=true";
 			
 		}else {
 		
@@ -68,11 +77,43 @@ public class LoginClientBean implements Serializable{
 			
 			contextJSF.addMessage(null, message);
 	
-			return "login-client.xhtml";
+			return "login-client.xhtml?faces-redirect=true";
 		}
 		
 	}// end connecter client
 
+		
+	/**
+	 * Permet de créer un nouveau client via le formulaire de la page "creation client"
+	 */
+	public String nouveauClient(){
+		
+		System.out.println("dans la méthode");
+		// 1. Déclaration du contexte de JSF
+		
+				FacesContext contextJSF = FacesContext.getCurrentInstance();
+		
+				Client newClient = new Client(nomClient, adresseClient, emailClient, telClient, passWordClient);
+				
+				boolean verifAjout = clientService.ajouter(newClient);
+				
+				if (verifAjout) {
+					
+					contextJSF.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Inscription : ", " merci pour votre inscription"));
+					
+					return "login-client.xhtml?faces-redirect=true";
+					
+				}else {
+					
+					contextJSF.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Inscription : ", " erreur lors de l'inscription"));
+					
+					return "creation-client.xhtml?faces-redirect=true";
+				}
+		
+		
+	}// end nouveauClient()
+	
+	
 	public String getEmailClient() {
 		return emailClient;
 	}
@@ -87,6 +128,41 @@ public class LoginClientBean implements Serializable{
 
 	public void setPassWordClient(String passWordClient) {
 		this.passWordClient = passWordClient;
+	}
+
+	
+
+	public String getNomClient() {
+		return nomClient;
+	}
+
+	public void setNomClient(String nomClient) {
+		this.nomClient = nomClient;
+	}
+
+	public String getAdresseClient() {
+		return adresseClient;
+	}
+
+	public void setAdresseClient(String adresseClient) {
+		this.adresseClient = adresseClient;
+	}
+
+
+	public String getTelClient() {
+		return telClient;
+	}
+
+	public void setTelClient(String telClient) {
+		this.telClient = telClient;
+	}
+	
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
 	}
 	
 	

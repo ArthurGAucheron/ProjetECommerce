@@ -7,17 +7,12 @@ version="2.2"
 
 	<navigation-rule>
 		
-		<from-view-id>/login-client</from-view-id>
+		<from-view-id>/login-client.xhtml</from-view-id>
+	
 		
 		<navigation-case>
-			<from-outcome>siteWeb</from-outcome>
-			<to-view-id>/page-principale.xhtml</to-view-id>
-			<redirect/>
-		</navigation-case>
-		
-		<navigation-case>
-			<from-outcome>relogin</from-outcome>
-			<to-view-id>/login-client</to-view-id>
+			<from-outcome>register</from-outcome>
+			<to-view-id>/creation-client.xhtml</to-view-id>
 			<redirect/>
 		</navigation-case>
 		

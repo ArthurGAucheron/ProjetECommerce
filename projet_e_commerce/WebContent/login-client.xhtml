@@ -39,18 +39,18 @@
 						
 						<h:outputLabel for="idLogin" value="Adresse e-mail : " />
 						
-						<h:inputText id="idLogin" required="true" requiredMessage="Identifiant obligatoire" value="#{loginClientBean.emailClient}"/>
+						<h:inputText id="idLogin" required="true" requiredMessage="Identifiant obligatoire" value="#{gestionClientBean.emailClient}"/>
 						
 						<h:message for="idLogin" styleClass="error"/>
 						
 						
 						<h:outputLabel for="idMdp" value="Mot de passe : " />
 						
-						<h:inputSecret id="idMdp" required="true" requiredMessage="Mot de passe obligatoire" value="#{loginClientBean.passWordClient}"/>
+						<h:inputSecret id="idMdp" required="true" requiredMessage="Mot de passe obligatoire" value="#{gestionClientBean.passWordClient}"/>
 						
 						<h:message for="idMdp" styleClass="error"/>
 						
-						<h:commandButton class="btn btn-dark" action="#{loginClientBean.connecterClient()}" value="Se Connecter" />
+						<h:commandButton class="btn btn-dark" action="#{gestionClientBean.connecterClient()}" value="Se Connecter" />
 			
 					</h:panelGrid>
 			</h:form>
@@ -70,7 +70,7 @@
 		  		<h:panelGrid colums="1" cellpadding="2" cellspacing="5" width="100%">
 		  			<f:facet name="header"> Nouveau chez nous ?</f:facet>
 		  			<f:facet name="footer">
-		  			<h:button class="btn btn-dark" action="#" value="créer votre compte"></h:button>
+		  			<h:commandButton class="btn btn-dark" action="register" value="créer votre compte"></h:commandButton>
 		  			</f:facet>
 		  		</h:panelGrid>
 		  	</h:form>
