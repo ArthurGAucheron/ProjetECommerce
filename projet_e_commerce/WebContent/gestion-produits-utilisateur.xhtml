@@ -90,7 +90,7 @@
     <p:dataTable value="#{gestionProduitsBean.afficherProduits()}" var="produit" sortBy="#{produit.categorieID}" expandableRowGroups="true" scrollable="true" scrollWidth="100%" scrollHeight="500" style="text-align: center;">
                 
          <p:headerRow>
-            <p:column colspan="9" style="background-color: #D3CDDC;">
+            <p:column colspan="9" style="background-color: #E6F7FC; font-style:italic; font-weight:normal; text-align: left;">
                 <h:outputText value="#{gestionCategoriesBean.getNomCategorieById(produit.categorieID)}" />
             </p:column>
         </p:headerRow>
@@ -144,11 +144,11 @@
 	
 	<!-- ajout d'un nouveau produit -->
 	
-	<h:commandButton action="#{gestionProduitsBean.initialiserProduit()}" value="Ajouter un nouveau produit" />
+	<h:commandButton action="#{gestionProduitsBean.initialiserProduit()}" value="Ajouter un nouveau produit" class="btn btn-success btn-primary btn-lg btn-block"/>
 
 </h:form>
 
-	<br/><br/><br/>
+	<br/><br/><br/><br/>
 </div>
 
 </body> 

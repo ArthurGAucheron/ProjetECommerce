@@ -86,8 +86,11 @@
 	
 		<h:panelGrid columns="2" border="1" cellpadding="5" cellspacing="5" width="50%" style="border:white;">
 			
-        	<h:outputLabel for="categorieproduit" value="ID Catégorie : " />
-			<h:inputText id="categorieproduit" value="#{gestionProduitsBean.produit.categorieID}" required="true" requiredMessage="catégorie obligatoire" />
+       		<p:outputLabel for="@next" value="ID Catégorie : " />   
+        	<p:selectOneMenu id="categorieproduit" value="#{gestionProduitsBean.produit.categorieID}" required="true" requiredMessage="catégorie obligatoire" >        
+            	<f:selectItem itemLabel="Choisir ID catégorie" itemValue="" />
+            	<f:selectItems value="#{gestionCategoriesBean.afficherCategories()}" var="categorie" itemValue="#{categorie.idCategorie}" itemLabel="#{categorie.nomCategorie}" />
+        	</p:selectOneMenu>
 			
 			<h:outputLabel for="designationproduit" value="Désignation : " />
 			<h:inputText id="designationproduit" value="#{gestionProduitsBean.produit.designation}" required="true" requiredMessage="désignation obligatoire" />

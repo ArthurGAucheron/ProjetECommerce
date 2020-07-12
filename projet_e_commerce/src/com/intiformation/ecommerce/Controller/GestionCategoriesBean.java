@@ -197,7 +197,8 @@ public class GestionCategoriesBean implements Serializable{
 		List<Categorie> listeDesCategories = categorieService.findAll();
 		
 		for (Categorie categorieElement : listeDesCategories) {
-			listeNomsCategories.add(categorieElement.getIdCategorie());
+			int nomCategorie = categorieElement.getIdCategorie();
+			listeNomsCategories.add(nomCategorie);
 		}
 		
 		return listeNomsCategories;
