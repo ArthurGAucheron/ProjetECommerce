@@ -26,8 +26,9 @@ public class GestionCategoriesBean implements Serializable{
 	/*___________ propriétés _____________*/
 	private Categorie categorie;
 	private List<Categorie> listeCategories;
+	private List<Integer> listeNomsCategories;
 	
-	//déclaration de la DAO
+	//déclaration de la couche service
 	private ICategorieService categorieService;
 		
 	/*___________ ctors _____________*/
@@ -187,6 +188,32 @@ public class GestionCategoriesBean implements Serializable{
 		
 	}//end modifierCategorie	
 	
+	/**
+	 * permet de récupérer et afficher la liste de tous les noms des catégories de la bdd
+	 * @return
+	 */
+	public List<Integer> afficherNomsCategories() {
+		
+		List<Categorie> listeDesCategories = categorieService.findAll();
+		
+		for (Categorie categorieElement : listeDesCategories) {
+			listeNomsCategories.add(categorieElement.getIdCategorie());
+		}
+		
+		return listeNomsCategories;
+			
+	}//end afficherNomsCategories()
+	
+	
+	public String getNomCategorieById(Integer idCategorie) {
+		
+		Categorie categorieToFind = categorieService.findById(idCategorie);
+		String nomCategorie = categorieToFind.getNomCategorie();
+		
+		return nomCategorie;
+		
+	}//end getNomCategorieById
+	
 	/*___________ getters/setters _____________*/
 	
 	public Categorie getCategorie() {
@@ -203,6 +230,14 @@ public class GestionCategoriesBean implements Serializable{
 
 	public void setListeCategories(List<Categorie> listeCategories) {
 		this.listeCategories = listeCategories;
+	}
+
+	public List<Integer> getListeNomsCategories() {
+		return listeNomsCategories;
+	}
+
+	public void setListeNomsCategories(List<Integer> listeNomsCategories) {
+		this.listeNomsCategories = listeNomsCategories;
 	}
 	
 }//end class

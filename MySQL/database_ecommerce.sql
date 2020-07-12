@@ -42,4 +42,8 @@ SELECT * FROM utilisateurs WHERE id_utilisateur = 1;
 drop database e_commerce;
 
 insert into utilisateurs (nom_utilisateur, password, actived) values ("user", "mdp", 1);
-insert into categories (nom_categorie, photo, description) values ("téléphones", "", "description du téléphone");
+insert into categories (nom_categorie, photo, description) values ("téléphones", "", "description des téléphone");
+
+select * from produits;
+
+insert into produits (designation, description, prix, quantite, selectionne, photo, categorie_id) values ("designation produit1", "description produit1", 15, 10, true, "photo produit1", 3);

@@ -6,18 +6,17 @@
       xmlns:p="http://primefaces.org/ui"> 
 
 <h:head>
-	<title>Gestion categories - utilisateur</title>
+	<title>Ajout produit - utilisateur</title>
 		
 	<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
 	<h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />		
 	<h:outputStylesheet library="css" name="mon-style.css"></h:outputStylesheet>
 	<h:outputStylesheet library="css" name="utilisateur.css"></h:outputStylesheet>	
-	
 </h:head> 
 
 <body> 
 
-		<div class="container-fluid" >
+<div class="container-fluid" >
 		
 		<!-- //////////////////////////////////////////// HEADER /////////////////////////////////////////////////////// -->			
 				<div class="row" id="row-header" style="padding-top: 15px; padding-bottom: 15px; background-color: #696969;">
@@ -65,63 +64,57 @@
 					</h:form>
 				
 				</div>
-	
+
 		<!-- //////////////////////////////////////////// CONTENU /////////////////////////////////////////////////////// -->			
+				<br/><br/><br/>
 		
-		<!-- affichage des messages -->
-		<p:messages globalOnly="true" showDetail="true" infoStyle="color: green;" fatalStyle="color: red;"/>
-				
-		<br/><br/><br/>
-
-	</div>
+		</div>
 		
-	<div class="container" >	
-		
-	<!-- liste des catégories -->
-				
-<h:form id="form">
-
-    <p:carousel value="#{gestionCategoriesBean.afficherCategories()}" headerText="Liste des catégories" var="categorie" itemStyle="text-align:center" responsive="true">
-       
-        <p:panelGrid columns="1" style="width:100%;margin:10px 0px" columnClasses="label,value" layout="grid" styleClass="ui-panelgrid-blank">
-          
-            <f:facet name="header">
-                <p:graphicImage value="images/categories/#{categorie.photo}" width="50px" height="50px"/> 
-            </f:facet>
- 
-            <h:outputText value="#{categorie.idCategorie}" />
- 
-            <h:outputText value="#{categorie.nomCategorie}" />
- 
-            <h:outputText value="#{categorie.description}" style="font-style:italic;"/>
-            
-            <br/>
-            
-            <p:growl id="growl" life="2000" />
-            
-    		<p:commandButton id="update" action="updatecat" actionListener="#{gestionCategoriesBean.selectionnerCategorie}" update="growl" style="margin-right:20px;" icon="pi pi-pencil" title="Modifier">
-				<f:param id="updateID" name="id" value="#{categorie.idCategorie}"/>
-			</p:commandButton>
-				
-    		<p:commandButton id="delete" action="deletecat" actionListener="#{gestionCategoriesBean.supprimerCategorie}" update="growl" style="margin-right:20px;" icon="pi pi-trash" title="Supprimer">
-				<f:param id="deleteID" name="id" value="#{categorie.idCategorie}"/>
-			</p:commandButton>
-			<br/><br/>
-
-        </p:panelGrid>
- 
-    </p:carousel>
-
-
-<br/><br/><br/>
+		<div class="container" >	
+		<!-- ===================================================== -->
+		<!-- ======== Formulaire d'ajout du produit ============== -->
+		<!-- ===================================================== -->
+		<p:growl id="growl" showSummary="true" showDetail="true" keepAlive="true" life="3000">
+    		<p:autoUpdate />
+		</p:growl>
 	
-	<!-- ajout d'une nouvelle catégorie -->
+		<h3>Formulaire d'ajout d'un nouveau produit</h3>
+		
+		<br/><br/>
 	
-	<h:commandButton action="#{gestionCategoriesBean.initialiserCategorie()}" value="Ajouter une nouvelle catégorie" />
+	<h:form>
+	
+		<h:panelGrid columns="2" border="1" cellpadding="5" cellspacing="5" width="50%" style="border:white;">
+			
+        	<h:outputLabel for="categorieproduit" value="ID Catégorie : " />
+			<h:inputText id="categorieproduit" value="#{gestionProduitsBean.produit.categorieID}" required="true" requiredMessage="catégorie obligatoire" />
+			
+			<h:outputLabel for="designationproduit" value="Désignation : " />
+			<h:inputText id="designationproduit" value="#{gestionProduitsBean.produit.designation}" required="true" requiredMessage="désignation obligatoire" />
+		
+			<h:outputLabel for="descriptproduit" value="Description : " />
+			<p:inputTextarea rows = "6" cols = "33" id="descriptproduit" value="#{gestionProduitsBean.produit.description}" required="true" requiredMessage="description obligatoire" />
 
-</h:form>
+			<h:outputLabel for="prixproduit" value="Prix : " />
+			<h:inputText id="prixproduit" value="#{gestionProduitsBean.produit.prix}" required="true" requiredMessage="prix obligatoire" default="0.0"/>
+		
+			<h:outputLabel for="selectionneproduit" value="Sélectionné : " />
+			<h:selectBooleanCheckbox id="selectionneproduit" value="#{gestionProduitsBean.produit.selectionne}"/>
 
-	<br/><br/><br/>
+			<h:outputLabel for="qteproduit" value="Quantité : " />
+			<h:inputText id="qteproduit" value="#{gestionProduitsBean.produit.quantite}" required="true" requiredMessage="quantité obligatoire" default="0"/>
+			
+			<h:outputLabel for="photoproduit" value="Photo : " />
+			<p:fileUpload id="photoproduit" value="#{gestionProduitsBean.produit.photo}" mode="simple" skinSimple="true" required="true" requiredMessage="photo obligatoire"/>
+				
+			<f:facet name="footer">
+				<h:commandButton action="#{gestionProduitsBean.ajouterProduit()}" value="Enregistrer" style="float:right;"/>
+			</f:facet>
+			
+		</h:panelGrid>	
+	
+	</h:form>	
+				
 </div>
 
 </body> 

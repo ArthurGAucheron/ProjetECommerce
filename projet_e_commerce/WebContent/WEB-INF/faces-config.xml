@@ -21,6 +21,26 @@
 		</navigation-case>
 		
 	</navigation-rule>
+	
+	<!-- règle de navigation pour 'gestion-produits-utilisateur.xhtml' -->
+	<navigation-rule>
+		
+		<from-view-id>/gestion-produits-utilisateur.xhtml</from-view-id>
+		
+		<navigation-case>
+			<from-outcome>deleteprod</from-outcome> 	
+			<to-view-id>/gestion-produits-utilisateur.xhtml</to-view-id>		
+			<redirect/> 						
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>updateprod</from-outcome> 	
+			<to-view-id>/modification-produit-utilisateur.xhtml</to-view-id>		
+			<redirect/> 						
+		</navigation-case>
+		
+	</navigation-rule>
+ 
  
  
  

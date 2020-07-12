@@ -18,4 +18,22 @@
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#modification-categorie-utilisateur.xhtml"
   PATH="/modification-categorie-utilisateur.xhtml" SHAPE="256,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#gestion-produits-utilisateur.xhtml"
+  PATH="/gestion-produits-utilisateur.xhtml" SHAPE="32,161,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#gestion-produits-utilisateur.xhtml:0"
+   NAME="item" PATH="/gestion-produits-utilisateur.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="deleteprod::#gestion-produits-utilisateur.xhtml" NAME="output"
+    PATH="/gestion-produits-utilisateur.xhtml"
+    TARGET="rules:#gestion-produits-utilisateur.xhtml"
+    TITLE="deleteprod" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="updateprod::#modification-produit-utilisateur.xhtml"
+    NAME="output1" PATH="/modification-produit-utilisateur.xhtml"
+    TARGET="rules:#modification-produit-utilisateur.xhtml"
+    TITLE="updateprod" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#modification-produit-utilisateur.xhtml"
+  PATH="/modification-produit-utilisateur.xhtml" SHAPE="256,177,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>
