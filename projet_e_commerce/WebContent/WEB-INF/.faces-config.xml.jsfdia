@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PROCESS model-entity="JSFProcess">
-<<<<<<< HEAD
-<<<<<<< HEAD
+ <PROCESS-ITEM NAME="rules:#creation-client.xhtml"
+  PATH="/creation-client.xhtml" SHAPE="240,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#login-client.xhtml"
+  PATH="/login-client.xhtml" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#login-client.xhtml:0" NAME="item"
+   PATH="/login-client.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="register::#creation-client.xhtml"
+    NAME="output" PATH="/creation-client.xhtml"
+    TARGET="rules:#creation-client.xhtml" TITLE="register" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#gestion-categories-utilisateur.xhtml"
-  PATH="/gestion-categories-utilisateur.xhtml" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  PATH="/gestion-categories-utilisateur.xhtml" SHAPE="32,129,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#gestion-categories-utilisateur.xhtml:0"
    NAME="item" PATH="/gestion-categories-utilisateur.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
@@ -18,10 +27,8 @@
     TITLE="updatecat" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#modification-categorie-utilisateur.xhtml"
-  PATH="/modification-categorie-utilisateur.xhtml" SHAPE="256,33,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#gestion-produits-utilisateur.xhtml"
-  PATH="/gestion-produits-utilisateur.xhtml" SHAPE="32,161,0,0" model-entity="JSFProcessGroup">
+  PATH="/gestion-produits-utilisateur.xhtml" SHAPE="32,273,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#gestion-produits-utilisateur.xhtml:0"
    NAME="item" PATH="/gestion-produits-utilisateur.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
@@ -36,24 +43,8 @@
     TITLE="updateprod" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#modification-categorie-utilisateur.xhtml"
+  PATH="/modification-categorie-utilisateur.xhtml" SHAPE="256,145,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#modification-produit-utilisateur.xhtml"
-  PATH="/modification-produit-utilisateur.xhtml" SHAPE="256,177,0,0" model-entity="JSFProcessGroup"/>
-=======
-=======
->>>>>>> 7dd4206852fbd4ddc3c7328f5679d3563c3779fa
- <PROCESS-ITEM NAME="rules:#creation-client.xhtml"
-  PATH="/creation-client.xhtml" SHAPE="240,33,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:#login-client.xhtml"
-  PATH="/login-client.xhtml" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
-  <PROCESS-ITEM ID="rules:#login-client.xhtml:0" NAME="item"
-   PATH="/login-client.xhtml" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT ID="register::#creation-client.xhtml"
-    NAME="output" PATH="/creation-client.xhtml"
-    TARGET="rules:#creation-client.xhtml" TITLE="register" model-entity="JSFProcessItemOutput"/>
-  </PROCESS-ITEM>
- </PROCESS-ITEM>
-<<<<<<< HEAD
->>>>>>> 7dd4206852fbd4ddc3c7328f5679d3563c3779fa
-=======
->>>>>>> 7dd4206852fbd4ddc3c7328f5679d3563c3779fa
+  PATH="/modification-produit-utilisateur.xhtml" SHAPE="256,289,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>
