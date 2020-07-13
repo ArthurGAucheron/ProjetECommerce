@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+  	  xmlns:c="http://java.sun.com/jsp/jstl/core"> 
+
+<h:head>
+	<title> Nouveau - client</title>
+	
+	<h:outputStylesheet library="css" name="bootstrap.css"/>
+	
+	<h:outputStylesheet library="css" name="mon-style.css"/>
+	
+	<style>
+			.error{
+			color: red;
+			}
+	</style>
+	
+</h:head> 
+<h:body> 
+<div class="container-fluid">
+		<div class="row" id="row-header">
+			<div class="col-12">
+				<br></br>
+				<br></br>
+			</div>
+		</div>
+		<div class="row justify-content-md-center">
+			<h:form>
+				<h:panelGrid colum="1">
+					<f:facet name="header"><span style="font-size: 2em; font-weight: bold;">Nouveau client</span></f:facet>
+					
+					<h:outputLabel for="idNom" value="Nom :" />
+					<h:inputText id="idLogin" required="true"  requiredMessage="Nom obligatoire" value="#{gestionClientBean.nomClient}"/>
+					<h:message for="idLogin" styleClass="error"/>
+					
+					<h:outputLabel for="idEmail" value="E-mail :"/>
+					<h:inputText id="idEmail" required="true" requiredMessage="e-mail obligatoire" value="#{gestionClientBean.emailClient}"/>
+					<h:message for="idEmail" styleClass="error"/>
+					
+					<h:outputLabel for="idTel" value="Téléphone :"/>
+					<h:inputText id="idTel" value="#{gestionClientBean.telClient}"/>
+					
+					<h:outputLabel for="idAdresse" value="Adresse :"/>
+					<h:inputText id="idAdresse" value="#{gestionClientBean.adresseClient}"/>
+					
+					
+					<h:outputLabel for="idMdp" value="Mot de passe"/>
+					<h:inputText id="idMdp" required="true" requiredMessage="mot de passe obligatoire" value="#{gestionClientBean.passWordClient}"/>
+					<h:message for="idMdp" styleClass="error"/>
+					
+					<h:commandButton class="btn btn-dark" action="#{gestionClientBean.nouveauClient()}" value="S'inscrire" ></h:commandButton>
+				
+				
+				</h:panelGrid>
+			</h:form>
+		</div>
+</div>
+
+</h:body> 
+</html>

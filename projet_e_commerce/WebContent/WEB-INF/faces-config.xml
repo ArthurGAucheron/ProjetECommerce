@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0"?>
 <faces-config version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
@@ -44,4 +45,26 @@
  
  
  
+=======
+<?xml version="1.0" ?>
+<faces-config 
+version="2.2"
+ xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+
+	<navigation-rule>
+		
+		<from-view-id>/login-client.xhtml</from-view-id>
+	
+		
+		<navigation-case>
+			<from-outcome>register</from-outcome>
+			<to-view-id>/creation-client.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+		
+	</navigation-rule> 
+
+>>>>>>> 7dd4206852fbd4ddc3c7328f5679d3563c3779fa
 </faces-config>

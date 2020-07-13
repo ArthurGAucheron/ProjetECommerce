@@ -24,6 +24,7 @@ create table lignes_commandes (id_ligne_commande int NOT NULL AUTO_INCREMENT, qu
 							   constraint pk_ligne_commande primary key (id_ligne_commande),
                                constraint fk_commande_ligne foreign key (commande_id) references commandes(id_commande) on delete cascade on update cascade,
                                constraint fk_commande_produit foreign key (produit_id) references produits(id_produit) on delete cascade on update cascade,
+<<<<<<< HEAD
                                constraint fk_commande_panier foreign key (panier_id) references panier(id_panier) on delete cascade on update cascade);
 
 
@@ -47,3 +48,7 @@ insert into categories (nom_categorie, photo, description) values ("téléphones
 select * from produits;
 
 insert into produits (designation, description, prix, quantite, selectionne, photo, categorie_id) values ("designation produit1", "description produit1", 15, 10, true, "photo produit1", 3);
+=======
+                               constraint fk_commande_panier foreign key (panier_id) references panier(id_panier));
+
+>>>>>>> 7dd4206852fbd4ddc3c7328f5679d3563c3779fa
