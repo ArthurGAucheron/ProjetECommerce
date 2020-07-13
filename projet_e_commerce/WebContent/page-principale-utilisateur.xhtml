@@ -18,57 +18,16 @@
 
 <body> 
 		
-		<div class="container-fluid" >
 		
 		<!-- //////////////////////////////////////////// HEADER /////////////////////////////////////////////////////// -->			
-				<div class="row" id="row-header" style="padding-top: 15px; padding-bottom: 15px; background-color: #696969;">
-				
-					<div class="col-3" >
-					<h1 style="font-size: 14pt">Accueil Administrateur</h1>
-					</div>
-				
-					<div class="col-2" id="gestion-categorie">
-					<h:form>
-						<h:panelGrid columns="1">
-					   		<p:splitButton id="basic" value="Catégories" action="#">
-					   			<p:menuitem value="Consulter" action="#"/>
-							    <p:menuitem value="Ajouter" action="#"/>
-							    <p:menuitem value="Modifier" action="#"/>
-							    <p:menuitem value="Supprimer" action="#"/>
-					   		</p:splitButton>  
-						</h:panelGrid>
-					</h:form>
-					</div>
-					
-					<div class="col-2" id="gestion-produits">
-					<h:form>
-						<h:panelGrid columns="1">
-					   		<p:splitButton id="basic" value="Produits" action="#">
-							    <p:menuitem value="Livre" action="#"/>
-							    <p:menuitem value="Film" action="#"/>
-							    <p:menuitem value="Musique" action="#"/>
-					   		</p:splitButton>  
-						</h:panelGrid>
-					</h:form>
-					</div>
-					
-					<div class="col-3">
-        				<div class="ui-inputgroup">
-            				<p:inputText placeholder="Rechercher" />
-           					<p:commandButton icon="pi pi-search"  styleClass="white-button"/>  
-        				</div>
-    				</div>
-					
-					<h:form>
-					<div class="col-1" style="float:right;">							
-						<h:commandLink action="#{authentificationBean.deconnecterUtilisateur()}" style="color:#ffffff;" value="Déconnexion"></h:commandLink>
-					</div>
-					</h:form>
-				
-				</div>
-				
+		<div class="container-fluid" >	
+			<!--  utilisation modèle header-utilisateur -->
+			<ui:decorate template="/templates/header-utilisateur.xhtml"></ui:decorate>
+		</div>	
 		<!-- //////////////////////////////////////////// CONTENU /////////////////////////////////////////////////////// -->			
 				<br/><br/><br/>
+		
+		<div class="container" >	
 				
 				<div class="row">
 					
@@ -96,9 +55,8 @@
 				
 				</div>
 				
-				<br/><br/><br/>				
-		
-		</div>
+				<br/><br/><br/>	
+		</div>			
 
 </body> 
 </html>
