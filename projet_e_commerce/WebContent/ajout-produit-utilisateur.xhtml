@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+	<title>Ajout produit - utilisateur</title>
+		
+	<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
+	<h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />		
+	<h:outputStylesheet library="css" name="mon-style.css"></h:outputStylesheet>
+	<h:outputStylesheet library="css" name="utilisateur.css"></h:outputStylesheet>	
+</h:head> 
+
+<body> 
+
+<div class="container-fluid" >
+		
+		<!-- //////////////////////////////////////////// HEADER /////////////////////////////////////////////////////// -->			
+				<div class="row" id="row-header" style="padding-top: 15px; padding-bottom: 15px; background-color: #696969;">
+				
+					<div class="col-3" >
+					<h1 style="font-size: 14pt">Accueil Administrateur</h1>
+					</div>
+				
+					<div class="col-2" id="gestion-categorie">
+					<h:form>
+						<h:panelGrid columns="1">
+					   		<p:splitButton id="basic" value="Catégories" action="#">
+					   			<p:menuitem value="Consulter" action="#"/>
+							    <p:menuitem value="Ajouter" action="#"/>
+							    <p:menuitem value="Modifier" action="#"/>
+							    <p:menuitem value="Supprimer" action="#"/>
+					   		</p:splitButton>  
+						</h:panelGrid>
+					</h:form>
+					</div>
+					
+					<div class="col-2" id="gestion-produits">
+					<h:form>
+						<h:panelGrid columns="1">
+					   		<p:splitButton id="basic" value="Produits" action="#">
+							    <p:menuitem value="Livre" action="#"/>
+							    <p:menuitem value="Film" action="#"/>
+							    <p:menuitem value="Musique" action="#"/>
+					   		</p:splitButton>  
+						</h:panelGrid>
+					</h:form>
+					</div>
+					
+					<div class="col-3">
+        				<div class="ui-inputgroup">
+            				<p:inputText placeholder="Rechercher" />
+           					<p:commandButton icon="pi pi-search"  styleClass="white-button"/>  
+        				</div>
+    				</div>
+					
+					<h:form>
+					<div class="col-1" style="float:right;">							
+						<h:commandLink action="#{authentificationBean.deconnecterUtilisateur()}" style="color:#ffffff;" value="Déconnexion"></h:commandLink>
+					</div>
+					</h:form>
+				
+				</div>
+
+		<!-- //////////////////////////////////////////// CONTENU /////////////////////////////////////////////////////// -->			
+				<br/><br/><br/>
+		
+		</div>
+		
+		<div class="container" >	
+		<!-- ===================================================== -->
+		<!-- ======== Formulaire d'ajout du produit ============== -->
+		<!-- ===================================================== -->
+		<p:growl id="growl" showSummary="true" showDetail="true" keepAlive="true" life="3000">
+    		<p:autoUpdate />
+		</p:growl>
+	
+		<h3>Formulaire d'ajout d'un nouveau produit</h3>
+		
+		<br/><br/>
+	
+	<h:form>
+	
+		<h:panelGrid columns="2" border="1" cellpadding="5" cellspacing="5" width="50%" style="border:white;">
+			
+       		<p:outputLabel for="@next" value="ID Catégorie : " />   
+        	<p:selectOneMenu id="categorieproduit" value="#{gestionProduitsBean.produit.categorieID}" required="true" requiredMessage="catégorie obligatoire" >        
+            	<f:selectItem itemLabel="Choisir ID catégorie" itemValue="" />
+            	<f:selectItems value="#{gestionCategoriesBean.afficherCategories()}" var="categorie" itemValue="#{categorie.idCategorie}" itemLabel="#{categorie.nomCategorie}" />
+        	</p:selectOneMenu>
+			
+			<h:outputLabel for="designationproduit" value="Désignation : " />
+			<h:inputText id="designationproduit" value="#{gestionProduitsBean.produit.designation}" required="true" requiredMessage="désignation obligatoire" />
+		
+			<h:outputLabel for="descriptproduit" value="Description : " />
+			<p:inputTextarea rows = "6" cols = "33" id="descriptproduit" value="#{gestionProduitsBean.produit.description}" required="true" requiredMessage="description obligatoire" />
+
+			<h:outputLabel for="prixproduit" value="Prix : " />
+			<h:inputText id="prixproduit" value="#{gestionProduitsBean.produit.prix}" required="true" requiredMessage="prix obligatoire" default="0.0"/>
+		
+			<h:outputLabel for="selectionneproduit" value="Sélectionné : " />
+			<h:selectBooleanCheckbox id="selectionneproduit" value="#{gestionProduitsBean.produit.selectionne}"/>
+
+			<h:outputLabel for="qteproduit" value="Quantité : " />
+			<h:inputText id="qteproduit" value="#{gestionProduitsBean.produit.quantite}" required="true" requiredMessage="quantité obligatoire" default="0"/>
+			
+			<h:outputLabel for="photoproduit" value="Photo : " />
+			<p:fileUpload id="photoproduit" value="#{gestionProduitsBean.produit.photo}" mode="simple" skinSimple="true" required="true" requiredMessage="photo obligatoire"/>
+				
+			<f:facet name="footer">
+				<h:commandButton action="#{gestionProduitsBean.ajouterProduit()}" value="Enregistrer" style="float:right;"/>
+			</f:facet>
+			
+		</h:panelGrid>	
+	
+	</h:form>	
+				
+</div>
+
+</body> 
+</html>

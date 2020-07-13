@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+
+
+<h:head>
+	<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
+	<h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />		
+	<h:outputStylesheet library="css" name="mon-style.css"></h:outputStylesheet>
+	<h:outputStylesheet library="css" name="utilisateur.css"></h:outputStylesheet>	
+</h:head> 
+
+<body> 
+
+
+	<ui:composition>
+		<!-- //////////////////////////////////////////// HEADER /////////////////////////////////////////////////////// -->			
+				<div class="row" id="row-header" style="padding-top: 15px; padding-bottom: 15px; background-color: #696969;">
+				
+					<div class="col-2" >
+						<h1 style="font-size: 16pt">E-commerce</h1>
+					</div>
+				
+					<div class="col-2" >
+					<h:form>
+						<h:panelGrid columns="1">
+					   		<h:commandLink id="accueil" value="Accueil Administrateur" action="page-principale-utilisateur.xhtml"/>
+						</h:panelGrid>
+					</h:form>
+					</div>
+				
+					<div class="col-2">
+					<h:form>
+						<h:panelGrid columns="1">
+					   		<h:commandLink id="categorie" value="Gestion catégories" action="gestion-categories-utilisateur.xhtml"/>
+						</h:panelGrid>
+					</h:form>
+					</div>
+					
+					<div class="col-2">
+					<h:form>
+						<h:panelGrid columns="1">
+					   		<h:commandLink id="produit" value="Gestion produits" action="gestion-produits-utilisateur.xhtml"/>
+						</h:panelGrid>
+					</h:form>
+					</div>
+					
+					
+					<div class="col-4" style="float: right;">
+					<h:form>							
+						<h:commandLink action="#{authentificationBean.deconnecterUtilisateur()}" style="color:#ffffff;" value="Déconnexion"></h:commandLink>
+					</h:form>
+					</div>
+									
+				</div>
+
+	</ui:composition>
+
+</body> 
+</html>

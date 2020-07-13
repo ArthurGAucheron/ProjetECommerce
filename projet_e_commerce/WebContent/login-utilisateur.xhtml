@@ -4,42 +4,51 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
 	  xmlns:p="http://primefaces.org/ui">
+	  
 <h:head>
+
 	<title>Login - utilisateur</title>
-	<h:outputStylesheet library="css" name="bootstrap.css"/>
-	<h:outputStylesheet library="css" name="login-utilisateur.css"></h:outputStylesheet>
 	
-     
+	<h:outputStylesheet library="css" name="bootstrap.css"/>
+	<h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
+	<h:outputStylesheet library="css" name="login-utilisateur.css"></h:outputStylesheet>
+  
 </h:head> 
 <body class="login">
+
     <p:graphicImage library="images" name="login.png"></p:graphicImage>
     <br></br><br></br>
+    
+    <!-- ============================================================ -->
+	<!-- ============== Formulaire de connexion ===================== -->
+	<!-- ============================================================ -->
     <h:form>
-		<h:panelGrid columns="1" cellpadding="2" cellspacing="5" width="100%">
+        <p:panel id="panel">
+ 
+        <p:messages id="msgs" globalOnly="true" layout="table" showDetail="true"/>
+        
+		<h:panelGrid columns="3" cellpadding="5" width="100%">
+	
+			<p:outputLabel for="idLogin" value="Identifiant : " />
+			<p:inputText id="idLogin" required="true" requiredMessage="Identifiant obligatoire" value="#{authentificationBean.userName}" />
+			<p:message for="idLogin" display="icon"/>
 			
-		
 			
-			<h:outputLabel for="idLogin" value="Identifiant : " />
-			<p:inputText id="idLogin" required="true" requiredMessage="Identifiant obligatoire" value="" />
-			<h:message for="idLogin" styleClass="error"/>
+			<p:outputLabel for="idMdp" value="Mot de passe : " />
+			<p:password id="idMdp" required="true" requiredMessage="Mot de passe obligatoire" value="#{authentificationBean.userPassword}"/>
+			<p:message for="idMdp"  display="icon"/>
 			
-			
-			<h:outputLabel for="idMdp" value="Mot de passe : " />
-			<p:password id="idMdp" required="true" requiredMessage="Mot de passe obligatoire" value="#"/>
-			<h:message for="idMdp" styleClass="error"/>
-			
-			<f:facet name="footer">
-				<p:button action="#" value="Se Connecter" ></p:button>
-			</f:facet>
-			
+			<br></br>
 		</h:panelGrid>
-	</h:form>
-     
-    
-    
-    
-   <p>&copy; 2017-2020</p>
 
+		<p:commandButton id="submitButton" update="panel" action="#{authentificationBean.connecterUtilisateur()}" value="Se Connecter" ></p:commandButton>
+
+		</p:panel>
+	</h:form>
+      
+      <br></br>
+      
+   <p>&copy; 2020</p>
 
 </body>
 

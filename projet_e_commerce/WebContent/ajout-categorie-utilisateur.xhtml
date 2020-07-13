@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+	<title>Ajout categorie - utilisateur</title>
+		
+	<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
+	<h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />		
+	<h:outputStylesheet library="css" name="mon-style.css"></h:outputStylesheet>
+	<h:outputStylesheet library="css" name="utilisateur.css"></h:outputStylesheet>	
+</h:head> 
+
+<body> 
+
+<div class="container-fluid" >
+		
+		<!-- //////////////////////////////////////////// HEADER /////////////////////////////////////////////////////// -->			
+				<div class="row" id="row-header" style="padding-top: 15px; padding-bottom: 15px; background-color: #696969;">
+				
+					<div class="col-3" >
+					<h1 style="font-size: 14pt">Accueil Administrateur</h1>
+					</div>
+				
+					<div class="col-2" id="gestion-categorie">
+					<h:form>
+						<h:panelGrid columns="1">
+					   		<p:splitButton id="basic" value="Catégories" action="#">
+					   			<p:menuitem value="Consulter" action="#"/>
+							    <p:menuitem value="Ajouter" action="#"/>
+							    <p:menuitem value="Modifier" action="#"/>
+							    <p:menuitem value="Supprimer" action="#"/>
+					   		</p:splitButton>  
+						</h:panelGrid>
+					</h:form>
+					</div>
+					
+					<div class="col-2" id="gestion-produits">
+					<h:form>
+						<h:panelGrid columns="1">
+					   		<p:splitButton id="basic" value="Produits" action="#">
+							    <p:menuitem value="Livre" action="#"/>
+							    <p:menuitem value="Film" action="#"/>
+							    <p:menuitem value="Musique" action="#"/>
+					   		</p:splitButton>  
+						</h:panelGrid>
+					</h:form>
+					</div>
+					
+					<div class="col-3">
+        				<div class="ui-inputgroup">
+            				<p:inputText placeholder="Rechercher" />
+           					<p:commandButton icon="pi pi-search"  styleClass="white-button"/>  
+        				</div>
+    				</div>
+					
+					<h:form>
+					<div class="col-1" style="float:right;">							
+						<h:commandLink action="#{authentificationBean.deconnecterUtilisateur()}" style="color:#ffffff;" value="Déconnexion"></h:commandLink>
+					</div>
+					</h:form>
+				
+				</div>
+
+		<!-- //////////////////////////////////////////// CONTENU /////////////////////////////////////////////////////// -->			
+				<br/><br/><br/>
+		
+		</div>
+		
+		<div class="container" >	
+		<!-- ===================================================== -->
+		<!-- ======== Formulaire d'ajout de la catégorie ============== -->
+		<!-- ===================================================== -->
+		<p:growl id="growl" showSummary="true" showDetail="true" keepAlive="true" life="3000">
+    		<p:autoUpdate />
+		</p:growl>
+	
+		<h3>Formulaire d'ajout d'une nouvelle catégorie</h3>
+		
+		<br/><br/>
+	
+	<h:form>
+	
+		<h:panelGrid columns="2" border="1" cellpadding="5" cellspacing="5" width="50%" style="border:white;">
+			
+			<h:outputLabel for="nomcat" value="Nom catégorie : " />
+			<h:inputText id="nomcat" value="#{gestionCategoriesBean.categorie.nomCategorie}" required="true" requiredMessage="nom catégorie obligatoire" />
+		
+			<h:outputLabel for="descriptcat" value="Description : " />
+			<p:inputTextarea rows = "6" cols = "33" id="descriptcat" value="#{gestionCategoriesBean.categorie.description}" required="true" requiredMessage="description obligatoire" />
+
+			<h:outputLabel for="photocat" value="Photo : " />
+			<p:fileUpload id="photocat" value="#{gestionCategoriesBean.categorie.photo}" mode="simple" skinSimple="true" required="true" requiredMessage="photo obligatoire"/>
+				
+			<f:facet name="footer">
+				<h:commandButton action="#{gestionCategoriesBean.ajouterCategorie()}" value="Ajouter" style="float:right;"/>
+			</f:facet>
+			
+		</h:panelGrid>	
+	
+	</h:form>	
+				
+</div>
+
+</body> 
+</html>

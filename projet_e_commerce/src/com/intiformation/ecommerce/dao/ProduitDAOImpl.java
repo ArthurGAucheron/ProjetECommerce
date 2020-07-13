@@ -115,6 +115,7 @@ public class ProduitDAOImpl implements IProduitDAO{
 			ps.setDouble(3, pProduit.getPrix());
 			ps.setInt(4, pProduit.getQuantite());
 			ps.setBoolean(5, pProduit.isSelectionne());
+			ps.setString(6, pProduit.getPhoto());
 			ps.setInt(7, pProduit.getCategorieID());
 	
 			int verif = ps.executeUpdate();
@@ -151,6 +152,7 @@ public class ProduitDAOImpl implements IProduitDAO{
 			ps.setDouble(3, pProduit.getPrix());
 			ps.setInt(4, pProduit.getQuantite());
 			ps.setBoolean(5, pProduit.isSelectionne());
+			ps.setString(6, pProduit.getPhoto());
 			ps.setInt(7, pProduit.getCategorieID());
 			ps.setInt(8, pProduit.getIdProduit());
 			
@@ -216,6 +218,8 @@ public class ProduitDAOImpl implements IProduitDAO{
 			
 			ps = this.connection.prepareStatement("SELECT * FROM produits WHERE categorie_id=?");
 
+			ps.setInt(1, pIDCategorie);
+			
 			rs = ps.executeQuery();
 		
 			List<Produit> listeProduitsByCategorieBDD = new ArrayList<>();
