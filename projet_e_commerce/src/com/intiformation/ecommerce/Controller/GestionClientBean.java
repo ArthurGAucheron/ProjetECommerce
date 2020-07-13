@@ -30,7 +30,9 @@ public class GestionClientBean implements Serializable{
 	 private String adresseClient;
 	 private String emailClient;
 	 private String telClient;
-	private String passWordClient;
+	 private String passWordClient1;
+	 private String passWordClient2;
+	 private boolean verifAjout = false;
 	
 	
 	private Client client;
@@ -57,7 +59,7 @@ public class GestionClientBean implements Serializable{
 		// 2. vérif si l'utilisateur est dans la bdd
 		
 		
-		if (clientService.clientExists(emailClient, passWordClient)==true) {
+		if (clientService.clientExists(emailClient, passWordClient1)==true) {
 			
 			// -> création de la session 
 			
@@ -88,14 +90,25 @@ public class GestionClientBean implements Serializable{
 	 */
 	public String nouveauClient(){
 		
-		System.out.println("dans la méthode");
+		
 		// 1. Déclaration du contexte de JSF
 		
 				FacesContext contextJSF = FacesContext.getCurrentInstance();
-		
-				Client newClient = new Client(nomClient, adresseClient, emailClient, telClient, passWordClient);
+			
 				
-				boolean verifAjout = clientService.ajouter(newClient);
+				if (passWordClient1.equals(passWordClient2)) {
+					
+					Client newClient = new Client(nomClient, adresseClient, emailClient, telClient, passWordClient1);
+					 
+					verifAjout = clientService.ajouter(newClient);
+					
+			
+				}else {
+					
+					contextJSF.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Inscription : ", "Les mots de passe doivent être identique"));
+				}// end else
+				
+				
 				
 				if (verifAjout) {
 					
@@ -108,7 +121,7 @@ public class GestionClientBean implements Serializable{
 					contextJSF.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Inscription : ", " erreur lors de l'inscription"));
 					
 					return "creation-client.xhtml?faces-redirect=true";
-				}
+				}// end else
 		
 		
 	}// end nouveauClient()
@@ -121,16 +134,6 @@ public class GestionClientBean implements Serializable{
 	public void setEmailClient(String emailClient) {
 		this.emailClient = emailClient;
 	}
-
-	public String getPassWordClient() {
-		return passWordClient;
-	}
-
-	public void setPassWordClient(String passWordClient) {
-		this.passWordClient = passWordClient;
-	}
-
-	
 
 	public String getNomClient() {
 		return nomClient;
@@ -164,6 +167,31 @@ public class GestionClientBean implements Serializable{
 	public void setClient(Client client) {
 		this.client = client;
 	}
+
+	public String getPassWordClient1() {
+		return passWordClient1;
+	}
+
+	public void setPassWordClient1(String passWordClient1) {
+		this.passWordClient1 = passWordClient1;
+	}
+
+	public String getPassWordClient2() {
+		return passWordClient2;
+	}
+
+	public void setPassWordClient2(String passWordClient2) {
+		this.passWordClient2 = passWordClient2;
+	}
+
+	public boolean isVerifAjout() {
+		return verifAjout;
+	}
+
+	public void setVerifAjout(boolean verifAjout) {
+		this.verifAjout = verifAjout;
+	}
+	
 	
 	
 
