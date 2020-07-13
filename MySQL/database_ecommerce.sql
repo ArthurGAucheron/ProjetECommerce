@@ -51,4 +51,7 @@ insert into produits (designation, description, prix, quantite, selectionne, pho
 =======
                                constraint fk_commande_panier foreign key (panier_id) references panier(id_panier));
 
+<<<<<<< HEAD
+>>>>>>> 7dd4206852fbd4ddc3c7328f5679d3563c3779fa
+=======
 >>>>>>> 7dd4206852fbd4ddc3c7328f5679d3563c3779fa
