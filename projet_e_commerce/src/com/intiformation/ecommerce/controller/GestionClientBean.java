@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 import com.intiformation.ecommerce.modeles.Client;
 import com.intiformation.ecommerce.service.ClientServiceImpl;
 import com.intiformation.ecommerce.service.IClientService;
-import com.sun.corba.se.spi.orbutil.fsm.Action;
 
  @ManagedBean(name="gestionClientBean")
  @SessionScoped

@@ -27,21 +27,28 @@
 					<div class="col-1" >
 					<h1 id="logo-header">e-commerce</h1>
 					</div>
+					
 					<div class="col-2" id="choix-categorie">
-					<h:form><p:growl id="messages" />
-						<h:panelGrid columns="2">
-					   		<p:splitButton id="basic" value="Toutes les catégories" action="#">
-					   		</p:splitButton>  
-						</h:panelGrid>
+					
+					<h:form>
+						<h:outputLabel  for="categorie"/>
+						<p:autoComplete id="categorie" dropdown="true" value="#{pagePrincipaleBean.nomCategorie}"  completeMethod="#{pagePrincipaleBean.choixCategorie()}" />
 					</h:form>
+					
+			
+
 					</div>
 					<div class="col-6" >
-						<h:form>
+					<h:form>
 								<h:inputText type="text" class="form-control"></h:inputText>
-								<div><h:commandButton  class="btn btn-dark" action="#" value="Rechercher"></h:commandButton></div>
-						</h:form>
+								<div>
+								<h:commandButton  class="btn btn-dark" action="#" value="Rechercher"></h:commandButton></div>
+					
+					</h:form>
 					</div>
+					
 					<div class="col-2" id="seconnecter">
+					 <p:outputLabel>Bienvenue</p:outputLabel> <br/>
 					 <h:link><span style="color: white">Se connecter</span></h:link>
 					</div>	
 					<div class="col-1" id="panier"> 
@@ -49,6 +56,7 @@
 					<span style="color:orange; font-size: 1em; font-weight: bold;"><h:outputLabel value="12"></h:outputLabel></span>
 					</div>	
 				</div>
+				
 			<!-- //////////////////////////////////////////// Contenu /////////////////////////////////////////////////////// -->
 				<div class="container">
 					<br/><br/>

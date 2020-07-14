@@ -21,6 +21,7 @@
 		</style>
 </h:head> 
 <h:body> 
+
 	<div class="container-fluid">
 		<div class="row" id="row-header">
 			<div class="col-12">
@@ -29,28 +30,30 @@
 			</div>
 			
 		</div>
+			 <p:messages id="msgs" globalOnly="true" layout="table" showDetail="true"/>
 		
 			<div class="row justify-content-md-center">
 			 <h:form>
 						<h:panelGrid columns="1" cellpadding="2" cellspacing="5" width="100%">
 						
-						<h:outputLabel><span style="font-size: 2em; font-weight: bold;">S'identifier</span></h:outputLabel>
+						<p:outputLabel><span style="font-size: 2em; font-weight: bold;">S'identifier</span></p:outputLabel>
 						
 						
-						<h:outputLabel for="idLogin" value="Adresse e-mail : " />
+						<p:outputLabel for="idLogin" value="Adresse e-mail : " />
 						
-						<h:inputText id="idLogin" required="true" requiredMessage="Identifiant obligatoire" value="#{gestionClientBean.emailClient}"/>
+						<p:inputText id="idLogin" required="true" requiredMessage="Identifiant obligatoire" value="#{gestionClientBean.emailClient}"/>
 						
-						<h:message for="idLogin" styleClass="error"/>
+						<p:message for="idLogin" display="icon"/>
 						
 						
-						<h:outputLabel for="idMdp" value="Mot de passe : " />
 						
-						<h:inputSecret id="idMdp" required="true" requiredMessage="Mot de passe obligatoire" value="#{gestionClientBean.passWordClient1}"/>
+						<p:outputLabel for="idMdp" value="Mot de passe : " />
 						
-						<h:message for="idMdp" styleClass="error"/>
+						<p:password id="idMdp" required="true" requiredMessage="Mot de passe obligatoire" value="#{gestionClientBean.passWordClient1}"/>
 						
-						<h:commandButton class="btn btn-dark" action="#{gestionClientBean.connecterClient()}" value="Se Connecter" />
+						<p:message for="idMdp" display="icon"/>
+						
+						<p:commandButton class="btn btn-dark" action="#{gestionClientBean.connecterClient()}" value="Se Connecter" />
 			
 					</h:panelGrid>
 			</h:form>
