@@ -13,9 +13,34 @@
 		<h:outputStylesheet library="css" name="mon-style.css" target="body" ></h:outputStylesheet>
 		
 		<style>
+			.imageProduit{
+				width: 100px; 
+				height: 150px;
+				
+			}
 		
+			.titreProduit{
+				
+				color: orange;
+				font-size: 1.5em;
+				font-weight: bold;
+			
+			 }
+			 
+			.prixProduit{
+				color:black;
+				font-weight: bold;
+			}
+			.descriptifProduit{
+				color:black;
+			}
+			.quantiteProduit{
+			
+			color:black;
+		
+			}
 		</style>
-	
+		
 	
 	</h:head>
 	<h:body>
@@ -32,19 +57,22 @@
 					
 					<h:form>
 						<h:outputLabel  for="categorie"/>
-						<p:autoComplete id="categorie" dropdown="true" value="#{pagePrincipaleBean.nomCategorie}"  completeMethod="#{pagePrincipaleBean.choixCategorie()}" />
+						<p:autoComplete id="categorie" dropdown="true" value="#{pagePrincipaleBean.nomCategorie}"  completeMethod="#{pagePrincipaleBean.choixCategorie()}"
+						onchange="#{pagePrincipaleBean.refresh()}"/>
+						
+					
 					</h:form>
 					
 			
 
 					</div>
 					<div class="col-6" >
-					<h:form>
-								<h:inputText type="text" class="form-control"></h:inputText>
+								<h:form>
+								<h:inputText type="text" class="form-control" value="#{pagePrincipaleBean.motCle}"></h:inputText>
 								<div>
-								<h:commandButton  class="btn btn-dark" action="#" value="Rechercher"></h:commandButton></div>
-					
-					</h:form>
+								<h:commandButton  class="btn btn-dark" action="#{pagePrincipaleBean.refresh()}" value="Rechercher"></h:commandButton></div>
+								</h:form>
+				
 					</div>
 					
 					<div class="col-2" id="seconnecter">
@@ -60,50 +88,48 @@
 			<!-- //////////////////////////////////////////// Contenu /////////////////////////////////////////////////////// -->
 				<div class="container">
 					<br/><br/>
+					<p:outputLabel value="#{pagePrincipaleBean.nomCategorie}" style="font-size : 2em;"></p:outputLabel>
+					
 					<!-- Début du modèle à répéter -->
-					<div class="row" style="border-top: 1px black solid">
+					<ui:repeat var="produit" value="#{pagePrincipaleBean.listeProduits(pagePrincipaleBean.nomCategorie, pagePrincipaleBean.motCle)}">
+				
+					
+					<div class="row" style="border-top: 1px black solid;">
+							
 							<h:panelGrid columns="2" border="0" cellspacing="10" cellpadding="10" columnClasses="style-image,style-contenu">
+								
 								<f:facet name="header">
 								
 								</f:facet>
-								<p:graphicImage library="images" name="imagetest.jpg"></p:graphicImage>
-								<h:panelGrid colums="1" border="0" width="50%" >
-									
-									<h:link><span id="nom-produit">Intitulé du produit</span></h:link>	
-									
-									<h:outputLabel value="Prix"/>
-																
-									<h:outputLabel value="Chosir une quantité" for="dd" />
-									 
-									<p:autoComplete id="dd" dropdown="true" value="#{dropButton.items}" completeMethod="#{dropButton.completeText}" />
-		        					 
-		        					<h:commandButton value="Ajouter au panier"></h:commandButton>
-							 
-							  </h:panelGrid>
-						</h:panelGrid>
-					</div>
-					<!-- Fin du modèle à répéter -->
-					<div class="row" style="border-top: 1px black solid">
-							<h:panelGrid columns="2" border="0" cellspacing="10" cellpadding="10" columnClasses="style-image,style-contenu">
-								<f:facet name="header">
 								
-								</f:facet>
-								<p:graphicImage library="images" name="imagetest.jpg"></p:graphicImage>
-								<h:panelGrid colums="1" border="0" width="50%" >
+								<p:graphicImage library="images" name="#{produit.photo}" styleClass="imageProduit"></p:graphicImage>
+								
+								<h:panelGrid colums="1" border="0" width="100%" >
 									
-									<h:link><span id="nom-produit">Intitulé du produit</span></h:link>	
+									<h:form>
 									
-									<h:outputLabel value="Prix"/>
+									<h:outputLabel value="#{produit.designation}" styleClass="titreProduit"></h:outputLabel> <br></br>
+									
+									<h:outputLabel value="Prix : #{produit.prix} €" styleClass="prixProduit"/> <br></br>
 																
-									<h:outputLabel value="Chosir une quantité" for="dd1" />
+									<h:outputLabel value="Description du produit : #{produit.description}" styleClass="descriptifProduit"></h:outputLabel> <br></br>
+									
+									<h:outputLabel  for="produit" value="Choisir une quantité" styleClass="quantiteProduit"/> <br></br>
+									
+									<p:autoComplete id="produit" dropdown="true" value="#{pagePrincipaleBean.nombreProduit}" 
+											completeMethod="#{pagePrincipaleBean.nombreDisponibleProduit(produit.quantite)}"
+											 scrollHeight="100" forceSelection="true"/> <br></br>
+									
+									<h:commandButton value="Ajouter au panier"></h:commandButton>
+									</h:form>							
 									 
-									<p:autoComplete id="dd1" dropdown="true" value="#{dropButton.items}" completeMethod="#{dropButton.completeText}" />
-		        					 
-		        					<h:commandButton value="Ajouter au panier"></h:commandButton>
-							 
 							  </h:panelGrid>
+							  
 						</h:panelGrid>
-					</div>			
+					</div>	
+			</ui:repeat>
+			<!-- Fin  du modèle à répéter -->	
+			
 				</div>
 				
 			

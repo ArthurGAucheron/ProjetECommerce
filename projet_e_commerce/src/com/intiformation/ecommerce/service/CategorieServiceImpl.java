@@ -42,4 +42,10 @@ public class CategorieServiceImpl implements ICategorieService{
 		return categorieDAO.deleteById(pIdCategorie);
 	}
 
+	@Override
+	public int getIdByName(String nomCategorie) {
+		return categorieDAO.getIdByName(nomCategorie);
+	}
+	
+
 }//end class

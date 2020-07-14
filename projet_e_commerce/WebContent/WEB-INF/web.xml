@@ -14,7 +14,7 @@ id="WebApp_ID" version="3.1">
  
    <!-- /////////////// Page de démarrage //////////////////////// -->
   <welcome-file-list>
- 	 <welcome-file>login-client.xhtml</welcome-file>
+ 	 <welcome-file>page-principale.xhtml</welcome-file>
   </welcome-file-list>
  
  
