@@ -15,75 +15,27 @@
 </h:head> 
 
 <body> 
-
-<div class="container-fluid" >
 		
 		<!-- //////////////////////////////////////////// HEADER /////////////////////////////////////////////////////// -->			
-				<div class="row" id="row-header" style="padding-top: 15px; padding-bottom: 15px; background-color: #696969;">
-				
-					<div class="col-3" >
-					<h1 style="font-size: 14pt">Accueil Administrateur</h1>
-					</div>
-				
-					<div class="col-2" id="gestion-categorie">
-					<h:form>
-						<h:panelGrid columns="1">
-					   		<p:splitButton id="basic" value="Catégories" action="#">
-					   			<p:menuitem value="Consulter" action="#"/>
-							    <p:menuitem value="Ajouter" action="#"/>
-							    <p:menuitem value="Modifier" action="#"/>
-							    <p:menuitem value="Supprimer" action="#"/>
-					   		</p:splitButton>  
-						</h:panelGrid>
-					</h:form>
-					</div>
-					
-					<div class="col-2" id="gestion-produits">
-					<h:form>
-						<h:panelGrid columns="1">
-					   		<p:splitButton id="basic" value="Produits" action="#">
-							    <p:menuitem value="Livre" action="#"/>
-							    <p:menuitem value="Film" action="#"/>
-							    <p:menuitem value="Musique" action="#"/>
-					   		</p:splitButton>  
-						</h:panelGrid>
-					</h:form>
-					</div>
-					
-					<div class="col-3">
-        				<div class="ui-inputgroup">
-            				<p:inputText placeholder="Rechercher" />
-           					<p:commandButton icon="pi pi-search"  styleClass="white-button"/>  
-        				</div>
-    				</div>
-					
-					<h:form>
-					<div class="col-1" style="float:right;">							
-						<h:commandLink action="#{authentificationBean.deconnecterUtilisateur()}" style="color:#ffffff;" value="Déconnexion"></h:commandLink>
-					</div>
-					</h:form>
-				
-				</div>
+		<div class="container-fluid" >	
+			<!--  utilisation modèle header-utilisateur -->
+			<ui:decorate template="/templates/header-utilisateur.xhtml"></ui:decorate>
+		</div>	
 				
 		<!-- //////////////////////////////////////////// CONTENU /////////////////////////////////////////////////////// -->			
 				<br/><br/><br/>
-				
-		</div>
 		
 		<div class="container" >
 			
 		<!-- ================================================================= -->
 		<!-- ======== Formulaire de modifcation de la catégorie ============== -->
 		<!-- ================================================================= -->
-		<p:growl id="growl" showSummary="true" showDetail="true" keepAlive="true" life="3000">
-    		<p:autoUpdate />
-		</p:growl>
 	
 		<h3>Formulaire de modification d'une catégorie</h3>
 		
 		<br/><br/>
 	
-	<h:form>
+	<h:form enctype="multipart/form-data">
 	
 		<h:panelGrid columns="2" border="1" cellpadding="5" cellspacing="5" width="50%" style="border:white;">
 			
@@ -93,8 +45,11 @@
 			<h:outputLabel for="descriptcat" value="Description : " />
 			<p:inputTextarea rows = "6" cols = "33" id="descriptcat" value="#{gestionCategoriesBean.categorie.description}" required="true" requiredMessage="description obligatoire" />
 
-			<h:outputLabel for="photocat" value="Photo : " />
-			<p:fileUpload id="photocat" value="#{gestionCategoriesBean.categorie.photo}" mode="simple" skinSimple="true" required="true" requiredMessage="photo obligatoire"/>
+			<h:outputLabel for="file" value="Photo : " />
+			<h:panelGrid>
+			    <p:graphicImage library="images/categories" name="#{gestionCategoriesBean.categorie.photo}" width="100px" height="100px" rendered="#{gestionCategoriesBean.categorie.photo ne null}"/> 
+				<h:inputFile id="file" value="#{gestionCategoriesBean.uploadedFile}" />
+			</h:panelGrid>
 				
 			<f:facet name="footer">
 				<h:commandButton action="#{gestionCategoriesBean.modifierCategorie()}" value="Modifier" style="float:right;"/>
@@ -105,6 +60,12 @@
 	</h:form>	
 				
 </div>
+
+	<!-- //////////////////////////////////////////// FOOTER /////////////////////////////////////////////////////// -->				
+		<div class="container-fluid" >	
+			<!--  utilisation modèle footer-utilisateur -->
+			<ui:decorate template="/templates/footer-utilisateur.xhtml"></ui:decorate>
+		</div>
 				
 
 </body> 

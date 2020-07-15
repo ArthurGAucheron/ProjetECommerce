@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 <?xml version="1.0"?>
 <faces-config version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
@@ -19,6 +17,12 @@
 		<navigation-case>
 			<from-outcome>updatecat</from-outcome> 	
 			<to-view-id>/modification-categorie-utilisateur.xhtml</to-view-id>		
+			<redirect/> 						
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>searchcat</from-outcome> 	
+			<to-view-id>/recherche-categorie-utilisateur.xhtml</to-view-id>		
 			<redirect/> 						
 		</navigation-case>
 		
@@ -42,19 +46,25 @@
 		</navigation-case>
 		
 	</navigation-rule>
- 
- 
- 
- 
-=======
-=======
->>>>>>> 7dd4206852fbd4ddc3c7328f5679d3563c3779fa
-<?xml version="1.0" ?>
-<faces-config 
-version="2.2"
- xmlns="http://xmlns.jcp.org/xml/ns/javaee"
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-  xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+	
+	 	<!-- règle de navigation pour 'recherche-categorie-utilisateur.xhtml' -->
+	<navigation-rule>
+		
+		<from-view-id>/recherche-categorie-utilisateur.xhtml</from-view-id>
+		
+		<navigation-case>
+			<from-outcome>deletecat</from-outcome> 	
+			<to-view-id>/gestion-categories-utilisateur.xhtml</to-view-id>		
+			<redirect/> 						
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>updatecat</from-outcome> 	
+			<to-view-id>/modification-categorie-utilisateur.xhtml</to-view-id>		
+			<redirect/> 						
+		</navigation-case>
+		
+	</navigation-rule>
 
 	<navigation-rule>
 		
@@ -69,8 +79,4 @@ version="2.2"
 		
 	</navigation-rule> 
 
-<<<<<<< HEAD
->>>>>>> 7dd4206852fbd4ddc3c7328f5679d3563c3779fa
-=======
->>>>>>> 7dd4206852fbd4ddc3c7328f5679d3563c3779fa
 </faces-config>

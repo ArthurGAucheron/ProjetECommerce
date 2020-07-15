@@ -15,78 +15,30 @@
 </h:head> 
 
 <body> 
-
-<div class="container-fluid" >
 		
 		<!-- //////////////////////////////////////////// HEADER /////////////////////////////////////////////////////// -->			
-				<div class="row" id="row-header" style="padding-top: 15px; padding-bottom: 15px; background-color: #696969;">
-				
-					<div class="col-3" >
-					<h1 style="font-size: 14pt">Accueil Administrateur</h1>
-					</div>
-				
-					<div class="col-2" id="gestion-categorie">
-					<h:form>
-						<h:panelGrid columns="1">
-					   		<p:splitButton id="basic" value="Catégories" action="#">
-					   			<p:menuitem value="Consulter" action="#"/>
-							    <p:menuitem value="Ajouter" action="#"/>
-							    <p:menuitem value="Modifier" action="#"/>
-							    <p:menuitem value="Supprimer" action="#"/>
-					   		</p:splitButton>  
-						</h:panelGrid>
-					</h:form>
-					</div>
-					
-					<div class="col-2" id="gestion-produits">
-					<h:form>
-						<h:panelGrid columns="1">
-					   		<p:splitButton id="basic" value="Produits" action="#">
-							    <p:menuitem value="Livre" action="#"/>
-							    <p:menuitem value="Film" action="#"/>
-							    <p:menuitem value="Musique" action="#"/>
-					   		</p:splitButton>  
-						</h:panelGrid>
-					</h:form>
-					</div>
-					
-					<div class="col-3">
-        				<div class="ui-inputgroup">
-            				<p:inputText placeholder="Rechercher" />
-           					<p:commandButton icon="pi pi-search"  styleClass="white-button"/>  
-        				</div>
-    				</div>
-					
-					<h:form>
-					<div class="col-1" style="float:right;">							
-						<h:commandLink action="#{authentificationBean.deconnecterUtilisateur()}" style="color:#ffffff;" value="Déconnexion"></h:commandLink>
-					</div>
-					</h:form>
-				
-				</div>
+		<div class="container-fluid" >	
+			<!--  utilisation modèle header-utilisateur -->
+			<ui:decorate template="/templates/header-utilisateur.xhtml"></ui:decorate>
+		</div>	
 
 		<!-- //////////////////////////////////////////// CONTENU /////////////////////////////////////////////////////// -->			
 				<br/><br/><br/>
-		
-		</div>
-		
+				
 		<div class="container" >	
 		<!-- ===================================================== -->
 		<!-- ======== Formulaire d'ajout du produit ============== -->
 		<!-- ===================================================== -->
-		<p:growl id="growl" showSummary="true" showDetail="true" keepAlive="true" life="3000">
-    		<p:autoUpdate />
-		</p:growl>
 	
 		<h3>Formulaire d'ajout d'un nouveau produit</h3>
 		
 		<br/><br/>
 	
-	<h:form>
+	<h:form enctype="multipart/form-data">
 	
 		<h:panelGrid columns="2" border="1" cellpadding="5" cellspacing="5" width="50%" style="border:white;">
 			
-       		<p:outputLabel for="@next" value="ID Catégorie : " />   
+       		<p:outputLabel for="@next" value="Nom catégorie : " />   
         	<p:selectOneMenu id="categorieproduit" value="#{gestionProduitsBean.produit.categorieID}" required="true" requiredMessage="catégorie obligatoire" >        
             	<f:selectItem itemLabel="Choisir ID catégorie" itemValue="" />
             	<f:selectItems value="#{gestionCategoriesBean.afficherCategories()}" var="categorie" itemValue="#{categorie.idCategorie}" itemLabel="#{categorie.nomCategorie}" />
@@ -107,8 +59,10 @@
 			<h:outputLabel for="qteproduit" value="Quantité : " />
 			<h:inputText id="qteproduit" value="#{gestionProduitsBean.produit.quantite}" required="true" requiredMessage="quantité obligatoire" default="0"/>
 			
-			<h:outputLabel for="photoproduit" value="Photo : " />
-			<p:fileUpload id="photoproduit" value="#{gestionProduitsBean.produit.photo}" mode="simple" skinSimple="true" required="true" requiredMessage="photo obligatoire"/>
+			<h:outputLabel for="file" value="Photo : " />
+			<h:panelGrid>
+				<h:inputFile id="file" value="#{gestionProduitsBean.uploadedFile}" />
+			</h:panelGrid>
 				
 			<f:facet name="footer">
 				<h:commandButton action="#{gestionProduitsBean.ajouterProduit()}" value="Enregistrer" style="float:right;"/>
@@ -119,6 +73,12 @@
 	</h:form>	
 				
 </div>
+
+	<!-- //////////////////////////////////////////// FOOTER /////////////////////////////////////////////////////// -->				
+		<div class="container-fluid" >	
+			<!--  utilisation modèle footer-utilisateur -->
+			<ui:decorate template="/templates/footer-utilisateur.xhtml"></ui:decorate>
+		</div>
 
 </body> 
 </html>
