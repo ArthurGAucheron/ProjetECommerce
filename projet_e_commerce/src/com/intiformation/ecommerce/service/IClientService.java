@@ -12,4 +12,5 @@ public interface IClientService extends IGeneriqueService<Client>{
 
 	public boolean clientExists(String pMail, String pPassword);
 	
+	public int findIdByEmail(String pMail);
 }//end interface

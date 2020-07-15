@@ -34,6 +34,7 @@ public class GestionClientBean implements Serializable{
 	 private boolean verifAjout = false;
 	
 	
+	
 	private Client client;
 	
 	private IClientService clientService;
@@ -64,8 +65,10 @@ public class GestionClientBean implements Serializable{
 			
 			HttpSession session = (HttpSession) contextJSF.getExternalContext().getSession(true);
 			
-			// sauvegarde de l'adresse mail dans la session
-			session.setAttribute("client_email", emailClient);
+			// sauvegarde de l'id client dans la session
+			
+			
+			session.setAttribute("id_client", clientService.findIdByEmail(emailClient));
 			
 	
 			// -> navigation vers la page principale du site "page-principale.xhtml'
@@ -124,6 +127,26 @@ public class GestionClientBean implements Serializable{
 		
 		
 	}// end nouveauClient()
+	
+		public String deconnecterClient() {
+		
+		// 1. Récup du context de JSF
+		FacesContext contexJSF = FacesContext.getCurrentInstance();
+		
+		// 2. Récup de la session http de l'utilisateur
+		HttpSession session = (HttpSession) contexJSF.getExternalContext().getSession(false);
+		
+		// 3. déconnexion
+		session.invalidate();
+		
+		// 4. Message de déconnexion vers la vue
+		FacesMessage messageDeconnexion = new FacesMessage(FacesMessage.SEVERITY_INFO, "Déconnexion", " vous êtes maintenant déconnecté");
+		contexJSF.addMessage(null, messageDeconnexion);
+		
+		// 5. redirection vers la page du formulaire 'login.xhtml'
+		
+		return "page-principale.xhtml?faces-redirect=true";
+	}
 	
 	
 	public String getEmailClient() {
@@ -190,7 +213,7 @@ public class GestionClientBean implements Serializable{
 	public void setVerifAjout(boolean verifAjout) {
 		this.verifAjout = verifAjout;
 	}
-	
+
 	
 	
 

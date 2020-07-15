@@ -41,7 +41,7 @@
 		
 	</navigation-rule>
  
-	<!-- règle de navigation pour 'gestion-produits-utilisateur.xhtml' -->
+	<!-- règle de navigation pour '/login-client.xhtml' -->
 
 	<navigation-rule>
 		
@@ -53,6 +53,19 @@
 			<redirect/>
 		</navigation-case>
 		
+	</navigation-rule>
+	
+	<!-- règle de navigation pour '/login-client.xhtml' -->
+	
+	<navigation-rule>
+		<from-view-id>/page-principale.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>connexion</from-outcome>
+			<to-view-id>/login-client.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+		
+	
 	</navigation-rule> 
 
 </faces-config>

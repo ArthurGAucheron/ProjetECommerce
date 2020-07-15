@@ -77,7 +77,21 @@
 					
 					<div class="col-2" id="seconnecter">
 					 <p:outputLabel>Bienvenue</p:outputLabel> <br/>
-					 <h:link><span style="color: white">Se connecter</span></h:link>
+					
+					      <c:choose>
+						    <c:when test="#{pagePrincipaleBean.clientIsConnect()}">
+						       	 <h:outputText value="#{pagePrincipaleBean.infosClient()}"></h:outputText>
+						       	 <h:form>
+					 	   		<h:commandLink value="Se déconnecter" action="#{gestionClientBean.deconnecterClient()}"/>
+					 	   		</h:form>
+						    </c:when>
+						    <c:otherwise>
+						           	<h:link value="Se connecter" outcome="connexion" ></h:link> 
+						    </c:otherwise>
+						</c:choose>
+					      
+					
+					 
 					</div>	
 					<div class="col-1" id="panier"> 
 					 <h:link><span style="color: white">Consulter le panier</span></h:link>

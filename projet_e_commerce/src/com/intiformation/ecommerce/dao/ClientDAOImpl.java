@@ -237,5 +237,36 @@ public class ClientDAOImpl implements IClientDAO{
 		return false;
 		
 	}//end isClientExists
+
+	@Override
+	public int getIdByEmail(String pmail) {
+		
+		try {
+			ps = this.connection.prepareStatement("SELECT id_client FROM clients WHERE email = ?");
+		
+			ps.setString(1,pmail);
+			
+			rs = ps.executeQuery();
+			
+			rs.next();
+			
+			return rs.getInt(1);
+		
+			
+		} catch (SQLException e) {
+			System.out.println("...(ClientDAOImpl) erreur de l'execution de getIdByEmail()...");
+			e.printStackTrace();
+			
+		} finally {
+			try {
+				rs.close();
+				ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}//end finally
+		
+		return 0;
+	}
 	
 }//end class
