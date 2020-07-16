@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+       
+
+<h:head>
+	<title>Accueil - utilisateur (compte inactif)</title>
+	
+	<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
+	<h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />		
+	<h:outputStylesheet library="css" name="mon-style.css"></h:outputStylesheet>
+	<h:outputStylesheet library="css" name="utilisateur.css"></h:outputStylesheet>		
+	
+</h:head> 
+
+<body> 
+		
+		<!-- //////////////////////////////////////////// HEADER /////////////////////////////////////////////////////// -->			
+				
+		<div class="row" id="row-header" style="padding: 15px; background-color: #696969;">
+											
+					<div class="col-2">
+					<h1 style="font-size: 18pt">e-commerce</h1>
+					</div>		
+							
+				<h:form>					
+					<div style="padding-left: 900px;">	
+						<p:commandButton action="#{authentificationBean.deconnecterUtilisateur()}" value="Déconnexion"></p:commandButton>
+					</div>
+				</h:form>
+				
+				</div>
+		<!-- //////////////////////////////////////////// CONTENU /////////////////////////////////////////////////////// -->			
+		
+		<!-- affichage des messages -->
+		<p:messages globalOnly="true" showDetail="true" infoStyle="color: green;" fatalStyle="color: red;"/>
+		
+		<br/><br/><br/>
+		
+		<div class="container" >	
+				
+				<div class="row">
+				
+				<br/>
+				
+				<h3 style="color: red"><i>Activer le compte pour gérer les catégories et les produits</i></h3>
+					
+				<br/><br/><br/>	
+					
+			<h:form>
+			
+			<p:panel id="panel">
+			
+					<h:outputLabel>
+						<span style="font-size: 16pt; font-weight: bold;">Informations personnelles utilisateur</span>
+					</h:outputLabel>	
+					
+					<br/><br/><br/>
+			
+				<h:panelGrid columns="3" cellpadding="5">
+										
+					<h:outputLabel for="idNom" value="Nom d'utilisateur :" />
+					<h:inputText id="idNom" value="#{authentificationBean.utilisateur.nomUtilisateur}"/>
+					<p:message for="idNom"/>
+					
+					<h:outputLabel for="idMdp" value="Mot de passe :"/>
+					<h:inputText id="idMdp" value="#{authentificationBean.utilisateur.passwordUtilisateur}"/>
+					<p:message for="idMdp"/>
+					
+					<h:outputLabel for="idActived" value="Activation du rôle d'administrateur :"/>
+					<h:selectBooleanCheckbox id="idActived" value="#{authentificationBean.utilisateur.actived}" />
+					<p:message for="idActived"/>
+																	
+				</h:panelGrid>
+				
+				<br/><br/>				
+				
+				<h:commandButton class="btn btn-dark" action="#{authentificationBean.modifierUtilisateur}" style="margin-right:20px;" value="Modifier les informations de l'utilisateur" update="messages">
+				</h:commandButton>
+				
+			</p:panel>
+				
+			</h:form>
+		</div>
+
+		</div>	
+		
+		<br/><br/><br/><br/><br/><br/><br/><br/><br/>
+		
+	<!-- //////////////////////////////////////////// FOOTER /////////////////////////////////////////////////////// -->				
+		<div class="container-fluid" >	
+			<!--  utilisation modèle footer-utilisateur -->
+			<ui:decorate template="/templates/footer-utilisateur.xhtml"></ui:decorate>
+		</div>			
+
+</body> 
+</html>

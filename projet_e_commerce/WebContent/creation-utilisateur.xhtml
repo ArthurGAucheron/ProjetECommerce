@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+
+<title>Nouveau compte - utilisateur</title>
+	
+	<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
+	<h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />		
+	
+</h:head> 
+<body> 
+
+<div class="container">
+		<div class="row" id="row-header">
+			<i class="pi pi-arrow-circle-left" style="font-size: 2em"></i>
+			<h:link outcome="login-utilisateur.xhtml" value=" Retour vers la page d'authentification" style="color:black; font-style:italic; margin-top:5px;"></h:link>
+		</div>
+		
+					<br/><br/><br/>
+					
+		<div>
+			<h:form>
+			
+			<p:panel id="panel">
+			
+					<h:outputLabel>
+						<span style="font-size: 2em; font-weight: bold;">Nouveau compte utilisateur</span>
+					</h:outputLabel>	
+					
+					<br/><br/><br/>
+			
+				<h:panelGrid columns="3" cellpadding="5">
+										
+					<h:outputLabel for="idNom" value="Nom d'utilisateur :" />
+					<h:inputText id="idNom" required="true"  requiredMessage="Nom d'utilisateur obligatoire" value="#{authentificationBean.userName}"/>
+					<p:message for="idNom"/>
+					
+					<h:outputLabel for="idMdp" value="Mot de passe :"/>
+					<h:inputSecret id="idMdp" required="true" requiredMessage="Mot de passe obligatoire" value="#{authentificationBean.userPassword}"/>
+					<p:message for="idMdp"/>
+					
+					<h:outputLabel for="idActived" value="Activation du rôle d'administrateur :"/>
+					<h:selectBooleanCheckbox id="idActived" value="#{authentificationBean.actived}"/>
+					<p:message for="idActived"/>
+																	
+				</h:panelGrid>
+				
+				<br/><br/>
+				
+				<h:commandButton class="btn btn-dark" action="#{authentificationBean.nouvelUtilisateur()}" value="Créer le compte utilisateur" ></h:commandButton>
+				
+			</p:panel>
+				
+			</h:form>
+		</div>
+</div>
+
+</body> 
+</html>

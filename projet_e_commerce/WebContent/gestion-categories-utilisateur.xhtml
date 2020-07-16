@@ -49,7 +49,7 @@
         	
         		<p:overlayPanel id="catPanel" for="catBtn" hideEffect="fade" dynamic="true" style="width:600px" modal="true">
         	
-        			<p:carousel numVisible="1" value="#{gestionCategoriesBean.categorieRecherche}" var="categorie" headerText="Catégorie recherchée" style="text-align:center; width: 100%;">
+        			<p:carousel numVisible="1" pageLinks="0" value="#{gestionCategoriesBean.categorieRecherche}" var="categorie" style="text-align:center; width: 100%;">
         	
         				<h:panelGrid columns="1" columnClasses="label,value" style="text-align:center; width: 100%; margin:10px 0px">
           					
@@ -89,7 +89,7 @@
 				
 <h:form id="form">
 
-    <p:carousel value="#{gestionCategoriesBean.afficherCategories()}" headerText="Liste des catégories" var="categorie" itemStyle="text-align:center" responsive="true">
+    <p:carousel value="#{gestionCategoriesBean.afficherCategories()}" headerText="Liste des catégories" var="categorie" style="font-size:18pt;" itemStyle="text-align:center; font-size:14pt;" responsive="true">
        
         <p:panelGrid columns="1" style="width:100%;margin:10px 0px" columnClasses="label,value" layout="grid" styleClass="ui-panelgrid-blank">
           

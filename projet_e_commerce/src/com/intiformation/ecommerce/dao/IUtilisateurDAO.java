@@ -12,5 +12,7 @@ import com.intiformation.ecommerce.modeles.Utilisateur;
 public interface IUtilisateurDAO extends IGeneriqueDAO<Utilisateur>{
 
 	public boolean isUtilisateurExists(String pUserName, String pPassword);
+
+	public Utilisateur getUtilisateur(String pUserName, String pPassword);
 	
 }//end interface

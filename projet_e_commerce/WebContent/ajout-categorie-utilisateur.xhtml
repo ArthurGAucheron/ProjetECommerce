@@ -37,21 +37,26 @@
 	
 	<h:form enctype="multipart/form-data">
 	
-		<h:panelGrid columns="2" border="1" cellpadding="5" cellspacing="5" width="50%" style="border:white;">
+		<h:panelGrid columns="3" border="1" cellpadding="5" cellspacing="5" style="border:white; width:70%">
 			
 			<h:outputLabel for="nomcat" value="Nom catégorie : " />
-			<h:inputText id="nomcat" value="#{gestionCategoriesBean.categorie.nomCategorie}" required="true" requiredMessage="nom catégorie obligatoire" />
+			<p:inputText id="nomcat" value="#{gestionCategoriesBean.categorie.nomCategorie}" required="true" requiredMessage="nom catégorie obligatoire" />
+        	<p:message for="nomcat"/>
 		
 			<h:outputLabel for="descriptcat" value="Description : " />
 			<p:inputTextarea rows = "6" cols = "33" id="descriptcat" value="#{gestionCategoriesBean.categorie.description}" required="true" requiredMessage="description obligatoire" />
+        	<p:message for="descriptcat"/>
 
 			<h:outputLabel for="file" value="Photo : " />
 			<h:panelGrid>
-				<h:inputFile id="file" value="#{gestionCategoriesBean.uploadedFile}" />
+				<p:fileUpload value="#{gestionCategoriesBean.uploadedFile}" mode="simple" skinSimple="true" label="Choisir une photo"/>
 			</h:panelGrid>
+        	<p:message for="file"/>
+				
+			<br/><br/>
 				
 			<f:facet name="footer">
-				<h:commandButton action="#{gestionCategoriesBean.ajouterCategorie()}" value="Ajouter" style="float:right;"/>
+				<h:commandButton class="btn btn-dark" action="#{gestionCategoriesBean.ajouterCategorie()}" value="Ajouter la catégorie" style="float:right;"/>
 			</f:facet>
 			
 		</h:panelGrid>	
@@ -59,6 +64,8 @@
 	</h:form>	
 				
 </div>
+
+<br/><br/><br/><br/><br/><br/>
 
 	<!-- //////////////////////////////////////////// FOOTER /////////////////////////////////////////////////////// -->				
 		<div class="container-fluid" >	

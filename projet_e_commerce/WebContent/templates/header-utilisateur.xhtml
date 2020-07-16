@@ -27,28 +27,32 @@
 					<h1 style="font-size: 18pt">e-commerce</h1>
 					</div>
 								
-					<div class="col-2" style="margin-left: 10px;">		
+					<div>		
 					<h:form>			
 					   		<h:link class="btn btn-outline-dark" value="Accueil administrateur" outcome="page-principale-utilisateur.xhtml" style="color: white; border: none;" />
 					</h:form>
 					</div>
 					
-					<div class="col-2" style="margin-left: 10px;" >
+					<div>
 					<h:form>				
-					   		<h:link class="btn btn-outline-dark" value=" Gestion catégories" outcome="gestion-categories-utilisateur.xhtml" style="color: white; border: none;" />
+					   		<h:link class="btn btn-outline-dark" value="Gestion catégories" outcome="gestion-categories-utilisateur.xhtml" style="color: white; border: none;" />
 					</h:form>
 					</div>
 					
-					<div class="col-2">
+					<div>
 					<h:form>
-					   		<h:link class="btn btn-outline-dark" value=" Gestion produits" outcome="gestion-produits-utilisateur.xhtml" style="color: white; border: none;" />
+					   		<h:link class="btn btn-outline-dark" value="Gestion produits" outcome="gestion-produits-utilisateur.xhtml" style="color: white; border: none;" />
 					</h:form>
 					</div>
 					
-					<div class="col-2"></div>
+					<div>
+					<h:form>
+					   		<h:commandLink class="btn btn-outline-dark" value="Informations personnelles" action="#{authentificationBean.infosUtilisateur()}" style="color: white; border: none;" />
+					</h:form>
+					</div>
 					
 					<h:form>
-					<div class="col-2">	
+					<div style="margin-left: 150px;">	
 						<p:commandButton action="#{authentificationBean.deconnecterUtilisateur()}" value="Déconnexion"></p:commandButton>
 					</div>
 					</h:form>

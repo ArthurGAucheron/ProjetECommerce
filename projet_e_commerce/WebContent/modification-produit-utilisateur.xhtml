@@ -37,37 +37,45 @@
 	
 	<h:form enctype="multipart/form-data">
 	
-		<h:panelGrid columns="2" border="1" cellpadding="5" cellspacing="5" width="50%" style="border:white;">
+		<h:panelGrid columns="3" border="1" cellpadding="5" cellspacing="5" width="80%" style="border:white;">
 			
        		<p:outputLabel for="@next" value="Nom catégorie : " />   
         	<p:selectOneMenu id="categorieproduit" value="#{gestionProduitsBean.produit.categorieID}" required="true" requiredMessage="catégorie obligatoire" >        
             	<f:selectItem itemLabel="Choisir ID catégorie" itemValue="" />
             	<f:selectItems value="#{gestionCategoriesBean.afficherCategories()}" var="categorie" itemValue="#{categorie.idCategorie}" itemLabel="#{categorie.nomCategorie}" />
         	</p:selectOneMenu>
+   		    <p:message for="categorieproduit"/>
+        	
         				
 			<h:outputLabel for="designationproduit" value="Désignation : " />
-			<h:inputText id="designationproduit" value="#{gestionProduitsBean.produit.designation}" required="true" requiredMessage="désignation obligatoire" />
+			<p:inputText id="designationproduit" value="#{gestionProduitsBean.produit.designation}" required="true" requiredMessage="désignation obligatoire" />
+		    <p:message for="designationproduit"/>
 		
 			<h:outputLabel for="descriptproduit" value="Description : " />
 			<p:inputTextarea rows = "6" cols = "33" id="descriptproduit" value="#{gestionProduitsBean.produit.description}" required="true" requiredMessage="description obligatoire" />
+        	<p:message for="descriptproduit"/>
 
 			<h:outputLabel for="prixproduit" value="Prix : " />
-			<h:inputText id="prixproduit" value="#{gestionProduitsBean.produit.prix}" required="true" requiredMessage="prix obligatoire" default="0.0"/>
-		
+			<p:inputNumber id="prixproduit" value="#{gestionProduitsBean.produit.prix}" required="true" requiredMessage="prix obligatoire" symbol=" €" symbolPosition="s" decimalSeparator=","/>
+        	<p:message for="prixproduit"/>
+        			
 			<h:outputLabel for="selectionneproduit" value="Sélectionné : " />
-			<h:selectBooleanCheckbox id="selectionneproduit" value="#{gestionProduitsBean.produit.selectionne}"/>
+			<p:selectBooleanCheckbox id="selectionneproduit" value="#{gestionProduitsBean.produit.selectionne}"/>
+        	<p:message for="selectionneproduit"/>
 
 			<h:outputLabel for="qteproduit" value="Quantité : " />
-			<h:inputText id="qteproduit" value="#{gestionProduitsBean.produit.quantite}" required="true" requiredMessage="quantité obligatoire" default="0"/>
+			<p:spinner id="qteproduit" min="0" value="#{gestionProduitsBean.produit.quantite}" required="true" requiredMessage="quantité obligatoire"/>
+        	<p:message for="qteproduit"/>
 			
 			<h:outputLabel for="file" value="Photo : " />
 			<h:panelGrid>
 			    <p:graphicImage library="images/produits" name="#{gestionProduitsBean.produit.photo}" width="100px" height="100px" rendered="#{gestionProduitsBean.produit.photo ne null}"/> 
-				<h:inputFile id="file" value="#{gestionProduitsBean.uploadedFile}" />
+				<p:fileUpload value="#{gestionProduitsBean.uploadedFile}" mode="simple" skinSimple="true" label="Modifier la photo"/>
 			</h:panelGrid>
+        	<p:message for="file"/>
 								
 			<f:facet name="footer">
-				<h:commandButton action="#{gestionProduitsBean.modifierProduit()}" value="Modifier" style="float:right;"/>
+				<h:commandButton class="btn btn-dark" action="#{gestionProduitsBean.modifierProduit()}" value="Modifier" style="float:right;"/>
 			</f:facet>
 			
 		</h:panelGrid>	
@@ -76,6 +84,7 @@
 				
 </div>
 
+<br/><br/><br/>
 	<!-- //////////////////////////////////////////// FOOTER /////////////////////////////////////////////////////// -->				
 		<div class="container-fluid" >	
 			<!--  utilisation modèle footer-utilisateur -->
