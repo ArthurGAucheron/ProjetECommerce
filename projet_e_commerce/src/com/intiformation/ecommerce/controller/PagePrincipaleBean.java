@@ -7,6 +7,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.servlet.http.HttpSession;
 
 import com.intiformation.ecommerce.modeles.Categorie;
@@ -33,7 +34,8 @@ public class PagePrincipaleBean implements Serializable {
 	
 	private IClientService clientService;
 
-	private int nombreProduit = 0;
+	private int nombreProduit;
+	private List<Integer> maliste;
 
 	private String motCle = null;
 
@@ -46,6 +48,7 @@ public class PagePrincipaleBean implements Serializable {
 		produitService = new ProduitServiceImpl();
 		
 		clientService = new  ClientServiceImpl();
+		
 
 	}// end ctor
 
@@ -69,6 +72,7 @@ public class PagePrincipaleBean implements Serializable {
 		for (Categorie categorie : listeCategorie) {
 
 			listeNomCategorie.add(categorie.getNomCategorie());
+		
 
 		} // end for
 
@@ -170,8 +174,6 @@ public class PagePrincipaleBean implements Serializable {
 		
 	
 		
-		
-		
 	
 
 	
@@ -210,6 +212,7 @@ public class PagePrincipaleBean implements Serializable {
 	public void setEtatSession(boolean etatSession) {
 		this.etatSession = etatSession;
 	}
+
 	
 	
 

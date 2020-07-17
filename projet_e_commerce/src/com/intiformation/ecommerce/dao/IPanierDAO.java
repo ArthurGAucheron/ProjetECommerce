@@ -11,4 +11,6 @@ import com.intiformation.ecommerce.modeles.Panier;
  */
 public interface IPanierDAO extends IGeneriqueDAO<Panier>{
 
+	public boolean panierIsExist(int pIdPanier);
+	
 }//end interface

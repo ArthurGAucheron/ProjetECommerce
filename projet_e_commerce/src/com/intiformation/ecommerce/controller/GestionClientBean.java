@@ -11,8 +11,11 @@ import javax.servlet.http.HttpSession;
 
 
 import com.intiformation.ecommerce.modeles.Client;
+import com.intiformation.ecommerce.modeles.Panier;
 import com.intiformation.ecommerce.service.ClientServiceImpl;
 import com.intiformation.ecommerce.service.IClientService;
+import com.intiformation.ecommerce.service.IPanierService;
+import com.intiformation.ecommerce.service.PanierServiceImpl;
 
  @ManagedBean(name="gestionClientBean")
  @SessionScoped
@@ -32,16 +35,20 @@ public class GestionClientBean implements Serializable{
 	 private String passWordClient1;
 	 private String passWordClient2;
 	 private boolean verifAjout = false;
+	 private Panier newPanier;
+	 private int idClient;
 	
 	
 	
 	private Client client;
 	
 	private IClientService clientService;
+	private IPanierService panierService;
 	
 	public GestionClientBean() {
 	
 		clientService = new ClientServiceImpl();
+		panierService = new PanierServiceImpl();
 	}// end LoginClientBean
 	
 	/**
@@ -67,8 +74,19 @@ public class GestionClientBean implements Serializable{
 			
 			// sauvegarde de l'id client dans la session
 			
+			idClient = clientService.findIdByEmail(emailClient);
+			session.setAttribute("id_client", idClient);
 			
-			session.setAttribute("id_client", clientService.findIdByEmail(emailClient));
+			// création d'un panier au client
+			
+			
+			if (panierService.panierIsExist(idClient)==false) {
+				
+				newPanier = new Panier(idClient);
+				panierService.ajouter(newPanier);
+			}// end if
+			
+			session.setAttribute("id_panier",idClient);
 			
 	
 			// -> navigation vers la page principale du site "page-principale.xhtml'
@@ -78,10 +96,9 @@ public class GestionClientBean implements Serializable{
 		
 			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Echec de connexion "," Identifiant ou mot de passe invalide");
 			
-			
 			contextJSF.addMessage(null, message);
 	
-			return "login-client.xhtml?faces-redirect=true";
+			return "login-client.xhtml";
 		}
 		
 	}// end connecter client

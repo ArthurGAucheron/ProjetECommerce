@@ -12,33 +12,31 @@ public class LigneDeCommande {
 	private int quantite;
 	private double prix;
 	private int produitID;
-	private int commandeID;
 	private int panierID;
 	
 	/*_____________ ctors ______________*/
 	public LigneDeCommande() {
 		
 	}
-
-	public LigneDeCommande(int quantite, double prix, int produitID, int commandeID,
-			int panierID) {
+	
+	
+	
+	public LigneDeCommande(int quantite, double prix, int produitID, int panierID) {
 		this.quantite = quantite;
 		this.prix = prix;
 		this.produitID = produitID;
-		this.commandeID = commandeID;
 		this.panierID = panierID;
 	}
 	
-	public LigneDeCommande(int idLigneDeCommande, int quantite, double prix, int produitID, int commandeID,
-			int panierID) {
+	public LigneDeCommande(int idLigneDeCommande, int quantite, double prix, int produitID,	int panierID) {
 		this.idLigneDeCommande = idLigneDeCommande;
 		this.quantite = quantite;
 		this.prix = prix;
 		this.produitID = produitID;
-		this.commandeID = commandeID;
 		this.panierID = panierID;
 	}
 
+	
 	/*_____________ getters/setters ______________*/
 
 	public int getIdLigneDeCommande() {
@@ -73,13 +71,6 @@ public class LigneDeCommande {
 		this.produitID = produitID;
 	}
 
-	public int getCommandeID() {
-		return commandeID;
-	}
-
-	public void setCommandeID(int commandeID) {
-		this.commandeID = commandeID;
-	}
 
 	public int getPanierID() {
 		return panierID;

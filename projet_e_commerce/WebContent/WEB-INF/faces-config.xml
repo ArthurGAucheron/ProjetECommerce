@@ -55,13 +55,35 @@
 		
 	</navigation-rule>
 	
-	<!-- règle de navigation pour '/login-client.xhtml' -->
+	<!-- règle de navigation pour /page-principale.xhtml-->
 	
 	<navigation-rule>
 		<from-view-id>/page-principale.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>connexion</from-outcome>
 			<to-view-id>/login-client.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>panier</from-outcome>
+			<to-view-id>/panier-client.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>refresh</from-outcome>
+			<to-view-id>/page-principale.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+	
+	</navigation-rule> 
+
+	<!-- règle de navigation pour /panier-client.xhtml-->
+	
+	<navigation-rule>
+		<from-view-id>/panier-client.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>mainpage</from-outcome>
+			<to-view-id>/page-principale.xhtml</to-view-id>
 			<redirect/>
 		</navigation-case>
 		

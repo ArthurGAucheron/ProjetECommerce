@@ -76,7 +76,7 @@
 					</div>
 					
 					<div class="col-2" id="seconnecter">
-					 <p:outputLabel>Bienvenue</p:outputLabel> <br/>
+					 <p:outputLabel>Bienvenue</p:outputLabel><br></br>
 					
 					      <c:choose>
 						    <c:when test="#{pagePrincipaleBean.clientIsConnect()}">
@@ -94,47 +94,57 @@
 					 
 					</div>	
 					<div class="col-1" id="panier"> 
-					 <h:link><span style="color: white">Consulter le panier</span></h:link>
-					<span style="color:orange; font-size: 1em; font-weight: bold;"><h:outputLabel value="12"></h:outputLabel></span>
+					 <h:link outcome="panier"><span style="color: white">Consulter le panier</span></h:link>
+					<span style="color:orange; font-size: 1em; font-weight: bold;"><h:outputLabel value="#{gestionPanier.quantitePanier()}"></h:outputLabel></span>
 					</div>	
 				</div>
 				
 			<!-- //////////////////////////////////////////// Contenu /////////////////////////////////////////////////////// -->
+				
+				
 				<div class="container">
 					<br/><br/>
 					<p:outputLabel value="#{pagePrincipaleBean.nomCategorie}" style="font-size : 2em;"></p:outputLabel>
 					
 					<!-- Début du modèle à répéter -->
 					<ui:repeat var="produit" value="#{pagePrincipaleBean.listeProduits(pagePrincipaleBean.nomCategorie, pagePrincipaleBean.motCle)}">
-				
+	
 					
 					<div class="row" style="border-top: 1px black solid;">
 							
 							<h:panelGrid columns="2" border="0" cellspacing="10" cellpadding="10" columnClasses="style-image,style-contenu">
-								
-								<f:facet name="header">
-								
-								</f:facet>
 								
 								<p:graphicImage library="images" name="#{produit.photo}" styleClass="imageProduit"></p:graphicImage>
 								
 								<h:panelGrid colums="1" border="0" width="100%" >
 									
 									<h:form>
-									
-									<h:outputLabel value="#{produit.designation}" styleClass="titreProduit"></h:outputLabel> <br></br>
+						
+									<h:outputLabel value="#{produit.designation}" styleClass="titreProduit" ></h:outputLabel> <br></br>
 									
 									<h:outputLabel value="Prix : #{produit.prix} €" styleClass="prixProduit"/> <br></br>
-																
+									
+											
 									<h:outputLabel value="Description du produit : #{produit.description}" styleClass="descriptifProduit"></h:outputLabel> <br></br>
 									
-									<h:outputLabel  for="produit" value="Choisir une quantité" styleClass="quantiteProduit"/> <br></br>
+								<br></br>
+								
+									<h:outputLabel for="qteproduit" value="Chosir une quantité"></h:outputLabel>
+									<br></br>
+									<p:spinner id="qteproduit" min="1" max="#{produit.quantite}" 
+									value="#{gestionPanier.quantite}" required="true" requiredMessage="quantité obligatoire"/>
 									
-									<p:autoComplete id="produit" dropdown="true" value="#{pagePrincipaleBean.nombreProduit}" 
-											completeMethod="#{pagePrincipaleBean.nombreDisponibleProduit(produit.quantite)}"
-											 scrollHeight="100" forceSelection="true"/> <br></br>
 									
-									<h:commandButton value="Ajouter au panier"></h:commandButton>
+									<br></br>
+								<br></br>
+									
+									<f:param  id="idProduit" name="Identifiant du produit" value="#{produit.idProduit}"/>
+									<f:param  id="prixProduit" name="Prix du produit" value="#{produit.prix}"/>
+									
+								
+									<p:commandButton  action="refresh" actionListener="#{gestionPanier.ajouterProduit}"  value="Ajouter au panier"></p:commandButton>
+									
+						
 									</h:form>							
 									 
 							  </h:panelGrid>

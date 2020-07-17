@@ -42,4 +42,14 @@ public class LigneDeCommandeServiceImpl implements ILigneDeCommandeService{
 		return ligneDeCommandeDAO.deleteById(pIdLigneDeCommande);
 	}
 
+	@Override
+	public int nombreLignesParPanier(int pIdPanier) {
+		return ligneDeCommandeDAO.nombreLignesParPanier(pIdPanier);
+	}
+
+	@Override
+	public List<LigneDeCommande> getAllByIdPanier(int pIdPanier) {
+		return ligneDeCommandeDAO.getAllByIdPanier(pIdPanier);
+	}
+
 }//end class

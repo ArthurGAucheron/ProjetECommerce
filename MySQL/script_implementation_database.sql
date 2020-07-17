@@ -24,3 +24,12 @@ select * from produits;
 select id_categorie from categories where nom_categorie='Livre';
 
 select id_client from clients where email='arthurgaucheron@hotmail.fr';
+
+select * from lignes_commandes;
+select * from panier;
+
+
+
+
+SELECT COUNT(*) FROM panier WHERE id_panier = 2;
+

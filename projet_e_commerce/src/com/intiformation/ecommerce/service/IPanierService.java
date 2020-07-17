@@ -10,4 +10,7 @@ import com.intiformation.ecommerce.modeles.Panier;
  */
 public interface IPanierService extends IGeneriqueService<Panier> {
 
+	
+	public boolean panierIsExist(int pIdPanier);
+	
 }//end interface

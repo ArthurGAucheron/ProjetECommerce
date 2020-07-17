@@ -1,5 +1,7 @@
 package com.intiformation.ecommerce.service;
 
+import java.util.List;
+
 import com.intiformation.ecommerce.modeles.LigneDeCommande;
 
 /**
@@ -9,5 +11,9 @@ import com.intiformation.ecommerce.modeles.LigneDeCommande;
  *
  */
 public interface ILigneDeCommandeService extends IGeneriqueService<LigneDeCommande>{
+	
+	public int nombreLignesParPanier(int pIdPanier);
+	
+	public List<LigneDeCommande> getAllByIdPanier ( int pIdPanier);
 
 }//end interface

@@ -54,6 +54,21 @@
    <PROCESS-ITEM-OUTPUT ID="connexion::#login-client.xhtml"
     NAME="output" PATH="/login-client.xhtml"
     TARGET="rules:#login-client.xhtml" TITLE="connexion" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="panier::#panier-client.xhtml" NAME="output1"
+    PATH="/panier-client.xhtml" TARGET="rules:#panier-client.xhtml"
+    TITLE="panier" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="refresh::#page-principale.xhtml"
+    NAME="output2" PATH="/page-principale.xhtml"
+    TARGET="rules:#page-principale.xhtml" TITLE="refresh" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#panier-client.xhtml"
+  PATH="/panier-client.xhtml" SHAPE="256,545,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#panier-client.xhtml:0" NAME="item"
+   PATH="/panier-client.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="mainpage::#page-principale.xhtml"
+    NAME="output" PATH="/page-principale.xhtml"
+    TARGET="rules:#page-principale.xhtml" TITLE="mainpage" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
 </PROCESS>
