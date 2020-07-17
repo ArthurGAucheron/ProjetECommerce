@@ -27,32 +27,41 @@
 				<br></br>
 				<br></br>
 			</div>
+			<p:messages globalOnly="true" showDetail="true" ></p:messages>
 		</div>
 		<div class="row justify-content-md-center">
 			<h:form>
 				<h:panelGrid colum="1">
 					<f:facet name="header"><span style="font-size: 2em; font-weight: bold;">Nouveau client</span></f:facet>
 					
-					<h:outputLabel for="idNom" value="Nom :" />
-					<h:inputText id="idLogin" required="true"  requiredMessage="Nom obligatoire" value="#{gestionClientBean.nomClient}"/>
-					<h:message for="idLogin" styleClass="error"/>
+					<p:outputLabel for="idNom" value="Nom :" />
+					<p:inputText id="idNom" required="true"  requiredMessage="Nom obligatoire" value="#{gestionClientBean.nomClient}"/>
+					<p:message for="idNom" styleClass="error"/>
 					
-					<h:outputLabel for="idEmail" value="E-mail :"/>
-					<h:inputText id="idEmail" required="true" requiredMessage="e-mail obligatoire" value="#{gestionClientBean.emailClient}"/>
-					<h:message for="idEmail" styleClass="error"/>
+				
 					
-					<h:outputLabel for="idTel" value="Téléphone :"/>
-					<h:inputText id="idTel" value="#{gestionClientBean.telClient}"/>
+					<p:outputLabel for="idEmail" value="E-Mail :"/>
+					<p:inputText id="idEmail" required="true" requiredMessage="e-mail obligatoire" value="#{gestionClientBean.emailClient}" />
+					<p:message for="idEmail" styleClass="error"/>
 					
-					<h:outputLabel for="idAdresse" value="Adresse :"/>
-					<h:inputText id="idAdresse" value="#{gestionClientBean.adresseClient}"/>
+					<p:outputLabel for="idTel" value="Téléphone :"/>
+					<p:inputText id="idTel" value="#{gestionClientBean.telClient}"/>
+					
+					<p:outputLabel for="idAdresse" value="Adresse :"/>
+					<p:inputTextarea rows="6" cols="33" id="idAdresse" value="#{gestionClientBean.adresseClient}"/>
 					
 					
-					<h:outputLabel for="idMdp" value="Mot de passe"/>
-					<h:inputText id="idMdp" required="true" requiredMessage="mot de passe obligatoire" value="#{gestionClientBean.passWordClient}"/>
-					<h:message for="idMdp" styleClass="error"/>
 					
-					<h:commandButton class="btn btn-dark" action="#{gestionClientBean.nouveauClient()}" value="S'inscrire" ></h:commandButton>
+					<p:outputLabel for="idMdp1" value="Mot de passe"/>
+					<p:password id="idMdp1" required="true" requiredMessage="mot de passe obligatoire" value="#{gestionClientBean.passWordClient1}"/>
+					<p:message for="idMdp1" styleClass="error"/>
+					
+					<p:outputLabel for="idMdp2" value="Mot de passe"/>
+					<p:password id="idMdp2" required="true" requiredMessage="mot de passe obligatoire"  value="#{gestionClientBean.passWordClient2}" />
+					<p:message for="idMdp2" styleClass="error"/>
+					
+					
+					<p:commandButton action="#{gestionClientBean.nouveauClient()}" value="S'inscrire" />
 				
 				
 				</h:panelGrid>

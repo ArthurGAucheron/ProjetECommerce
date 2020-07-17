@@ -52,6 +52,7 @@
   PATH="/modification-produit-utilisateur.xhtml" SHAPE="256,177,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#creation-client.xhtml"
   PATH="/creation-client.xhtml" SHAPE="240,321,0,0" model-entity="JSFProcessGroup"/>
+<<<<<<< HEAD
  <PROCESS-ITEM NAME="rules:#recherche-categorie-utilisateur.xhtml"
   PATH="/recherche-categorie-utilisateur.xhtml" SHAPE="272,465,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#recherche-categorie-utilisateur.xhtml:0"
@@ -68,4 +69,6 @@
     TITLE="updatecat" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
+=======
+>>>>>>> 352dadf4939cdf508f44c23baae7d22f01920888
 </PROCESS>

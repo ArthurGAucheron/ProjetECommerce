@@ -46,6 +46,7 @@
 		</navigation-case>
 		
 	</navigation-rule>
+<<<<<<< HEAD
 	
 	 	<!-- règle de navigation pour 'recherche-categorie-utilisateur.xhtml' -->
 	<navigation-rule>
@@ -65,12 +66,15 @@
 		</navigation-case>
 		
 	</navigation-rule>
+=======
+ 
+	<!-- règle de navigation pour 'gestion-produits-utilisateur.xhtml' -->
+>>>>>>> 352dadf4939cdf508f44c23baae7d22f01920888
 
 	<navigation-rule>
 		
 		<from-view-id>/login-client.xhtml</from-view-id>
 	
-		
 		<navigation-case>
 			<from-outcome>register</from-outcome>
 			<to-view-id>/creation-client.xhtml</to-view-id>
