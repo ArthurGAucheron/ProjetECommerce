@@ -67,6 +67,8 @@ public class AuthentificationBean implements Serializable {
 			
 			setUtilisateur(utilisateurService.findUtilisateur(userName, userPassword));
 			
+			session.setAttribute("user", utilisateur);
+			
 			if(utilisateur.getActived()) {
 				return "page-principale-utilisateur.xhtml";
 			}else {
@@ -181,7 +183,15 @@ public class AuthentificationBean implements Serializable {
 			contextJSF.addMessage(null, messageNOTOK);
 			
 		}//end else
-
+		
+		//récup de la session
+		HttpSession session = (HttpSession) contextJSF.getExternalContext().getSession(false);
+		
+		//sauvegarde du nom de l'utilisateur et mdp dans la session
+		session.setAttribute("username", utilisateur.getNomUtilisateur());
+		session.setAttribute("userpwd", utilisateur.getPasswordUtilisateur());
+		session.setAttribute("user", utilisateur);
+		
 		return null;
 		
 	}//end modifierUtilisateur
@@ -198,12 +208,8 @@ public class AuthentificationBean implements Serializable {
 		//récup de la session 
 		HttpSession session = (HttpSession) contextJSF.getExternalContext().getSession(false);
 		
-		//récup attributs de session
-		String userName = (String) session.getAttribute("username");
-		String userPassword = (String) session.getAttribute("userpwd");
-		
 		//récup utilisateur
-		Utilisateur utilisateurConnecte = utilisateurService.findUtilisateur(userName, userPassword);
+		Utilisateur utilisateurConnecte = (Utilisateur) session.getAttribute("user");
 		setUtilisateur(utilisateurConnecte);
 		
 		return "informations-utilisateur.xhtml";

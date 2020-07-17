@@ -49,7 +49,7 @@
         	
         		<p:overlayPanel id="catPanel" for="catBtn" hideEffect="fade" dynamic="true" style="width:600px" modal="true">
         	
-        			<p:carousel numVisible="1" pageLinks="0" value="#{gestionCategoriesBean.categorieRecherche}" var="categorie" style="text-align:center; width: 100%;">
+        			<p:carousel numVisible="1" value="#{gestionCategoriesBean.categorieRecherche}" var="categorie" style="text-align:center; width: 100%;">
         	
         				<h:panelGrid columns="1" columnClasses="label,value" style="text-align:center; width: 100%; margin:10px 0px">
           					
@@ -69,7 +69,7 @@
 								<f:param id="updateID" value="#{categorie.idCategorie}"/>
 							</p:commandButton>
 				
-    						<p:commandButton id="delete" action="deletecat" actionListener="#{gestionCategoriesBean.supprimerCategorie}" style="margin-right:20px;" icon="pi pi-trash" title="Supprimer">
+    						<p:commandButton id="delete" action="deletecat" actionListener="#{gestionCategoriesBean.supprimerCategorie}" style="margin-right:20px;" icon="pi pi-trash" title="Supprimer" update="messages">
 								<f:param id="deleteID" value="#{categorie.idCategorie}"/>
 							</p:commandButton>
 			

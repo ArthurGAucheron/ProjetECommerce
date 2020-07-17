@@ -70,7 +70,10 @@
 			<h:outputLabel for="file" value="Photo : " />
 			<h:panelGrid>
 			    <p:graphicImage library="images/produits" name="#{gestionProduitsBean.produit.photo}" width="100px" height="100px" rendered="#{gestionProduitsBean.produit.photo ne null}"/> 
-				<p:fileUpload value="#{gestionProduitsBean.uploadedFile}" mode="simple" skinSimple="true" label="Modifier la photo"/>
+				<p:inplace label="Modifier la photo">				
+					<h:inputFile id="file" value="#{gestionProduitsBean.uploadedFile}" />
+					<h:outputText value="(nouvelle photo)"/>
+				</p:inplace>			
 			</h:panelGrid>
         	<p:message for="file"/>
 								

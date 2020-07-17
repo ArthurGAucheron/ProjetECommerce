@@ -57,6 +57,9 @@ public class GestionCategoriesBean implements Serializable{
 	 * @return
 	 */
 	public List<Categorie> afficherCategories() {
+
+		//récup contexte JSF
+		FacesContext contextJSF = FacesContext.getCurrentInstance();
 		
 		listeCategories = categorieService.findAll();		
 		return listeCategories;
@@ -69,6 +72,9 @@ public class GestionCategoriesBean implements Serializable{
 	 * @return
 	 */
 	public String initialiserCategorie() {
+		
+		//récup contexte JSF
+		FacesContext contextJSF = FacesContext.getCurrentInstance();
 		
 		//instanciation nouvel objet categorie
 		Categorie categorieToAdd = new Categorie();
@@ -152,6 +158,9 @@ public class GestionCategoriesBean implements Serializable{
 	 */
 	public void supprimerCategorie(ActionEvent event) {
 		
+		//récup contexte JSF
+		FacesContext contextJSF = FacesContext.getCurrentInstance();
+		
 		// 1. récup du paramètre passé dans le composant au click sur le lien 'supprimer'
 		UIParameter uip = (UIParameter) event.getComponent().findComponent("deleteID");
 				
@@ -160,22 +169,21 @@ public class GestionCategoriesBean implements Serializable{
 				
 		//3. suppression de la categorie dans la bdd via l'id
 					
-			//récup contexte JSF
-		FacesContext contextJSF = FacesContext.getCurrentInstance();
-					
 			//suppression categorie
 		if (categorieService.supprimerById(categorieID)) {
 					
 			//envoi d'un msg vers la vue
-		contextJSF.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Suppression catégorie ", " - la catégorie a été supprimée"));
-					
+			contextJSF.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Suppression catégorie ", " - la catégorie a été supprimée"));
+			contextJSF.getExternalContext().getFlash().setKeepMessages(true);	
+		
 			//redirection vers gestion-categories-utilisateur.xhtml (réf : les clés d'outcom dans faces-config.xml)
 						
 		} else {
 
 			//envoi d'un msg vers la vue
 			contextJSF.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Echec suppression catégorie ", " - la suppression de la catégorie a échouée"));
-					
+			contextJSF.getExternalContext().getFlash().setKeepMessages(true);	
+			
 			//redirection vers gestion-categories-utilisateur.xhtml (réf : les clés d'outcom dans faces-config.xml)
 					
 		}//end else
@@ -187,6 +195,9 @@ public class GestionCategoriesBean implements Serializable{
 	 * invoquée au click sur le lien 'modifier' de 'gestion-categories-utilisateur.xhtml' 
 	 */
 	public void selectionnerCategorie(ActionEvent event){
+		
+		// récup du context de JSF
+		FacesContext contextJSF = FacesContext.getCurrentInstance();
 		
 		//récup du paramètre passé dans le composant au click
 		UIParameter uip = (UIParameter) event.getComponent().findComponent("updateID");
@@ -256,6 +267,9 @@ public class GestionCategoriesBean implements Serializable{
 	 */
 	public String getNomCategorieById(Integer idCategorie) {
 		
+		// récup du context de JSF
+		FacesContext contextJSF = FacesContext.getCurrentInstance();
+		
 		Categorie categorieToFind = categorieService.findById(idCategorie);
 		String nomCategorie = categorieToFind.getNomCategorie();
 		
@@ -268,6 +282,9 @@ public class GestionCategoriesBean implements Serializable{
 	 * @return
 	 */
 	public Categorie afficherCategorieRecherche(){
+		
+		// récup du context de JSF
+		FacesContext contextJSF = FacesContext.getCurrentInstance();
 				
 		Categorie categorieToSearch = categorieService.findById(idCat);
 				

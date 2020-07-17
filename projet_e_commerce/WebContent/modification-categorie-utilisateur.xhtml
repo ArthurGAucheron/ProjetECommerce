@@ -37,7 +37,7 @@
 	
 	<h:form enctype="multipart/form-data">
 	
-		<h:panelGrid columns="3" border="1" cellpadding="5" cellspacing="5" width="50%" style="border:white;">
+		<h:panelGrid columns="3" border="1" cellpadding="5" cellspacing="5" width="80%" style="border:white;">
 			
 			<h:outputLabel for="nomcat" value="Nom catégorie : " />
 			<p:inputText id="nomcat" value="#{gestionCategoriesBean.categorie.nomCategorie}" required="true" requiredMessage="nom catégorie obligatoire" />
@@ -50,7 +50,10 @@
 			<h:outputLabel for="file" value="Photo : " />
 			<h:panelGrid>
 			    <p:graphicImage library="images/categories" name="#{gestionCategoriesBean.categorie.photo}" width="100px" height="100px" rendered="#{gestionCategoriesBean.categorie.photo ne null}"/> 
-				<p:fileUpload value="#{gestionCategoriesBean.uploadedFile}" mode="simple" skinSimple="true" label="Modifier la photo"/>
+				<p:inplace label="Modifier la photo">				
+					<h:inputFile id="file" value="#{gestionCategoriesBean.uploadedFile}" />
+					<h:outputText value="(nouvelle photo)"/>
+				</p:inplace>
 			</h:panelGrid>
         	<p:message for="file"/>
 				

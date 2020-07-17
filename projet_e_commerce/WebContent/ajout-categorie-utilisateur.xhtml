@@ -23,9 +23,11 @@
 		</div>	
 
 		<!-- //////////////////////////////////////////// CONTENU /////////////////////////////////////////////////////// -->			
+		<!-- affichage des messages -->
+		<p:messages globalOnly="true" showDetail="true" infoStyle="color: green;" fatalStyle="color: red;"/>
+
 				<br/><br/><br/>
-		
-		
+				
 		<div class="container" >	
 		<!-- ===================================================== -->
 		<!-- ======== Formulaire d'ajout de la catégorie ============== -->
@@ -49,7 +51,7 @@
 
 			<h:outputLabel for="file" value="Photo : " />
 			<h:panelGrid>
-				<p:fileUpload value="#{gestionCategoriesBean.uploadedFile}" mode="simple" skinSimple="true" label="Choisir une photo"/>
+				<h:inputFile id="file" value="#{gestionCategoriesBean.uploadedFile}" label="Choisir une photo" required="true" requiredMessage="photo obligatoire"/>
 			</h:panelGrid>
         	<p:message for="file"/>
 				

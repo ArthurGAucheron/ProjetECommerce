@@ -26,17 +26,17 @@
 		<!-- //////////////////////////////////////////// CONTENU /////////////////////////////////////////////////////// -->			
 		
 		<!-- affichage des messages -->
-		<p:messages globalOnly="true" showDetail="true" infoStyle="color: green;" fatalStyle="color: red;"/>
+		<p:messages showDetail="true" infoStyle="color: green;" fatalStyle="color: red;"/>
 				
 		<br/><br/><br/>
 		
-	<div class="container" onmouseover="PF('productsTable').filter()">	
+	<div class="container">	
 	
 		<!-- liste des produits par catégorie -->
 						
 	<h:form id="form" enctype="multipart/form-data" > 
  
-    <h3>Liste des produits par catégorie</h3>	
+    <h3 onmouseover="PF('productsTable').filter()">Liste des produits par catégorie</h3>	
     
     <br/><br/>	
 		
@@ -45,7 +45,7 @@
     			style="text-align: center;" 
                 emptyMessage="Aucun résultat" 
                 filteredValue="#{gestionProduitsBean.filteredProduits}" 
-                sortBy="#{produit.categorieID}" sortMode="single" expandableRowGroups="true" onRowClick="PF('productsTable').filter()">
+                sortBy="#{produit.categorieID}" expandableRowGroups="true">
 
         <f:facet name="header">
             <p:outputPanel style="text-align: right;">

@@ -59,6 +59,9 @@ public class GestionProduitsBean implements Serializable{
 	 * @return
 	 */
 	public void afficherProduitsParCategorie(ActionEvent event){
+
+		//récup contexte JSF
+		FacesContext contextJSF = FacesContext.getCurrentInstance();
 		
 		//1. récup du paramètre passé dans le composant au click sur la catégorie
 		UIParameter uip = (UIParameter) event.getComponent().findComponent("idCat");
@@ -67,10 +70,7 @@ public class GestionProduitsBean implements Serializable{
 		int categorieID = (int) uip.getValue();
 						
 		//3. récupération des produits de la categorie dans la bdd via l'id
-							
-			//récup contexte JSF
-		FacesContext contextJSF = FacesContext.getCurrentInstance();
-							
+
 			//recup des produits
 		List<Produit> listeProduitsParCategorie = produitService.findProduitsByIDCategorie(categorieID);
 		System.out.println("ID catégorie = " + categorieID);
@@ -86,7 +86,10 @@ public class GestionProduitsBean implements Serializable{
 	 * @return
 	 */
 	public List<Produit> afficherProduits(){
-							
+		
+		//récup contexte JSF
+		FacesContext contextJSF = FacesContext.getCurrentInstance();
+		
 		//recup des produits
 		listeProduits = produitService.findAll();
 
@@ -100,6 +103,9 @@ public class GestionProduitsBean implements Serializable{
 	 * @return
 	 */
 	public String initialiserProduit() {
+		
+		//récup contexte JSF
+		FacesContext contextJSF = FacesContext.getCurrentInstance();
 		
 		//instanciation nouvel objet produit
 		Produit produitToAdd = new Produit();
@@ -182,6 +188,9 @@ public class GestionProduitsBean implements Serializable{
 	 * @return
 	 */
 	public void supprimerProduit(ActionEvent event) {
+
+		//récup contexte JSF
+		FacesContext contextJSF = FacesContext.getCurrentInstance();
 		
 		// 1. récup du paramètre passé dans le composant au click sur le lien 'supprimer'
 		UIParameter uip = (UIParameter) event.getComponent().findComponent("deleteID");
@@ -191,22 +200,21 @@ public class GestionProduitsBean implements Serializable{
 				
 		//3. suppression du produit dans la bdd via l'id
 					
-			//récup contexte JSF
-		FacesContext contextJSF = FacesContext.getCurrentInstance();
-					
 			//suppression produit
 		if (produitService.supprimerById(produitID)) {
 					
 			//envoi d'un msg vers la vue
-		contextJSF.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Suppression produit ", " - le produit a été supprimé"));
-					
+			contextJSF.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Suppression produit ", " - le produit a été supprimé avec succès"));
+			contextJSF.getExternalContext().getFlash().setKeepMessages(true);	
+		
 			//redirection vers gestion-categories-utilisateur.xhtml (réf : les clés d'outcom dans faces-config.xml)
 						
 		} else {
 
 			//envoi d'un msg vers la vue
 			contextJSF.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Echec suppression produit ", " - la suppression du produit a échouée"));
-					
+			contextJSF.getExternalContext().getFlash().setKeepMessages(true);	
+			
 			//redirection vers gestion-produits-utilisateur.xhtml (réf : les clés d'outcom dans faces-config.xml)
 					
 		}//end else
@@ -218,6 +226,9 @@ public class GestionProduitsBean implements Serializable{
 	 * invoquée au click sur le lien 'modifier' de 'gestion-produits-utilisateur.xhtml' 
 	 */
 	public void selectionnerProduit(ActionEvent event){
+		
+		//récup contexte JSF
+		FacesContext contextJSF = FacesContext.getCurrentInstance();	
 		
 		//récup du paramètre passé dans le composant au click
 		UIParameter uip = (UIParameter) event.getComponent().findComponent("updateID");

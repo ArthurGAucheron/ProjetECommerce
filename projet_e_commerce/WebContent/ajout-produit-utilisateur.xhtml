@@ -23,6 +23,9 @@
 		</div>	
 
 		<!-- //////////////////////////////////////////// CONTENU /////////////////////////////////////////////////////// -->			
+		<!-- affichage des messages -->
+		<p:messages globalOnly="true" showDetail="true" infoStyle="color: green;" fatalStyle="color: red;"/>
+
 				<br/><br/><br/>
 				
 		<div class="container" >	
@@ -68,7 +71,7 @@
 			<h:outputLabel for="file" value="Photo : " />
 			<h:panelGrid>
 				<p:graphicImage library="images/produits" name="#{gestionProduitsBean.produit.photo}" width="100px" height="100px" rendered="#{gestionProduitsBean.produit.photo}"/> 
-				<p:fileUpload value="#{gestionProduitsBean.uploadedFile}" mode="simple" skinSimple="true" label="Choisir une photo"/>
+				<h:inputFile id="file" value="#{gestionProduitsBean.uploadedFile}" label="Choisir une photo" required="true" requiredMessage="photo obligatoire"/>
         	</h:panelGrid>
         	<p:message for="file"/>
 			
