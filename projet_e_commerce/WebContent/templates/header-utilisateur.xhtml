@@ -19,43 +19,44 @@
 
 	<ui:composition>
 		<!-- //////////////////////////////////////////// HEADER /////////////////////////////////////////////////////// -->			
-				<div class="row" id="row-header" style="padding-top: 15px; padding-bottom: 15px; background-color: #696969;">
+
 				
-					<div class="col-2" >
-						<h1 style="font-size: 16pt">E-commerce</h1>
-					</div>
-				
-					<div class="col-2" >
-					<h:form>
-						<h:panelGrid columns="1">
-					   		<h:commandLink id="accueil" value="Accueil Administrateur" action="page-principale-utilisateur.xhtml"/>
-						</h:panelGrid>
-					</h:form>
-					</div>
+		<div class="row" id="row-header" style="padding: 15px; background-color: #696969; text-align: center;">
 				
 					<div class="col-2">
+					<h1 style="font-size: 18pt">e-commerce</h1>
+					</div>
+								
+					<div>		
+					<h:form>			
+					   		<h:link class="btn btn-outline-dark" value="Accueil administrateur" outcome="page-principale-utilisateur.xhtml" style="color: white; border: none;" />
+					</h:form>
+					</div>
+					
+					<div>
+					<h:form>				
+					   		<h:link class="btn btn-outline-dark" value="Gestion catégories" outcome="gestion-categories-utilisateur.xhtml" style="color: white; border: none;" />
+					</h:form>
+					</div>
+					
+					<div>
 					<h:form>
-						<h:panelGrid columns="1">
-					   		<h:commandLink id="categorie" value="Gestion catégories" action="gestion-categories-utilisateur.xhtml"/>
-						</h:panelGrid>
+					   		<h:link class="btn btn-outline-dark" value="Gestion produits" outcome="gestion-produits-utilisateur.xhtml" style="color: white; border: none;" />
 					</h:form>
 					</div>
 					
-					<div class="col-2">
+					<div>
 					<h:form>
-						<h:panelGrid columns="1">
-					   		<h:commandLink id="produit" value="Gestion produits" action="gestion-produits-utilisateur.xhtml"/>
-						</h:panelGrid>
+					   		<h:commandLink class="btn btn-outline-dark" value="Informations personnelles" action="#{authentificationBean.infosUtilisateur()}" style="color: white; border: none;" />
 					</h:form>
 					</div>
 					
-					
-					<div class="col-4" style="float: right;">
-					<h:form>							
-						<h:commandLink action="#{authentificationBean.deconnecterUtilisateur()}" style="color:#ffffff;" value="Déconnexion"></h:commandLink>
-					</h:form>
+					<h:form>
+					<div style="margin-left: 150px;">	
+						<p:commandButton action="#{authentificationBean.deconnecterUtilisateur()}" value="Déconnexion"></p:commandButton>
 					</div>
-									
+					</h:form>
+				
 				</div>
 
 	</ui:composition>

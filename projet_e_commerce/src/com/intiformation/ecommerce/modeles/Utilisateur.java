@@ -11,20 +11,20 @@ public class Utilisateur {
 	private int idUtilisateur;
 	private String nomUtilisateur;
 	private String passwordUtilisateur;
-	private int actived;
+	private boolean actived;
 	
 	/*_____________ ctors ______________*/
 	public Utilisateur() {
 		
 	}
 	
-	public Utilisateur(String nomUtilisateur, String passwordUtilisateur, int actived) {
+	public Utilisateur(String nomUtilisateur, String passwordUtilisateur, boolean actived) {
 		this.nomUtilisateur = nomUtilisateur;
 		this.passwordUtilisateur = passwordUtilisateur;
 		this.actived = actived;
 	}
 
-	public Utilisateur(int idUtilisateur, String nomUtilisateur, String passwordUtilisateur, int actived) {
+	public Utilisateur(int idUtilisateur, String nomUtilisateur, String passwordUtilisateur, boolean actived) {
 		this.idUtilisateur = idUtilisateur;
 		this.nomUtilisateur = nomUtilisateur;
 		this.passwordUtilisateur = passwordUtilisateur;
@@ -57,11 +57,11 @@ public class Utilisateur {
 		this.passwordUtilisateur = passwordUtilisateur;
 	}
 
-	public int getActived() {
+	public boolean getActived() {
 		return actived;
 	}
 
-	public void setActived(int actived) {
+	public void setActived(boolean actived) {
 		this.actived = actived;
 	}
 	

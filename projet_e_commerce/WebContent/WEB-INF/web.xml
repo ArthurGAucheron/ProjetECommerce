@@ -14,10 +14,13 @@ id="WebApp_ID" version="3.1">
  
    <!-- /////////////// Page de démarrage //////////////////////// -->
   <welcome-file-list>
+<<<<<<< HEAD
  	 <welcome-file>page-principale.xhtml</welcome-file>
+=======
+ 	 <welcome-file>login-utilisateur.xhtml</welcome-file>
+>>>>>>> 418882449e85a779f441d56d7ebc3ac21e2d429a
   </welcome-file-list>
- 
- 
+
  
   <!-- /////////////// Déclaration de la servlet jsp //////////////////////// -->
  <servlet>
@@ -30,5 +33,20 @@ id="WebApp_ID" version="3.1">
     <servlet-name>Faces Servlet</servlet-name>
     <url-pattern>*.xhtml</url-pattern>
   </servlet-mapping>
+
+  <!-- /////////////// Déclaration du context param file-upload //////////////////////// -->
+
+  <context-param>
+  	<param-name>file-upload</param-name>
+  	<param-value>resources/images/categories/</param-value>
+  </context-param>
+
+  <!-- /////////////// Déclaration du context param file-upload-produit //////////////////////// -->
+
+  <context-param>
+  	<param-name>file-upload-produit</param-name>
+  	<param-value>resources/images/produits/</param-value>
+  </context-param>
+
 
 </web-app>

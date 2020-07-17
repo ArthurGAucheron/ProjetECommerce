@@ -12,4 +12,6 @@ public interface IUtilisateurService extends IGeneriqueService<Utilisateur>{
 
 	public boolean utilisateurExists(String pUserName, String pPassword);
 	
+	public Utilisateur findUtilisateur(String pUserName, String pPassword);
+	
 }//end interface

@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+       
+
+<h:head>
+	<title>Informations personnelles - utilisateur</title>
+	
+	<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
+	<h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />		
+	<h:outputStylesheet library="css" name="mon-style.css"></h:outputStylesheet>
+	<h:outputStylesheet library="css" name="utilisateur.css"></h:outputStylesheet>		
+	
+</h:head> 
+
+<body> 
+		<!-- //////////////////////////////////////////// HEADER /////////////////////////////////////////////////////// -->			
+		<div class="container-fluid" >	
+			<!--  utilisation modèle header-utilisateur -->
+			<ui:decorate template="/templates/header-utilisateur.xhtml"></ui:decorate>
+		</div>	
+	
+		<!-- //////////////////////////////////////////// CONTENU /////////////////////////////////////////////////////// -->			
+		
+		<!-- affichage des messages -->
+		<p:messages showDetail="true" infoStyle="color: green;" fatalStyle="color: red;"/>		
+				
+		<br/><br/><br/>
+
+<div class="container">
+					
+		<div>
+			<h:form>
+			
+			<p:panel id="panel">
+			
+					<h:outputLabel>
+						<span style="font-size: 16pt; font-weight: bold;">Informations personnelles utilisateur</span>
+					</h:outputLabel>	
+					
+					<br/><br/><br/>
+			
+				<h:panelGrid columns="3" cellpadding="5">
+										
+					<h:outputLabel for="idNom" value="Nom d'utilisateur :" />
+					<p:inplace>
+						<p:inputText id="idNom" required="true"  requiredMessage="Nom d'utilisateur obligatoire" value="#{authentificationBean.utilisateur.nomUtilisateur}"/>
+					</p:inplace>
+					<p:message for="idNom"/>
+					
+					<h:outputLabel for="idMdp" value="Mot de passe :"/>
+					<p:inplace>
+						<p:inputText id="idMdp" required="true" requiredMessage="Mot de passe obligatoire" value="#{authentificationBean.utilisateur.passwordUtilisateur}"/>
+					</p:inplace>
+					<p:message for="idMdp"/>
+					
+					<h:outputLabel for="idActived" value="Activation du rôle d'administrateur :"/>
+					<h:selectBooleanCheckbox id="idActived" value="#{authentificationBean.utilisateur.actived}" />
+					<p:message for="idActived"/>
+																	
+				</h:panelGrid>
+				
+				<br/><br/>				
+				
+				<h:commandButton class="btn btn-dark" action="#{authentificationBean.modifierUtilisateur()}" style="margin-right:20px;" value="Modifier les informations de l'utilisateur">
+				</h:commandButton>
+				
+			</p:panel>
+				
+			</h:form>
+		</div>
+</div>
+
+<br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
+	<!-- //////////////////////////////////////////// FOOTER /////////////////////////////////////////////////////// -->				
+		<div class="container-fluid" >	
+			<!--  utilisation modèle footer-utilisateur -->
+			<ui:decorate template="/templates/footer-utilisateur.xhtml"></ui:decorate>
+		</div>
+
+</body> 
+</html>

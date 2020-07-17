@@ -46,5 +46,10 @@ public class UtilisateurServiceImpl implements IUtilisateurService{
 	public boolean utilisateurExists(String pUserName, String pPassword) {
 		return utilisateurDAO.isUtilisateurExists(pUserName, pPassword);
 	}
+
+	@Override
+	public Utilisateur findUtilisateur(String pUserName, String pPassword) {
+		return utilisateurDAO.getUtilisateur(pUserName, pPassword);
+	}
 	
 }//end class

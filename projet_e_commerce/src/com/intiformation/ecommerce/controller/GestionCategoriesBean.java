@@ -1,5 +1,10 @@
 package com.intiformation.ecommerce.controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.List;
 
@@ -9,6 +14,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIParameter;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.servlet.http.Part;
 
 import com.intiformation.ecommerce.modeles.Categorie;
 import com.intiformation.ecommerce.service.CategorieServiceImpl;
@@ -27,6 +33,11 @@ public class GestionCategoriesBean implements Serializable{
 	private Categorie categorie;
 	private List<Categorie> listeCategories;
 	private List<Integer> listeNomsCategories;
+	private Categorie categorieRecherche;
+	private int idCat;
+	
+    // file upload de l'API servlet
+	private Part uploadedFile;
 	
 	//déclaration de la couche service
 	private ICategorieService categorieService;
@@ -46,6 +57,9 @@ public class GestionCategoriesBean implements Serializable{
 	 * @return
 	 */
 	public List<Categorie> afficherCategories() {
+
+		//récup contexte JSF
+		FacesContext contextJSF = FacesContext.getCurrentInstance();
 		
 		listeCategories = categorieService.findAll();		
 		return listeCategories;
@@ -58,6 +72,9 @@ public class GestionCategoriesBean implements Serializable{
 	 * @return
 	 */
 	public String initialiserCategorie() {
+		
+		//récup contexte JSF
+		FacesContext contextJSF = FacesContext.getCurrentInstance();
 		
 		//instanciation nouvel objet categorie
 		Categorie categorieToAdd = new Categorie();
@@ -78,9 +95,48 @@ public class GestionCategoriesBean implements Serializable{
 		
 		//récup du contexte de JSF
 		FacesContext contextJSF = FacesContext.getCurrentInstance();
+		
+		 // traitement du fileUpload : recup du nom de l'image
+        String fileName = uploadedFile.getSubmittedFileName();
+        
+        // affectation du nom à  la prop photo de la categorie
+        categorie.setPhoto(fileName);
 				
 		//ajout de la catégorie dans la bdd via la couche service
 		if(categorieService.ajouter(categorie)) {
+			
+			 //----------------------------------------------
+            // ajout de la photo dans le dossier images categories
+            //-----------------------------------------------
+            
+			try {
+            // recup du contenu de l'image
+            InputStream imageContent = uploadedFile.getInputStream();
+
+            // recup de la valeur du param d'initialisation context-param de web.xml
+            FacesContext fContext = FacesContext.getCurrentInstance();
+            String pathTmp = fContext.getExternalContext().getInitParameter("file-upload");
+            
+            String filePath = fContext.getExternalContext().getRealPath(pathTmp);
+
+            // création du fichier image (conteneur de l'image) 
+            File targetFile = new File(filePath, fileName);
+
+            // instanciation du flux de sortie vers le fichier image
+            OutputStream outStream = new FileOutputStream(targetFile);
+			
+            byte[] buf = new byte[1024];
+            int len;
+
+            while ((len = imageContent.read(buf)) > 0) {
+                outStream.write(buf, 0, len);
+            }
+            
+            outStream.close();
+            
+            } catch (IOException ex) {
+            	System.out.println("erreur chargement photo");
+            }
 			
 			contextJSF.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Ajout catégorie ", " - la nouvelle catégorie a été ajoutée avec succès"));
 
@@ -89,7 +145,7 @@ public class GestionCategoriesBean implements Serializable{
 		} else {
 					
 			contextJSF.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Echec ajout catégorie ", " - l'ajout de la catégorie a échoué"));
-			return "ajouter-livre.xhtml";
+			return "ajout-categorie-utilisateur.xhtml";
 	
 		}//end else
 			
@@ -102,6 +158,9 @@ public class GestionCategoriesBean implements Serializable{
 	 */
 	public void supprimerCategorie(ActionEvent event) {
 		
+		//récup contexte JSF
+		FacesContext contextJSF = FacesContext.getCurrentInstance();
+		
 		// 1. récup du paramètre passé dans le composant au click sur le lien 'supprimer'
 		UIParameter uip = (UIParameter) event.getComponent().findComponent("deleteID");
 				
@@ -110,22 +169,21 @@ public class GestionCategoriesBean implements Serializable{
 				
 		//3. suppression de la categorie dans la bdd via l'id
 					
-			//récup contexte JSF
-		FacesContext contextJSF = FacesContext.getCurrentInstance();
-					
 			//suppression categorie
 		if (categorieService.supprimerById(categorieID)) {
 					
 			//envoi d'un msg vers la vue
-		contextJSF.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Suppression catégorie ", " - la catégorie a été supprimée"));
-					
+			contextJSF.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Suppression catégorie ", " - la catégorie a été supprimée"));
+			contextJSF.getExternalContext().getFlash().setKeepMessages(true);	
+		
 			//redirection vers gestion-categories-utilisateur.xhtml (réf : les clés d'outcom dans faces-config.xml)
 						
 		} else {
 
 			//envoi d'un msg vers la vue
 			contextJSF.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Echec suppression catégorie ", " - la suppression de la catégorie a échouée"));
-					
+			contextJSF.getExternalContext().getFlash().setKeepMessages(true);	
+			
 			//redirection vers gestion-categories-utilisateur.xhtml (réf : les clés d'outcom dans faces-config.xml)
 					
 		}//end else
@@ -137,6 +195,9 @@ public class GestionCategoriesBean implements Serializable{
 	 * invoquée au click sur le lien 'modifier' de 'gestion-categories-utilisateur.xhtml' 
 	 */
 	public void selectionnerCategorie(ActionEvent event){
+		
+		// récup du context de JSF
+		FacesContext contextJSF = FacesContext.getCurrentInstance();
 		
 		//récup du paramètre passé dans le composant au click
 		UIParameter uip = (UIParameter) event.getComponent().findComponent("updateID");
@@ -164,6 +225,17 @@ public class GestionCategoriesBean implements Serializable{
 		// récup du context de JSF
 		FacesContext contextJSF = FacesContext.getCurrentInstance();
 		
+		if (uploadedFile != null) {
+
+            String fileNameToUpdate = uploadedFile.getSubmittedFileName();
+
+            if (!"".equals(fileNameToUpdate) && fileNameToUpdate != null) {
+
+                // affectation du nouveau nom à la prop photo de la categorie 
+            	categorie.setPhoto(fileNameToUpdate);
+            }
+		}
+		
 		//modif de la categorie dans la bdd
 		if (categorieService.modifier(categorie)) {
 			
@@ -189,24 +261,14 @@ public class GestionCategoriesBean implements Serializable{
 	}//end modifierCategorie	
 	
 	/**
-	 * permet de récupérer et afficher la liste de tous les noms des catégories de la bdd
+	 * permet de récupérer le nom de la catégorie à partir de son Id
+	 * @param idCategorie
 	 * @return
 	 */
-	public List<Integer> afficherNomsCategories() {
-		
-		List<Categorie> listeDesCategories = categorieService.findAll();
-		
-		for (Categorie categorieElement : listeDesCategories) {
-			int nomCategorie = categorieElement.getIdCategorie();
-			listeNomsCategories.add(nomCategorie);
-		}
-		
-		return listeNomsCategories;
-			
-	}//end afficherNomsCategories()
-	
-	
 	public String getNomCategorieById(Integer idCategorie) {
+		
+		// récup du context de JSF
+		FacesContext contextJSF = FacesContext.getCurrentInstance();
 		
 		Categorie categorieToFind = categorieService.findById(idCategorie);
 		String nomCategorie = categorieToFind.getNomCategorie();
@@ -214,6 +276,23 @@ public class GestionCategoriesBean implements Serializable{
 		return nomCategorie;
 		
 	}//end getNomCategorieById
+	
+	/**
+	 * permet de recherche une catégorie par son nom
+	 * @return
+	 */
+	public Categorie afficherCategorieRecherche(){
+		
+		// récup du context de JSF
+		FacesContext contextJSF = FacesContext.getCurrentInstance();
+				
+		Categorie categorieToSearch = categorieService.findById(idCat);
+				
+		setCategorieRecherche(categorieToSearch);
+				
+		return categorieRecherche;
+		
+	}//end afficherCategorieRecherche
 	
 	/*___________ getters/setters _____________*/
 	
@@ -239,6 +318,30 @@ public class GestionCategoriesBean implements Serializable{
 
 	public void setListeNomsCategories(List<Integer> listeNomsCategories) {
 		this.listeNomsCategories = listeNomsCategories;
+	}
+
+	public Categorie getCategorieRecherche() {
+		return categorieRecherche;
+	}
+
+	public void setCategorieRecherche(Categorie categorieRecherche) {
+		this.categorieRecherche = categorieRecherche;
+	}
+
+	public int getIdCat() {
+		return idCat;
+	}
+
+	public void setIdCat(int idCat) {
+		this.idCat = idCat;
+	}
+
+	public Part getUploadedFile() {
+		return uploadedFile;
+	}
+
+	public void setUploadedFile(Part uploadedFile) {
+		this.uploadedFile = uploadedFile;
 	}
 	
 }//end class

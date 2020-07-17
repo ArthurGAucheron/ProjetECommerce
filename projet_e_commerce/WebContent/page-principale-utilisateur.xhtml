@@ -25,7 +25,11 @@
 			<ui:decorate template="/templates/header-utilisateur.xhtml"></ui:decorate>
 		</div>	
 		<!-- //////////////////////////////////////////// CONTENU /////////////////////////////////////////////////////// -->			
-				<br/><br/><br/>
+				
+		<!-- affichage des messages -->
+		<p:messages showDetail="true" infoStyle="color: green;" fatalStyle="color: red;"/>		
+				
+		<br/><br/><br/>
 		
 		<div class="container" >	
 				
@@ -55,7 +59,13 @@
 				
 				</div>
 				
-				<br/><br/><br/>	
+				<br/><br/><br/>	<br/><br/><br/>	<br/><br/><br/>	
+		</div>	
+		
+	<!-- //////////////////////////////////////////// FOOTER /////////////////////////////////////////////////////// -->				
+		<div class="container-fluid" >	
+			<!--  utilisation modèle footer-utilisateur -->
+			<ui:decorate template="/templates/footer-utilisateur.xhtml"></ui:decorate>
 		</div>			
 
 </body> 

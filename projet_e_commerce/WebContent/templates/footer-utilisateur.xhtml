@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+	<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
+	<h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />		
+	<h:outputStylesheet library="css" name="mon-style.css"></h:outputStylesheet>
+	<h:outputStylesheet library="css" name="utilisateur.css"></h:outputStylesheet>	
+</h:head> 
+
+<body> 
+
+
+	<ui:composition>
+		<!-- //////////////////////////////////////////// FOOTER /////////////////////////////////////////////////////// -->			
+				
+		<div class="row" style="padding: 20px; background-color: #D6D4D3; height:60px;" >	
+			
+			<div class="col-6">					
+			<h:form> 
+				<i class="pi pi-sign-out"></i>				
+				<h:link value="Retour vers le site d'e-commerce" outcome="page-principale.xhtml" style="color: black;"/>
+			</h:form>
+			</div>	
+				
+			<div class="col-6">		
+			<p align="right" style="text-align:right;">© 2020 AG - ML</p>
+			</div>	
+				
+		</div>
+
+	</ui:composition>
+
+
+</body> 
+</html>

@@ -14,6 +14,11 @@
     NAME="output1" PATH="/modification-categorie-utilisateur.xhtml"
     TARGET="rules:#modification-categorie-utilisateur.xhtml"
     TITLE="updatecat" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="searchcat::#recherche-categorie-utilisateur.xhtml"
+    NAME="output2" PATH="/recherche-categorie-utilisateur.xhtml"
+    TARGET="rules:#recherche-categorie-utilisateur.xhtml"
+    TITLE="searchcat" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#gestion-produits-utilisateur.xhtml"
@@ -47,6 +52,7 @@
   PATH="/modification-produit-utilisateur.xhtml" SHAPE="256,177,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#creation-client.xhtml"
   PATH="/creation-client.xhtml" SHAPE="240,321,0,0" model-entity="JSFProcessGroup"/>
+<<<<<<< HEAD
  <PROCESS-ITEM NAME="rules:#page-principale.xhtml"
   PATH="/page-principale.xhtml" SHAPE="32,529,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#page-principale.xhtml:0" NAME="item"
@@ -71,4 +77,25 @@
     TARGET="rules:#page-principale.xhtml" TITLE="mainpage" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
+=======
+<<<<<<< HEAD
+ <PROCESS-ITEM NAME="rules:#recherche-categorie-utilisateur.xhtml"
+  PATH="/recherche-categorie-utilisateur.xhtml" SHAPE="272,465,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#recherche-categorie-utilisateur.xhtml:0"
+   NAME="item" PATH="/recherche-categorie-utilisateur.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="deletecat::#gestion-categories-utilisateur.xhtml" NAME="output"
+    PATH="/gestion-categories-utilisateur.xhtml"
+    TARGET="rules:#gestion-categories-utilisateur.xhtml"
+    TITLE="deletecat" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="updatecat::#modification-categorie-utilisateur.xhtml"
+    NAME="output1" PATH="/modification-categorie-utilisateur.xhtml"
+    TARGET="rules:#modification-categorie-utilisateur.xhtml"
+    TITLE="updatecat" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+=======
+>>>>>>> 352dadf4939cdf508f44c23baae7d22f01920888
+>>>>>>> 418882449e85a779f441d56d7ebc3ac21e2d429a
 </PROCESS>

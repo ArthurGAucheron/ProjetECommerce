@@ -1,5 +1,10 @@
 package com.intiformation.ecommerce.controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.List;
 
@@ -9,11 +14,9 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIParameter;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.servlet.http.Part;
 
-import com.intiformation.ecommerce.modeles.Categorie;
 import com.intiformation.ecommerce.modeles.Produit;
-import com.intiformation.ecommerce.service.CategorieServiceImpl;
-import com.intiformation.ecommerce.service.ICategorieService;
 import com.intiformation.ecommerce.service.IProduitService;
 import com.intiformation.ecommerce.service.ProduitServiceImpl;
 
@@ -30,6 +33,12 @@ public class GestionProduitsBean implements Serializable{
 	private Produit produit;
 	private List<Produit> listeProduits;
 	private int idCat;
+	
+    // file upload de l'API servlet
+	private Part uploadedFile;
+	
+	//liste filtrée du tableau
+	private List<Produit> filteredProduits;
 	
 	//déclaration de la couche service
 	private IProduitService produitService;
@@ -50,6 +59,9 @@ public class GestionProduitsBean implements Serializable{
 	 * @return
 	 */
 	public void afficherProduitsParCategorie(ActionEvent event){
+
+		//récup contexte JSF
+		FacesContext contextJSF = FacesContext.getCurrentInstance();
 		
 		//1. récup du paramètre passé dans le composant au click sur la catégorie
 		UIParameter uip = (UIParameter) event.getComponent().findComponent("idCat");
@@ -58,10 +70,7 @@ public class GestionProduitsBean implements Serializable{
 		int categorieID = (int) uip.getValue();
 						
 		//3. récupération des produits de la categorie dans la bdd via l'id
-							
-			//récup contexte JSF
-		FacesContext contextJSF = FacesContext.getCurrentInstance();
-							
+
 			//recup des produits
 		List<Produit> listeProduitsParCategorie = produitService.findProduitsByIDCategorie(categorieID);
 		System.out.println("ID catégorie = " + categorieID);
@@ -77,7 +86,10 @@ public class GestionProduitsBean implements Serializable{
 	 * @return
 	 */
 	public List<Produit> afficherProduits(){
-							
+		
+		//récup contexte JSF
+		FacesContext contextJSF = FacesContext.getCurrentInstance();
+		
 		//recup des produits
 		listeProduits = produitService.findAll();
 
@@ -91,6 +103,9 @@ public class GestionProduitsBean implements Serializable{
 	 * @return
 	 */
 	public String initialiserProduit() {
+		
+		//récup contexte JSF
+		FacesContext contextJSF = FacesContext.getCurrentInstance();
 		
 		//instanciation nouvel objet produit
 		Produit produitToAdd = new Produit();
@@ -111,10 +126,49 @@ public class GestionProduitsBean implements Serializable{
 		
 		//récup du contexte de JSF
 		FacesContext contextJSF = FacesContext.getCurrentInstance();
+		
+		 // traitement du fileUpload : recup du nom de l'image
+        String fileName = uploadedFile.getSubmittedFileName();
+        
+        // affectation du nom à  la prop photo du produit
+        produit.setPhoto(fileName);
 				
 		//ajout du produit dans la bdd via la couche service
 		if(produitService.ajouter(produit)) {
 			
+			 //----------------------------------------------
+            // ajout de la photo dans le dossier images produits
+            //-----------------------------------------------
+            
+			try {
+            // recup du contenu de l'image
+            InputStream imageContent = uploadedFile.getInputStream();
+
+            // recup de la valeur du param d'initialisation context-param de web.xml
+            FacesContext fContext = FacesContext.getCurrentInstance();
+            String pathTmp = fContext.getExternalContext().getInitParameter("file-upload-produit");
+            
+            String filePath = fContext.getExternalContext().getRealPath(pathTmp);
+
+            // création du fichier image (conteneur de l'image) 
+            File targetFile = new File(filePath, fileName);
+
+            // instanciation du flux de sortie vers le fichier image
+            OutputStream outStream = new FileOutputStream(targetFile);
+			
+            byte[] buf = new byte[1024];
+            int len;
+
+            while ((len = imageContent.read(buf)) > 0) {
+                outStream.write(buf, 0, len);
+            }
+            
+            outStream.close();
+            
+            } catch (IOException ex) {
+            	System.out.println("erreur chargement photo");
+            }
+
 			contextJSF.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Ajout produit ", " - le nouveau produit a été ajouté avec succès"));
 
 			return "gestion-produits-utilisateur.xhtml";
@@ -134,6 +188,9 @@ public class GestionProduitsBean implements Serializable{
 	 * @return
 	 */
 	public void supprimerProduit(ActionEvent event) {
+
+		//récup contexte JSF
+		FacesContext contextJSF = FacesContext.getCurrentInstance();
 		
 		// 1. récup du paramètre passé dans le composant au click sur le lien 'supprimer'
 		UIParameter uip = (UIParameter) event.getComponent().findComponent("deleteID");
@@ -143,22 +200,21 @@ public class GestionProduitsBean implements Serializable{
 				
 		//3. suppression du produit dans la bdd via l'id
 					
-			//récup contexte JSF
-		FacesContext contextJSF = FacesContext.getCurrentInstance();
-					
 			//suppression produit
 		if (produitService.supprimerById(produitID)) {
 					
 			//envoi d'un msg vers la vue
-		contextJSF.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Suppression produit ", " - le produit a été supprimé"));
-					
+			contextJSF.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Suppression produit ", " - le produit a été supprimé avec succès"));
+			contextJSF.getExternalContext().getFlash().setKeepMessages(true);	
+		
 			//redirection vers gestion-categories-utilisateur.xhtml (réf : les clés d'outcom dans faces-config.xml)
 						
 		} else {
 
 			//envoi d'un msg vers la vue
 			contextJSF.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Echec suppression produit ", " - la suppression du produit a échouée"));
-					
+			contextJSF.getExternalContext().getFlash().setKeepMessages(true);	
+			
 			//redirection vers gestion-produits-utilisateur.xhtml (réf : les clés d'outcom dans faces-config.xml)
 					
 		}//end else
@@ -170,6 +226,9 @@ public class GestionProduitsBean implements Serializable{
 	 * invoquée au click sur le lien 'modifier' de 'gestion-produits-utilisateur.xhtml' 
 	 */
 	public void selectionnerProduit(ActionEvent event){
+		
+		//récup contexte JSF
+		FacesContext contextJSF = FacesContext.getCurrentInstance();	
 		
 		//récup du paramètre passé dans le composant au click
 		UIParameter uip = (UIParameter) event.getComponent().findComponent("updateID");
@@ -196,6 +255,17 @@ public class GestionProduitsBean implements Serializable{
 		
 		// récup du context de JSF
 		FacesContext contextJSF = FacesContext.getCurrentInstance();
+		
+		if (uploadedFile != null) {
+
+            String fileNameToUpdate = uploadedFile.getSubmittedFileName();
+
+            if (!"".equals(fileNameToUpdate) && fileNameToUpdate != null) {
+
+                // affectation du nouveau nom à la prop photo de la categorie 
+            	produit.setPhoto(fileNameToUpdate);
+            }
+		}
 		
 		//modif du produit dans la bdd
 		if (produitService.modifier(produit)) {
@@ -246,5 +316,22 @@ public class GestionProduitsBean implements Serializable{
 	public void setIdCat(int idCat) {
 		this.idCat = idCat;
 	}
+
+	public Part getUploadedFile() {
+		return uploadedFile;
+	}
+
+	public void setUploadedFile(Part uploadedFile) {
+		this.uploadedFile = uploadedFile;
+	}
+
+	public List<Produit> getFilteredProduits() {
+		return filteredProduits;
+	}
+
+	public void setFilteredProduits(List<Produit> filteredProduits) {
+		this.filteredProduits = filteredProduits;
+	}
+
 	
 }//end class

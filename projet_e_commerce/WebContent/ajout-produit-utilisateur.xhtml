@@ -15,103 +15,70 @@
 </h:head> 
 
 <body> 
-
-<div class="container-fluid" >
 		
 		<!-- //////////////////////////////////////////// HEADER /////////////////////////////////////////////////////// -->			
-				<div class="row" id="row-header" style="padding-top: 15px; padding-bottom: 15px; background-color: #696969;">
-				
-					<div class="col-3" >
-					<h1 style="font-size: 14pt">Accueil Administrateur</h1>
-					</div>
-				
-					<div class="col-2" id="gestion-categorie">
-					<h:form>
-						<h:panelGrid columns="1">
-					   		<p:splitButton id="basic" value="Catégories" action="#">
-					   			<p:menuitem value="Consulter" action="#"/>
-							    <p:menuitem value="Ajouter" action="#"/>
-							    <p:menuitem value="Modifier" action="#"/>
-							    <p:menuitem value="Supprimer" action="#"/>
-					   		</p:splitButton>  
-						</h:panelGrid>
-					</h:form>
-					</div>
-					
-					<div class="col-2" id="gestion-produits">
-					<h:form>
-						<h:panelGrid columns="1">
-					   		<p:splitButton id="basic" value="Produits" action="#">
-							    <p:menuitem value="Livre" action="#"/>
-							    <p:menuitem value="Film" action="#"/>
-							    <p:menuitem value="Musique" action="#"/>
-					   		</p:splitButton>  
-						</h:panelGrid>
-					</h:form>
-					</div>
-					
-					<div class="col-3">
-        				<div class="ui-inputgroup">
-            				<p:inputText placeholder="Rechercher" />
-           					<p:commandButton icon="pi pi-search"  styleClass="white-button"/>  
-        				</div>
-    				</div>
-					
-					<h:form>
-					<div class="col-1" style="float:right;">							
-						<h:commandLink action="#{authentificationBean.deconnecterUtilisateur()}" style="color:#ffffff;" value="Déconnexion"></h:commandLink>
-					</div>
-					</h:form>
-				
-				</div>
+		<div class="container-fluid" >	
+			<!--  utilisation modèle header-utilisateur -->
+			<ui:decorate template="/templates/header-utilisateur.xhtml"></ui:decorate>
+		</div>	
 
 		<!-- //////////////////////////////////////////// CONTENU /////////////////////////////////////////////////////// -->			
+		<!-- affichage des messages -->
+		<p:messages globalOnly="true" showDetail="true" infoStyle="color: green;" fatalStyle="color: red;"/>
+
 				<br/><br/><br/>
-		
-		</div>
-		
+				
 		<div class="container" >	
 		<!-- ===================================================== -->
 		<!-- ======== Formulaire d'ajout du produit ============== -->
 		<!-- ===================================================== -->
-		<p:growl id="growl" showSummary="true" showDetail="true" keepAlive="true" life="3000">
-    		<p:autoUpdate />
-		</p:growl>
 	
 		<h3>Formulaire d'ajout d'un nouveau produit</h3>
 		
 		<br/><br/>
 	
-	<h:form>
+	<h:form enctype="multipart/form-data">
 	
-		<h:panelGrid columns="2" border="1" cellpadding="5" cellspacing="5" width="50%" style="border:white;">
+		<h:panelGrid columns="3" border="1" cellpadding="5" cellspacing="5" style="border:white; width:70%">
 			
-       		<p:outputLabel for="@next" value="ID Catégorie : " />   
+       		<p:outputLabel for="@next" value="Nom catégorie : " />   
         	<p:selectOneMenu id="categorieproduit" value="#{gestionProduitsBean.produit.categorieID}" required="true" requiredMessage="catégorie obligatoire" >        
             	<f:selectItem itemLabel="Choisir ID catégorie" itemValue="" />
             	<f:selectItems value="#{gestionCategoriesBean.afficherCategories()}" var="categorie" itemValue="#{categorie.idCategorie}" itemLabel="#{categorie.nomCategorie}" />
         	</p:selectOneMenu>
+        	<p:message for="categorieproduit"/>
 			
 			<h:outputLabel for="designationproduit" value="Désignation : " />
-			<h:inputText id="designationproduit" value="#{gestionProduitsBean.produit.designation}" required="true" requiredMessage="désignation obligatoire" />
+			<p:inputText id="designationproduit" value="#{gestionProduitsBean.produit.designation}" required="true" requiredMessage="désignation obligatoire" />
+        	<p:message for="designationproduit"/>		
 		
 			<h:outputLabel for="descriptproduit" value="Description : " />
 			<p:inputTextarea rows = "6" cols = "33" id="descriptproduit" value="#{gestionProduitsBean.produit.description}" required="true" requiredMessage="description obligatoire" />
+        	<p:message for="descriptproduit"/>
 
 			<h:outputLabel for="prixproduit" value="Prix : " />
-			<h:inputText id="prixproduit" value="#{gestionProduitsBean.produit.prix}" required="true" requiredMessage="prix obligatoire" default="0.0"/>
+			<p:inputNumber id="prixproduit" value="#{gestionProduitsBean.produit.prix}" required="true" requiredMessage="prix obligatoire" symbol=" €" symbolPosition="s" decimalSeparator=","/>
+        	<p:message for="prixproduit"/>
 		
 			<h:outputLabel for="selectionneproduit" value="Sélectionné : " />
 			<h:selectBooleanCheckbox id="selectionneproduit" value="#{gestionProduitsBean.produit.selectionne}"/>
+        	<p:message for="selectionneproduit"/>
 
 			<h:outputLabel for="qteproduit" value="Quantité : " />
-			<h:inputText id="qteproduit" value="#{gestionProduitsBean.produit.quantite}" required="true" requiredMessage="quantité obligatoire" default="0"/>
+			<p:spinner id="qteproduit" min="0" value="#{gestionProduitsBean.produit.quantite}" required="true" requiredMessage="quantité obligatoire"/>
+        	<p:message for="qteproduit"/>
 			
-			<h:outputLabel for="photoproduit" value="Photo : " />
-			<p:fileUpload id="photoproduit" value="#{gestionProduitsBean.produit.photo}" mode="simple" skinSimple="true" required="true" requiredMessage="photo obligatoire"/>
+			<h:outputLabel for="file" value="Photo : " />
+			<h:panelGrid>
+				<p:graphicImage library="images/produits" name="#{gestionProduitsBean.produit.photo}" width="100px" height="100px" rendered="#{gestionProduitsBean.produit.photo}"/> 
+				<h:inputFile id="file" value="#{gestionProduitsBean.uploadedFile}" label="Choisir une photo" required="true" requiredMessage="photo obligatoire"/>
+        	</h:panelGrid>
+        	<p:message for="file"/>
+			
+			<br/><br/>
 				
 			<f:facet name="footer">
-				<h:commandButton action="#{gestionProduitsBean.ajouterProduit()}" value="Enregistrer" style="float:right;"/>
+				<h:commandButton class="btn btn-dark" action="#{gestionProduitsBean.ajouterProduit()}" value="Enregistrer le produit" style="float:right;"/>
 			</f:facet>
 			
 		</h:panelGrid>	
@@ -119,6 +86,14 @@
 	</h:form>	
 				
 </div>
+
+<br/><br/><br/>
+
+	<!-- //////////////////////////////////////////// FOOTER /////////////////////////////////////////////////////// -->				
+		<div class="container-fluid" >	
+			<!--  utilisation modèle footer-utilisateur -->
+			<ui:decorate template="/templates/footer-utilisateur.xhtml"></ui:decorate>
+		</div>
 
 </body> 
 </html>

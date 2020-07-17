@@ -20,6 +20,12 @@
 			<redirect/> 						
 		</navigation-case>
 		
+		<navigation-case>
+			<from-outcome>searchcat</from-outcome> 	
+			<to-view-id>/recherche-categorie-utilisateur.xhtml</to-view-id>		
+			<redirect/> 						
+		</navigation-case>
+		
 	</navigation-rule>
 	
 	<!-- règle de navigation pour 'gestion-produits-utilisateur.xhtml' -->
@@ -40,8 +46,34 @@
 		</navigation-case>
 		
 	</navigation-rule>
+<<<<<<< HEAD
+	
+	 	<!-- règle de navigation pour 'recherche-categorie-utilisateur.xhtml' -->
+	<navigation-rule>
+		
+		<from-view-id>/recherche-categorie-utilisateur.xhtml</from-view-id>
+		
+		<navigation-case>
+			<from-outcome>deletecat</from-outcome> 	
+			<to-view-id>/gestion-categories-utilisateur.xhtml</to-view-id>		
+			<redirect/> 						
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>updatecat</from-outcome> 	
+			<to-view-id>/modification-categorie-utilisateur.xhtml</to-view-id>		
+			<redirect/> 						
+		</navigation-case>
+		
+	</navigation-rule>
+=======
  
+<<<<<<< HEAD
 	<!-- règle de navigation pour '/login-client.xhtml' -->
+=======
+	<!-- règle de navigation pour 'gestion-produits-utilisateur.xhtml' -->
+>>>>>>> 352dadf4939cdf508f44c23baae7d22f01920888
+>>>>>>> 418882449e85a779f441d56d7ebc3ac21e2d429a
 
 	<navigation-rule>
 		

@@ -16,77 +16,85 @@
 </h:head> 
 
 <body> 
-
-		<div class="container-fluid" >
 		
 		<!-- //////////////////////////////////////////// HEADER /////////////////////////////////////////////////////// -->			
-				<div class="row" id="row-header" style="padding-top: 15px; padding-bottom: 15px; background-color: #696969;">
-				
-					<div class="col-3" >
-					<h1 style="font-size: 14pt">Accueil Administrateur</h1>
-					</div>
-				
-					<div class="col-2" id="gestion-categorie">
-					<h:form>
-						<h:panelGrid columns="1">
-					   		<p:splitButton id="basic" value="Catégories" action="#">
-					   			<p:menuitem value="Consulter" action="#"/>
-							    <p:menuitem value="Ajouter" action="#"/>
-							    <p:menuitem value="Modifier" action="#"/>
-							    <p:menuitem value="Supprimer" action="#"/>
-					   		</p:splitButton>  
-						</h:panelGrid>
-					</h:form>
-					</div>
-					
-					<div class="col-2" id="gestion-produits">
-					<h:form>
-						<h:panelGrid columns="1">
-					   		<p:splitButton id="basic" value="Produits" action="#">
-							    <p:menuitem value="Livre" action="#"/>
-							    <p:menuitem value="Film" action="#"/>
-							    <p:menuitem value="Musique" action="#"/>
-					   		</p:splitButton>  
-						</h:panelGrid>
-					</h:form>
-					</div>
-					
-					<div class="col-3">
-        				<div class="ui-inputgroup">
-            				<p:inputText placeholder="Rechercher" />
-           					<p:commandButton icon="pi pi-search"  styleClass="white-button"/>  
-        				</div>
-    				</div>
-					
-					<h:form>
-					<div class="col-1" style="float:right;">							
-						<h:commandLink action="#{authentificationBean.deconnecterUtilisateur()}" style="color:#ffffff;" value="Déconnexion"></h:commandLink>
-					</div>
-					</h:form>
-				
-				</div>
+		<div class="container-fluid" >	
+			<!--  utilisation modèle header-utilisateur -->
+			<ui:decorate template="/templates/header-utilisateur.xhtml"></ui:decorate>
+		</div>	
 	
 		<!-- //////////////////////////////////////////// CONTENU /////////////////////////////////////////////////////// -->			
 		
 		<!-- affichage des messages -->
-		<p:messages globalOnly="true" showDetail="true" infoStyle="color: green;" fatalStyle="color: red;"/>
+		<p:messages showDetail="true" infoStyle="color: green;" fatalStyle="color: red;"/>		
 				
 		<br/><br/><br/>
-
-	</div>
 		
 	<div class="container" >	
+	
+	<!-- barre de recherche de catégorie -->
+	
+	<h:form style="float: right;">
+	
+	     <p:outputLabel for="@next" value="" />   
+	     
+	        <p:commandButton id="catBtn" icon="pi pi-search" action="#{gestionCategoriesBean.afficherCategorieRecherche()}"/>
+	     
+        	<p:selectOneMenu id="categorieproduit" value="#{gestionCategoriesBean.idCat}">        
+            	<f:selectItem itemLabel="Rechercher catégorie" itemValue=""/>
+            	<f:selectItems value="#{gestionCategoriesBean.afficherCategories()}" var="categorie" itemValue="#{categorie.idCategorie}" itemLabel="#{categorie.nomCategorie}" />
+        		<p:ajax event="change" update="@form" />
+        	</p:selectOneMenu>
+        	
+        	
+        		<p:overlayPanel id="catPanel" for="catBtn" hideEffect="fade" dynamic="true" style="width:600px" modal="true">
+        	
+        			<p:carousel numVisible="1" value="#{gestionCategoriesBean.categorieRecherche}" var="categorie" style="text-align:center; width: 100%;">
+        	
+        				<h:panelGrid columns="1" columnClasses="label,value" style="text-align:center; width: 100%; margin:10px 0px">
+          					
+          					<f:facet name="header">
+                				<p:graphicImage library="images/categories" name="#{categorie.photo}" width="80%" height="300px" rendered="#{categorie.photo ne null}"/> 
+            				</f:facet>
+
+            				<h:outputText value="#{categorie.idCategorie}" />
+ 
+            				<h:outputText value="#{categorie.nomCategorie}" />
+ 
+            				<h:outputText value="#{categorie.description}" style="font-style:italic;"/>
+            
+            			<br/>
+                        
+    						<p:commandButton id="update" action="updatecat" actionListener="#{gestionCategoriesBean.selectionnerCategorie}" style="margin-right:20px;" icon="pi pi-pencil" title="Modifier">
+								<f:param id="updateID" value="#{categorie.idCategorie}"/>
+							</p:commandButton>
+				
+    						<p:commandButton id="delete" action="deletecat" actionListener="#{gestionCategoriesBean.supprimerCategorie}" style="margin-right:20px;" icon="pi pi-trash" title="Supprimer" update="messages">
+								<f:param id="deleteID" value="#{categorie.idCategorie}"/>
+							</p:commandButton>
+			
+						<br/><br/>
+
+        				</h:panelGrid>
+        
+        			</p:carousel>
+        
+    			</p:overlayPanel>
+    		
+	</h:form>
+		
+<br/><br/><br/><br/>
 		
 	<!-- liste des catégories -->
 				
 <h:form id="form">
 
-    <p:carousel value="#{gestionCategoriesBean.afficherCategories()}" headerText="Liste des catégories" var="categorie" itemStyle="text-align:center" responsive="true">
+    <p:carousel value="#{gestionCategoriesBean.afficherCategories()}" headerText="Liste des catégories" var="categorie" style="font-size:18pt;" itemStyle="text-align:center; font-size:14pt;" responsive="true">
        
         <p:panelGrid columns="1" style="width:100%;margin:10px 0px" columnClasses="label,value" layout="grid" styleClass="ui-panelgrid-blank">
           
             <f:facet name="header">
-                <p:graphicImage value="images/categories/#{categorie.photo}" width="50px" height="50px"/> 
+                <p:graphicImage library="images/categories" name="#{categorie.photo}" width="80%" height="200px" rendered="#{categorie.photo ne null}"/> 
             </f:facet>
  
             <h:outputText value="#{categorie.idCategorie}" />
@@ -96,14 +104,12 @@
             <h:outputText value="#{categorie.description}" style="font-style:italic;"/>
             
             <br/>
-            
-            <p:growl id="growl" life="2000" />
-            
-    		<p:commandButton id="update" action="updatecat" actionListener="#{gestionCategoriesBean.selectionnerCategorie}" update="growl" style="margin-right:20px;" icon="pi pi-pencil" title="Modifier">
+                        
+    		<p:commandButton id="update" action="updatecat" actionListener="#{gestionCategoriesBean.selectionnerCategorie}" style="margin-right:20px;" icon="pi pi-pencil" title="Modifier">
 				<f:param id="updateID" name="id" value="#{categorie.idCategorie}"/>
 			</p:commandButton>
 				
-    		<p:commandButton id="delete" action="deletecat" actionListener="#{gestionCategoriesBean.supprimerCategorie}" update="growl" style="margin-right:20px;" icon="pi pi-trash" title="Supprimer">
+    		<p:commandButton ajax="false" id="delete" action="deletecat" actionListener="#{gestionCategoriesBean.supprimerCategorie}" style="margin-right:20px;" icon="pi pi-trash" title="Supprimer">
 				<f:param id="deleteID" name="id" value="#{categorie.idCategorie}"/>
 			</p:commandButton>
 			<br/><br/>
@@ -111,7 +117,6 @@
         </p:panelGrid>
  
     </p:carousel>
-
 
 <br/><br/>
 	
@@ -123,6 +128,12 @@
 
 	<br/><br/><br/><br/>
 </div>
+
+	<!-- //////////////////////////////////////////// FOOTER /////////////////////////////////////////////////////// -->				
+		<div class="container-fluid" >	
+			<!--  utilisation modèle footer-utilisateur -->
+			<ui:decorate template="/templates/footer-utilisateur.xhtml"></ui:decorate>
+		</div>
 
 </body> 
 </html>

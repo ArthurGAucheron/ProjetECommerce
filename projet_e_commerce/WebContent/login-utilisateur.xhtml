@@ -9,12 +9,13 @@
 
 	<title>Login - utilisateur</title>
 	
-	<h:outputStylesheet library="css" name="bootstrap.css"/>
-	<h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
-	<h:outputStylesheet library="css" name="login-utilisateur.css"></h:outputStylesheet>
+	<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
+	<h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />		
   
 </h:head> 
-<body class="login">
+<body>
+
+<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);	text-align: center;">
 
     <p:graphicImage library="images" name="login.png"></p:graphicImage>
     <br></br><br></br>
@@ -31,25 +32,31 @@
 	
 			<p:outputLabel for="idLogin" value="Identifiant : " />
 			<p:inputText id="idLogin" required="true" requiredMessage="Identifiant obligatoire" value="#{authentificationBean.userName}" />
-			<p:message for="idLogin" display="icon"/>
+			<p:message for="idLogin"/>
 			
 			
 			<p:outputLabel for="idMdp" value="Mot de passe : " />
 			<p:password id="idMdp" required="true" requiredMessage="Mot de passe obligatoire" value="#{authentificationBean.userPassword}"/>
-			<p:message for="idMdp"  display="icon"/>
+			<p:message for="idMdp"/>
 			
 			<br></br>
 		</h:panelGrid>
 
 		<p:commandButton id="submitButton" update="panel" action="#{authentificationBean.connecterUtilisateur()}" value="Se Connecter" ></p:commandButton>
-
+		
 		</p:panel>
+		<br></br>
+		
+		<i class="pi pi-user-plus" style="font-size: 2em; color:#7F8C8D; margin-right:5px;"></i>
+		<p:link outcome="creation-utilisateur.xhtml" value="Nouveau compte utilisateur" style="font-style:italic; color:#7F8C8D;"></p:link>
+		
 	</h:form>
       
       <br></br>
       
    <p>&copy; 2020</p>
 
+</div>
 </body>
 
 </html>
