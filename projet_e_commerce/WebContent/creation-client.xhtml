@@ -11,6 +11,8 @@
 	
 	<h:outputStylesheet library="css" name="bootstrap.css"/>
 	
+	<h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />	
+	
 	<h:outputStylesheet library="css" name="mon-style.css"/>
 	
 	<style>
@@ -22,36 +24,41 @@
 </h:head> 
 <h:body> 
 <div class="container-fluid">
-		<div class="row" id="row-header">
+
+		<div class="row container" id="row-header">
 			<div class="col-12">
-				<br></br>
-				<br></br>
-			</div>
-			<p:messages globalOnly="true" showDetail="true" ></p:messages>
+			<i class="pi pi-arrow-circle-left" style="font-size: 2em"></i>
+			<h:link outcome="page-principale.xhtml" value=" Retour vers la page principale" style="color:white; font-style:italic; padding-bottom:5px;"></h:link>
+			</div>			
 		</div>
+		
+			<p:messages id="msgs" globalOnly="true" showDetail="true" ></p:messages>
+
 		<div class="row justify-content-md-center">
 			<h:form>
-				<h:panelGrid colum="1">
+		
+				<h:panelGrid columns="3" id="panel" cellpadding="5">
+			
 					<f:facet name="header"><span style="font-size: 2em; font-weight: bold;">Nouveau client</span></f:facet>
-					
+				
 					<p:outputLabel for="idNom" value="Nom :" />
 					<p:inputText id="idNom" required="true"  requiredMessage="Nom obligatoire" value="#{gestionClientBean.nomClient}"/>
 					<p:message for="idNom" styleClass="error"/>
-					
 				
-					
 					<p:outputLabel for="idEmail" value="E-Mail :"/>
-					<p:inputText id="idEmail" required="true" requiredMessage="e-mail obligatoire" value="#{gestionClientBean.emailClient}" />
+					<p:inputText id="idEmail" required="true" requiredMessage="e-mail obligatoire" validatorMessage="Entrez un e-mail" value="#{gestionClientBean.emailClient}" >
+						<f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]"></f:validateRegex>
+					</p:inputText>
 					<p:message for="idEmail" styleClass="error"/>
 					
 					<p:outputLabel for="idTel" value="Téléphone :"/>
-					<p:inputText id="idTel" value="#{gestionClientBean.telClient}"/>
+					<p:inputMask id="idTel" value="#{gestionClientBean.telClient}" mask="99.99.99.99.99"/>
+					<p:message for="idTel"/>
 					
 					<p:outputLabel for="idAdresse" value="Adresse :"/>
 					<p:inputTextarea rows="6" cols="33" id="idAdresse" value="#{gestionClientBean.adresseClient}"/>
-					
-					
-					
+					<p:message for="idAdresse"/>
+				
 					<p:outputLabel for="idMdp1" value="Mot de passe"/>
 					<p:password id="idMdp1" required="true" requiredMessage="mot de passe obligatoire" value="#{gestionClientBean.passWordClient1}"/>
 					<p:message for="idMdp1" styleClass="error"/>
@@ -59,12 +66,13 @@
 					<p:outputLabel for="idMdp2" value="Mot de passe"/>
 					<p:password id="idMdp2" required="true" requiredMessage="mot de passe obligatoire"  value="#{gestionClientBean.passWordClient2}" />
 					<p:message for="idMdp2" styleClass="error"/>
-					
-					
-					<p:commandButton action="#{gestionClientBean.nouveauClient()}" value="S'inscrire" />
-				
-				
+							
 				</h:panelGrid>
+				
+				<br/><br/>
+				
+					<p:commandButton update="msgs panel" action="#{gestionClientBean.nouveauClient()}" value="S'inscrire" />
+				
 			</h:form>
 		</div>
 </div>

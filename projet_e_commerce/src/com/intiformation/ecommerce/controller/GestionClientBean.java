@@ -14,11 +14,9 @@ import com.intiformation.ecommerce.modeles.Client;
 import com.intiformation.ecommerce.modeles.Panier;
 import com.intiformation.ecommerce.service.ClientServiceImpl;
 import com.intiformation.ecommerce.service.IClientService;
-<<<<<<< HEAD
 import com.intiformation.ecommerce.service.IPanierService;
 import com.intiformation.ecommerce.service.PanierServiceImpl;
-=======
->>>>>>> 418882449e85a779f441d56d7ebc3ac21e2d429a
+
 
  @ManagedBean(name="gestionClientBean")
  @SessionScoped
@@ -93,7 +91,7 @@ public class GestionClientBean implements Serializable{
 			
 	
 			// -> navigation vers la page principale du site "page-principale.xhtml'
-			return "page-principale.xhtml?faces-redirect=true";
+			return "page-principale.xhtml";
 			
 		}else {
 		
@@ -101,6 +99,8 @@ public class GestionClientBean implements Serializable{
 			
 			contextJSF.addMessage(null, message);
 	
+			contextJSF.getExternalContext().getFlash().setKeepMessages(true);	
+
 			return "login-client.xhtml";
 		}
 		
@@ -128,6 +128,8 @@ public class GestionClientBean implements Serializable{
 				}else {
 					
 					contextJSF.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Inscription : ", "Les mots de passe doivent être identique"));
+					contextJSF.getExternalContext().getFlash().setKeepMessages(true);	
+				
 				}// end else
 				
 				
@@ -135,13 +137,15 @@ public class GestionClientBean implements Serializable{
 				if (verifAjout) {
 					
 					contextJSF.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Inscription : ", " merci pour votre inscription"));
-					
+					contextJSF.getExternalContext().getFlash().setKeepMessages(true);	
+
 					return "login-client.xhtml?faces-redirect=true";
 					
 				}else {
 					
 					contextJSF.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Inscription : ", " erreur lors de l'inscription"));
-					
+					contextJSF.getExternalContext().getFlash().setKeepMessages(true);	
+
 					return "creation-client.xhtml?faces-redirect=true";
 				}// end else
 		
