@@ -14,11 +14,10 @@ import com.intiformation.ecommerce.modeles.Client;
 import com.intiformation.ecommerce.modeles.Panier;
 import com.intiformation.ecommerce.service.ClientServiceImpl;
 import com.intiformation.ecommerce.service.IClientService;
-<<<<<<< HEAD
+
 import com.intiformation.ecommerce.service.IPanierService;
 import com.intiformation.ecommerce.service.PanierServiceImpl;
-=======
->>>>>>> 418882449e85a779f441d56d7ebc3ac21e2d429a
+
 
  @ManagedBean(name="gestionClientBean")
  @SessionScoped

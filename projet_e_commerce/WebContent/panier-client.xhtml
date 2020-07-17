@@ -84,6 +84,13 @@
 					<br/><br/>
 					<div class="row">
 					
+					<h:panelGrid columns="2" cellpadding="5" cellspacing="5">
+						<h:outputText style="color: orange;	font-size: 1.5em;font-weight: bold;" value="Prix total du panier : "/>
+						<h:outputText style="color: black;	font-size: 1.5em;font-weight: bold;" value="100€"/>
+						<h:form>
+						<h:commandButton styleClass="btn btn-primary" value="Passer Commande" action="#"></h:commandButton>
+						</h:form>
+					</h:panelGrid>
 					
 					</div>
 					<br/><br/>
@@ -93,7 +100,7 @@
 								<f:facet name="header">
 									<h:outputText value="Photo"/>
 								</f:facet>
-								<p:graphicImage library="images" name="#{gestionPanier.getPhoto(ligneCommande.produitID)}" styleClass="imageProduit"></p:graphicImage>
+								<p:graphicImage library="images/produits" name="#{gestionPanier.getPhoto(ligneCommande.produitID)}" styleClass="imageProduit"></p:graphicImage>
 							</h:column>
 			
 							<h:column>

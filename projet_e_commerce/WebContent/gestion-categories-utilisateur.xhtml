@@ -61,7 +61,7 @@
  
             				<h:outputText value="#{categorie.nomCategorie}" />
  
-            				<h:outputText value="#{categorie.description}" style="font-style:italic;"/>
+            				<h:outputText value="#{categorie.description}" style="font-style:italic;" rendered="#{categorie.description ne null}"/>
             
             			<br/>
                         
@@ -101,7 +101,7 @@
  
             <h:outputText value="#{categorie.nomCategorie}" />
  
-            <h:outputText value="#{categorie.description}" style="font-style:italic;"/>
+            <h:outputText value="#{categorie.description}" style="font-style:italic; " rendered="#{categorie.description ne null}"/>
             
             <br/>
                         

@@ -109,9 +109,8 @@ public class PanierDAOImpl implements IPanierDAO{
 	public boolean add(Panier pPanier) {
 		
 		try {
-			ps = this.connection.prepareStatement("INSERT INTO panier (id_panier) values (?)");
+			ps = this.connection.prepareStatement("INSERT INTO panier () values ()");
 			
-			ps.setInt(1, pPanier.getIdPanier());
 			
 			
 			int verif = ps.executeUpdate();
@@ -209,5 +208,37 @@ public class PanierDAOImpl implements IPanierDAO{
 		
 		
 	} // panierIsExist()
+
+	@Override
+	public int getIdLastAdd() {
+		try {
+			ps = this.connection.prepareStatement("SELECT * FROM panier ORDER BY id_panier DESC;");
+			
+			
+		
+			
+			rs = ps.executeQuery();
+			
+			rs.next();
+			
+
+			
+			return rs.getInt(1);
+			
+		} catch (SQLException e) {
+			System.out.println("...(PanierDAOImpl) erreur de l'execution de getIdLastAdd()...");
+			e.printStackTrace();
+			
+		} finally {
+			try {
+				rs.close();
+				ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}//end finally
+		
+		return 0;
+	}
 	
 }//end class

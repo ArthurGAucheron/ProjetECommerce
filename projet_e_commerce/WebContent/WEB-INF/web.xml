@@ -14,11 +14,8 @@ id="WebApp_ID" version="3.1">
  
    <!-- /////////////// Page de démarrage //////////////////////// -->
   <welcome-file-list>
-<<<<<<< HEAD
+
  	 <welcome-file>page-principale.xhtml</welcome-file>
-=======
- 	 <welcome-file>login-utilisateur.xhtml</welcome-file>
->>>>>>> 418882449e85a779f441d56d7ebc3ac21e2d429a
   </welcome-file-list>
 
  

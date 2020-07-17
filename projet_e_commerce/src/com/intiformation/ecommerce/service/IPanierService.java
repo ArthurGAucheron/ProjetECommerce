@@ -13,4 +13,6 @@ public interface IPanierService extends IGeneriqueService<Panier> {
 	
 	public boolean panierIsExist(int pIdPanier);
 	
+	public int getIdLastAdd();
+	
 }//end interface

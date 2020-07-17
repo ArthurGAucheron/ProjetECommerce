@@ -13,4 +13,6 @@ public interface IPanierDAO extends IGeneriqueDAO<Panier>{
 
 	public boolean panierIsExist(int pIdPanier);
 	
+	public int getIdLastAdd();
+	
 }//end interface

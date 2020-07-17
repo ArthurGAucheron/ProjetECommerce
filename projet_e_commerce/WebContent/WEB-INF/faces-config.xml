@@ -46,7 +46,7 @@
 		</navigation-case>
 		
 	</navigation-rule>
-<<<<<<< HEAD
+
 	
 	 	<!-- règle de navigation pour 'recherche-categorie-utilisateur.xhtml' -->
 	<navigation-rule>
@@ -66,14 +66,11 @@
 		</navigation-case>
 		
 	</navigation-rule>
-=======
+
  
-<<<<<<< HEAD
-	<!-- règle de navigation pour '/login-client.xhtml' -->
-=======
+
 	<!-- règle de navigation pour 'gestion-produits-utilisateur.xhtml' -->
->>>>>>> 352dadf4939cdf508f44c23baae7d22f01920888
->>>>>>> 418882449e85a779f441d56d7ebc3ac21e2d429a
+
 
 	<navigation-rule>
 		

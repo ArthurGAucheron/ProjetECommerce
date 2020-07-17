@@ -52,7 +52,6 @@
   PATH="/modification-produit-utilisateur.xhtml" SHAPE="256,177,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#creation-client.xhtml"
   PATH="/creation-client.xhtml" SHAPE="240,321,0,0" model-entity="JSFProcessGroup"/>
-<<<<<<< HEAD
  <PROCESS-ITEM NAME="rules:#page-principale.xhtml"
   PATH="/page-principale.xhtml" SHAPE="32,529,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#page-principale.xhtml:0" NAME="item"
@@ -77,10 +76,8 @@
     TARGET="rules:#page-principale.xhtml" TITLE="mainpage" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
-=======
-<<<<<<< HEAD
  <PROCESS-ITEM NAME="rules:#recherche-categorie-utilisateur.xhtml"
-  PATH="/recherche-categorie-utilisateur.xhtml" SHAPE="272,465,0,0" model-entity="JSFProcessGroup">
+  PATH="/recherche-categorie-utilisateur.xhtml" SHAPE="48,449,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#recherche-categorie-utilisateur.xhtml:0"
    NAME="item" PATH="/recherche-categorie-utilisateur.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
@@ -95,7 +92,4 @@
     TITLE="updatecat" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
-=======
->>>>>>> 352dadf4939cdf508f44c23baae7d22f01920888
->>>>>>> 418882449e85a779f441d56d7ebc3ac21e2d429a
 </PROCESS>

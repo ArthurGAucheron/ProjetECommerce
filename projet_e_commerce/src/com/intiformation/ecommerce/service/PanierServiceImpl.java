@@ -47,4 +47,9 @@ public class PanierServiceImpl implements IPanierService{
 		return panierDAO.panierIsExist(pIdPanier);
 	}
 
+	@Override
+	public int getIdLastAdd() {
+		return panierDAO.getIdLastAdd();
+	}
+
 }//end class
