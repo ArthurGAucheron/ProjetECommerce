@@ -11,8 +11,14 @@ import javax.servlet.http.HttpSession;
 
 
 import com.intiformation.ecommerce.modeles.Client;
+import com.intiformation.ecommerce.modeles.Panier;
 import com.intiformation.ecommerce.service.ClientServiceImpl;
 import com.intiformation.ecommerce.service.IClientService;
+<<<<<<< HEAD
+import com.intiformation.ecommerce.service.IPanierService;
+import com.intiformation.ecommerce.service.PanierServiceImpl;
+=======
+>>>>>>> 418882449e85a779f441d56d7ebc3ac21e2d429a
 
  @ManagedBean(name="gestionClientBean")
  @SessionScoped
@@ -32,15 +38,20 @@ public class GestionClientBean implements Serializable{
 	 private String passWordClient1;
 	 private String passWordClient2;
 	 private boolean verifAjout = false;
+	 private Panier newPanier;
+	 private int idClient;
+	
 	
 	
 	private Client client;
 	
 	private IClientService clientService;
+	private IPanierService panierService;
 	
 	public GestionClientBean() {
 	
 		clientService = new ClientServiceImpl();
+		panierService = new PanierServiceImpl();
 	}// end LoginClientBean
 	
 	/**
@@ -64,8 +75,21 @@ public class GestionClientBean implements Serializable{
 			
 			HttpSession session = (HttpSession) contextJSF.getExternalContext().getSession(true);
 			
-			// sauvegarde de l'adresse mail dans la session
-			session.setAttribute("client_email", emailClient);
+			// sauvegarde de l'id client dans la session
+			
+			idClient = clientService.findIdByEmail(emailClient);
+			session.setAttribute("id_client", idClient);
+			
+			// création d'un panier au client
+			
+			
+			if (panierService.panierIsExist(idClient)==false) {
+				
+				newPanier = new Panier(idClient);
+				panierService.ajouter(newPanier);
+			}// end if
+			
+			session.setAttribute("id_panier",idClient);
 			
 	
 			// -> navigation vers la page principale du site "page-principale.xhtml'
@@ -75,10 +99,9 @@ public class GestionClientBean implements Serializable{
 		
 			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Echec de connexion "," Identifiant ou mot de passe invalide");
 			
-			
 			contextJSF.addMessage(null, message);
 	
-			return "login-client.xhtml?faces-redirect=true";
+			return "login-client.xhtml";
 		}
 		
 	}// end connecter client
@@ -124,6 +147,26 @@ public class GestionClientBean implements Serializable{
 		
 		
 	}// end nouveauClient()
+	
+		public String deconnecterClient() {
+		
+		// 1. Récup du context de JSF
+		FacesContext contexJSF = FacesContext.getCurrentInstance();
+		
+		// 2. Récup de la session http de l'utilisateur
+		HttpSession session = (HttpSession) contexJSF.getExternalContext().getSession(false);
+		
+		// 3. déconnexion
+		session.invalidate();
+		
+		// 4. Message de déconnexion vers la vue
+		FacesMessage messageDeconnexion = new FacesMessage(FacesMessage.SEVERITY_INFO, "Déconnexion", " vous êtes maintenant déconnecté");
+		contexJSF.addMessage(null, messageDeconnexion);
+		
+		// 5. redirection vers la page du formulaire 'login.xhtml'
+		
+		return "page-principale.xhtml?faces-redirect=true";
+	}
 	
 	
 	public String getEmailClient() {
@@ -190,7 +233,7 @@ public class GestionClientBean implements Serializable{
 	public void setVerifAjout(boolean verifAjout) {
 		this.verifAjout = verifAjout;
 	}
-	
+
 	
 	
 

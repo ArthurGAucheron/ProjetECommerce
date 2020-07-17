@@ -13,4 +13,6 @@ public interface IClientDAO extends IGeneriqueDAO<Client>{
 
 	public boolean isClientExists(String pMail, String pPassword);
 	
+	public int getIdByEmail(String pmail);
+	
 }//end interface

@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:p="http://primefaces.org/ui"
+  	  xmlns:c="http://java.sun.com/jsp/jstl/core">
+	
+	<h:head>
+	<title>Mon panier</title>
+		
+		<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
+		
+		<h:outputStylesheet library="css" name="mon-style.css" target="body" ></h:outputStylesheet>
+		
+		<style>
+			.imageProduit{
+				width: 100px; 
+				height: 150px;
+				
+			}
+		
+			.titreProduit{
+				
+				color: orange;
+				font-size: 1.5em;
+				font-weight: bold;
+			
+			 }
+			 
+			.prixProduit{
+				color:black;
+				font-weight: bold;
+			}
+			.descriptifProduit{
+				color:black;
+			}
+			.quantiteProduit{
+			
+			color:black;
+		 
+			}
+		</style>
+		
+	
+	</h:head>
+	<h:body>
+		
+		<!-- //////////////////////////////////////////// HEADER /////////////////////////////////////////////////////// -->
+		
+		<div class="container-fluid" >
+				<div class="row" id="row-header">
+					<div class="col-5" >
+					<h:link  style="color:white ;	font-size: 3em" outcome="mainpage"> e-commerce</h:link>
+					<h1></h1>
+					</div>
+					
+					<div class="col-5"> <h1>Mon panier</h1></div>
+					
+					
+					
+					
+					<div class="col-2" id="seconnecter">
+					 <p:outputLabel>Bienvenue</p:outputLabel><br></br>
+					      <c:choose>
+						    <c:when test="#{pagePrincipaleBean.clientIsConnect()}">
+						       	 <h:outputText value="#{pagePrincipaleBean.infosClient()}"></h:outputText>
+						       	 <h:form>
+					 	   		<h:commandLink value="Se déconnecter" action="#{gestionClientBean.deconnecterClient()}"/>
+					 	   		</h:form>
+						    </c:when>
+						    <c:otherwise>
+						           	<h:link value="Se connecter" outcome="connexion" ></h:link> 
+						    </c:otherwise>
+						</c:choose>
+			
+			</div>			
+		</div>
+		</div>		
+			<!-- //////////////////////////////////////////// Contenu /////////////////////////////////////////////////////// -->
+				
+				
+				<div class="container">
+					<br/><br/>
+					<div class="row">
+					
+					
+					</div>
+					<br/><br/>
+					<div class="row">
+					<h:dataTable value="#{gestionPanier.listePanier()}" var="ligneCommande" border="1" width="100%">
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Photo"/>
+								</f:facet>
+								<p:graphicImage library="images" name="#{gestionPanier.getPhoto(ligneCommande.produitID)}" styleClass="imageProduit"></p:graphicImage>
+							</h:column>
+			
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Produit"/>
+								</f:facet>
+								<h:outputText value="#{gestionPanier.getDesignation(ligneCommande.produitID)}" />
+							</h:column>
+			
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Descriptif"/>
+								</f:facet>
+								<h:outputText value="#{gestionPanier.getDescriptif(ligneCommande.produitID)}" />
+							</h:column>
+			
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Quantité"/>
+								</f:facet>
+							<p:spinner  size= "1" value="#{ligneCommande.quantite}"/>
+							</h:column>
+							
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Pix unitaire (€)"/>
+								</f:facet>
+								<h:outputText value="#{ligneCommande.prix}" />
+							</h:column>
+							
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Total (€)"/>
+								</f:facet>
+								<h:outputText value="#{(ligneCommande.prix)*(ligneCommande.quantite)}" />
+							</h:column>
+							
+							
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Supprimer"/>
+								</f:facet>
+								<h:form>
+								<h:commandButton action="#{gestionPanier.deleteLigne(ligneCommande.idLigneDeCommande)}" value="Supprimer"></h:commandButton>
+								</h:form>
+							</h:column>
+			
+			</h:dataTable></div>				
+		</div>
+		
+	</h:body>
+</html>

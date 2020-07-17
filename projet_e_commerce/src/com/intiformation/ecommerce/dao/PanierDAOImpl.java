@@ -109,7 +109,10 @@ public class PanierDAOImpl implements IPanierDAO{
 	public boolean add(Panier pPanier) {
 		
 		try {
-			ps = this.connection.prepareStatement("INSERT INTO panier");
+			ps = this.connection.prepareStatement("INSERT INTO panier (id_panier) values (?)");
+			
+			ps.setInt(1, pPanier.getIdPanier());
+			
 			
 			int verif = ps.executeUpdate();
 			
@@ -171,5 +174,40 @@ public class PanierDAOImpl implements IPanierDAO{
 		return false;
 		
 	}//end deleteById()
+
+	@Override
+	public boolean panierIsExist(int pIdPanier) {
+
+		try {
+			ps = this.connection.prepareStatement("SELECT COUNT(*) FROM panier WHERE id_panier = ?");
+			
+			ps.setInt(1, pIdPanier);
+		
+			
+			rs = ps.executeQuery();
+			
+			rs.next();
+			
+			int verif = rs.getInt(1);
+			
+			return (verif == 1);
+			
+		} catch (SQLException e) {
+			System.out.println("...(PanierDAOImpl) erreur de l'execution de panierIsExist()...");
+			e.printStackTrace();
+			
+		} finally {
+			try {
+				rs.close();
+				ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}//end finally
+		
+		return false;
+		
+		
+	} // panierIsExist()
 	
 }//end class

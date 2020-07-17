@@ -19,4 +19,5 @@ public interface IProduitDAO extends IGeneriqueDAO<Produit>{
 	
 	public List<Produit> getProduitsSelectionnes();
 	
+	
 }//end interface

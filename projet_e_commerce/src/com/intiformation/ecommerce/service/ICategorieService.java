@@ -9,5 +9,7 @@ import com.intiformation.ecommerce.modeles.Categorie;
  *
  */
 public interface ICategorieService extends IGeneriqueService<Categorie>{
+	
+	public int getIdByName(String nomCategorie);
 
 }//end interface

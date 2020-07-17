@@ -10,5 +10,7 @@ import com.intiformation.ecommerce.modeles.Categorie;
  *
  */
 public interface ICategorieDAO extends IGeneriqueDAO<Categorie>{
+	
+	public int getIdByName(String nomCategorie);
 
 }//end interface

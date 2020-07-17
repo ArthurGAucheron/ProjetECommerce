@@ -46,5 +46,11 @@ public class ClientServiceImpl implements IClientService{
 	public boolean clientExists(String pMail, String pPassword) {
 		return clientDAO.isClientExists(pMail, pPassword);
 	}
+
+	@Override
+	public int findIdByEmail(String pMail) {
+		
+		return clientDAO.getIdByEmail(pMail);
+	}
 	
 }//end class

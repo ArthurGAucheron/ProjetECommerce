@@ -198,4 +198,34 @@ public class CategorieDAOImpl implements ICategorieDAO{
 		
 	}//end deleteById()
 
+	@Override
+	public int getIdByName(String nomCategorie) {
+		try {
+			ps = this.connection.prepareStatement("select id_categorie from categories where nom_categorie=?");
+			
+			ps.setString(1, nomCategorie);
+			
+			rs = ps.executeQuery();
+			
+			rs.next();
+			
+			return rs.getInt(1);
+			
+			
+		} catch (SQLException e) {
+			System.out.println("...(CategorieDAOImpl) erreur de l'execution de getIdByName()...");
+			e.printStackTrace();
+			
+		} finally {
+			try {
+				rs.close();
+				ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}//end finally
+		
+		return 0;
+	}// end getIdByName;
+
 }//end class

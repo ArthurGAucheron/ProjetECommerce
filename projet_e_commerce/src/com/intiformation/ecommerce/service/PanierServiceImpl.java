@@ -42,4 +42,9 @@ public class PanierServiceImpl implements IPanierService{
 		return panierDAO.deleteById(pIdPanier);
 	}
 
+	@Override
+	public boolean panierIsExist(int pIdPanier) {
+		return panierDAO.panierIsExist(pIdPanier);
+	}
+
 }//end class
