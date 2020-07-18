@@ -53,6 +53,7 @@ public class GestionPanierBean implements Serializable {
 	private int idProduit;
 	private int idClient;
 	private int idPanier;
+	private Produit produit = new Produit();
 
 
 	private Date dateCommande;
@@ -88,6 +89,12 @@ public class GestionPanierBean implements Serializable {
 
 			HttpSession session = (HttpSession) contextJSF.getExternalContext().getSession(false);
 			idClient = (int) session.getAttribute("id_client");
+			if (!panierVide()) {
+				
+				panierService.ajouter(newPanier);
+				idPanier = panierService.getIdLastAdd();
+				session.setAttribute("id_panier", idPanier);
+			}// end if
 			idPanier = (int) session.getAttribute("id_panier");
 
 			newLigneCommande = new LigneDeCommande(quantite, prixProduit, idProduit, idPanier);
@@ -275,13 +282,23 @@ public class GestionPanierBean implements Serializable {
 
 				
 				ligneDeCommande.setCommandeID(idCommande);
+				ligneCommandeService.modifier(ligneDeCommande);
 				
-			
-				System.out.println("modification " + ligneCommandeService.modifier(ligneDeCommande));
+				
+				int idProduit = ligneDeCommande.getProduitID();
+				int quantiteProduit = ligneDeCommande.getQuantite();
+				
+				produit = produitService.findById(idProduit);
+				
+				int quantiteProduitInit = produit.getQuantite();
+				
+				produit.setQuantite(quantiteProduitInit-quantiteProduit);
+				produitService.modifier(produit);
+				
 			
 			}// end for
 			
-			session.setAttribute("id_panier", null);
+			session.removeAttribute("id_panier");
 			
 			contextJSF.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Commande : ", "Merci pour votre commande"));
 			

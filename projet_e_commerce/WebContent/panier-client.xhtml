@@ -133,7 +133,9 @@
 									<h:outputText value="Quantité"/>
 								</f:facet>
 							<h:form>
-							<p:spinner  size= "1" value="#{ligneCommande.quantite}"/>
+							<p:outputPanel>
+					                 <h:outputText value="#{ligneCommande.quantite}"></h:outputText>
+							</p:outputPanel>
 							</h:form>
 							</h:column>
 							
@@ -148,7 +150,7 @@
 								<f:facet name="header">
 									<h:outputText value="Total (€)"/>
 								</f:facet>
-								<h:outputText value="#{(ligneCommande.prix)*(ligneCommande.quantite)}" />
+								<h:outputText  value="#{(ligneCommande.prix)*(ligneCommande.quantite)}" />
 							</h:column>
 							
 							

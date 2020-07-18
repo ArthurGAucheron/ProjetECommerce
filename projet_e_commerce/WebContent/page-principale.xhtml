@@ -130,7 +130,7 @@
 													
 							<h:outputLabel for="ajaxspinner" value="Chosir une quantité" />
 					        <p:outputPanel>
-					                   <p:spinner id="ajaxspinner" value="#{gestionPanier.quantite}" min="1" max="#{produit.quantite}">
+					                   <p:spinner id="ajaxspinner" value="#{gestionPanier.quantite}" min="0" max="#{produit.quantite}">
 					                    <p:ajax update="ajaxspinnervalue" process="@this" />
 					               </p:spinner>
 					               <h:inputHidden id="ajaxspinnervalue" value="#{gestionPanier.quantite}"/>
