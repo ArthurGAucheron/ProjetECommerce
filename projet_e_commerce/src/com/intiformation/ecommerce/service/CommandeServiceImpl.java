@@ -41,5 +41,16 @@ public class CommandeServiceImpl implements ICommandeService{
 	public boolean supprimerById(Integer pIdCommande) {
 		return commandeDAO.deleteById(pIdCommande);
 	}
+
+	@Override
+	public int getIdByLastAdd() {
+	
+		return commandeDAO.getIdByLastAdd();
+	}
+
+	@Override
+	public List<Commande> getAllByIdCLient(int pIdClient) {
+		return commandeDAO.getAllByIdClient(pIdClient);
+	}
 	
 }//end class

@@ -17,5 +17,7 @@ public interface ILigneDeCommandeDAO extends IGeneriqueDAO<LigneDeCommande>{
 	
 	public List<LigneDeCommande> getAllByIdPanier (int pIdPanier);
 	
+	public List<LigneDeCommande> getAllByIdCommande (int pIdCommande);
+	
 
 }//end interface

@@ -115,8 +115,28 @@
 			<to-view-id>/page-principale.xhtml</to-view-id>
 			<redirect/>
 		</navigation-case>
+		<navigation-case>
+			<from-outcome>connexion</from-outcome>
+			<to-view-id>/login-client.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>mescommandes</from-outcome>
+			<to-view-id>/historique-commande.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
 		
+	</navigation-rule>
 	
-	</navigation-rule> 
+	<!-- règle de navigation pour /historique-commande.xhtml-->
+	
+	<navigation-rule>
+		<from-view-id>/historique-commande.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>mainpage</from-outcome>
+			<to-view-id>/page-principale.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>  
 
 </faces-config>

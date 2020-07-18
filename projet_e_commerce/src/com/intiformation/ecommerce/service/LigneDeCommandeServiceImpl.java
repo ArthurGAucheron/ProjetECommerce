@@ -52,4 +52,12 @@ public class LigneDeCommandeServiceImpl implements ILigneDeCommandeService{
 		return ligneDeCommandeDAO.getAllByIdPanier(pIdPanier);
 	}
 
+	@Override
+	public List<LigneDeCommande> getAllByIdCommande(int pIdCommande) {
+	
+		return ligneDeCommandeDAO.getAllByIdCommande(pIdCommande);
+	}
+	
+
+
 }//end class

@@ -13,6 +13,7 @@ public class LigneDeCommande {
 	private double prix;
 	private int produitID;
 	private int panierID;
+	private int commandeID;
 	
 	/*_____________ ctors ______________*/
 	public LigneDeCommande() {
@@ -35,8 +36,20 @@ public class LigneDeCommande {
 		this.produitID = produitID;
 		this.panierID = panierID;
 	}
-
 	
+	
+	
+	public LigneDeCommande(int quantite, double prix, int produitID, int panierID, int commandeID) {
+		super();
+		this.quantite = quantite;
+		this.prix = prix;
+		this.produitID = produitID;
+		this.panierID = panierID;
+		this.commandeID = commandeID;
+	}
+
+
+
 	/*_____________ getters/setters ______________*/
 
 	public int getIdLigneDeCommande() {
@@ -78,6 +91,18 @@ public class LigneDeCommande {
 
 	public void setPanierID(int panierID) {
 		this.panierID = panierID;
+	}
+
+
+
+	public int getCommandeID() {
+		return commandeID;
+	}
+
+
+
+	public void setCommandeID(int commandeID) {
+		this.commandeID = commandeID;
 	}
 	
 }//end class

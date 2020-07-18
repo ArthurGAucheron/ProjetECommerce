@@ -35,7 +35,7 @@ public class PagePrincipaleBean implements Serializable {
 	private IClientService clientService;
 
 	private int nombreProduit;
-	private List<Integer> maliste;
+	
 
 	private String motCle = null;
 
@@ -211,6 +211,14 @@ public class PagePrincipaleBean implements Serializable {
 
 	public void setEtatSession(boolean etatSession) {
 		this.etatSession = etatSession;
+	}
+
+	public List<Produit> getListeProduits() {
+		return listeProduits;
+	}
+
+	public void setListeProduits(List<Produit> listeProduits) {
+		this.listeProduits = listeProduits;
 	}
 
 	

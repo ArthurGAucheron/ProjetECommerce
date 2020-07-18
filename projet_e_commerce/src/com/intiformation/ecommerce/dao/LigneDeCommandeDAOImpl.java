@@ -149,14 +149,16 @@ public class LigneDeCommandeDAOImpl implements ILigneDeCommandeDAO {
 
 		try {
 			ps = this.connection.prepareStatement(
-					"UPDATE lignes_commandes SET quantite=?, prix=?, produit_id=?, panier_id=? WHERE id_ligne_commande=?");
+					"UPDATE lignes_commandes SET quantite=?, prix=?, produit_id=?, panier_id=?, commande_id=? WHERE id_ligne_commande=?");
 
 			ps.setInt(1, pLigneDeCommande.getQuantite());
 			ps.setDouble(2, pLigneDeCommande.getPrix());
 			ps.setInt(3, pLigneDeCommande.getProduitID());
 			ps.setInt(4, pLigneDeCommande.getPanierID());
-			ps.setInt(5, pLigneDeCommande.getIdLigneDeCommande());
-
+			ps.setInt(5, pLigneDeCommande.getCommandeID());
+			ps.setInt(6, pLigneDeCommande.getIdLigneDeCommande());
+			
+		
 			int verif = ps.executeUpdate();
 
 			return (verif == 1);
@@ -267,6 +269,44 @@ public class LigneDeCommandeDAOImpl implements ILigneDeCommandeDAO {
 
 		} catch (SQLException e) {
 			System.out.println("...(LigneDeCommandeDAOImpl) erreur de l'execution de getAllByIdPanier()...");
+			e.printStackTrace();
+
+		} finally {
+			try {
+				rs.close();
+				ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} // end finally
+
+		return null;
+	}
+
+	@Override
+	public List<LigneDeCommande> getAllByIdCommande(int pIdCommande) {
+		try {
+
+			ps = this.connection.prepareStatement("SELECT * FROM lignes_commandes WHERE commande_id = ?");
+
+			ps.setInt(1, pIdCommande);
+			
+			rs = ps.executeQuery();
+
+			List<LigneDeCommande> listeLigneDeCommandeBDD = new ArrayList<>();
+			LigneDeCommande ligneDeCommande = null;
+
+			while (rs.next()) {
+
+				ligneDeCommande = new LigneDeCommande(rs.getInt(1), rs.getInt(2), rs.getDouble(3), rs.getInt(4),rs.getInt(5));
+				listeLigneDeCommandeBDD.add(ligneDeCommande);
+
+			} // end while
+
+			return listeLigneDeCommandeBDD;
+
+		} catch (SQLException e) {
+			System.out.println("...(LigneDeCommandeDAOImpl) erreur de l'execution de getAllByIdCommande()...");
 			e.printStackTrace();
 
 		} finally {

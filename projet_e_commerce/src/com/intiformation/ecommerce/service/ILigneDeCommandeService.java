@@ -15,5 +15,7 @@ public interface ILigneDeCommandeService extends IGeneriqueService<LigneDeComman
 	public int nombreLignesParPanier(int pIdPanier);
 	
 	public List<LigneDeCommande> getAllByIdPanier ( int pIdPanier);
+	
+	public List<LigneDeCommande> getAllByIdCommande( int pIdCommande);
 
 }//end interface

@@ -74,6 +74,12 @@
    <PROCESS-ITEM-OUTPUT ID="mainpage::#page-principale.xhtml"
     NAME="output" PATH="/page-principale.xhtml"
     TARGET="rules:#page-principale.xhtml" TITLE="mainpage" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="connexion::#login-client.xhtml"
+    NAME="output1" PATH="/login-client.xhtml"
+    TARGET="rules:#login-client.xhtml" TITLE="connexion" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="mescommandes::#historique-commande.xhtml"
+    NAME="output2" PATH="/historique-commande.xhtml"
+    TARGET="rules:#historique-commande.xhtml" TITLE="mescommandes" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#recherche-categorie-utilisateur.xhtml"
@@ -90,6 +96,15 @@
     NAME="output1" PATH="/modification-categorie-utilisateur.xhtml"
     TARGET="rules:#modification-categorie-utilisateur.xhtml"
     TITLE="updatecat" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#historique-commande.xhtml"
+  PATH="/historique-commande.xhtml" SHAPE="64,737,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#historique-commande.xhtml:0" NAME="item"
+   PATH="/historique-commande.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="mainpage::#page-principale.xhtml"
+    NAME="output" PATH="/page-principale.xhtml"
+    TARGET="rules:#page-principale.xhtml" TITLE="mainpage" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
 </PROCESS>

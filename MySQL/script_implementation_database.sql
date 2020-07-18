@@ -27,11 +27,11 @@ select id_client from clients where email='arthurgaucheron@hotmail.fr';
 
 select * from panier;
 
-select * from lignes_commandes  where panier_id = 8;
+select * from lignes_commandes;
 
 insert into panier()value();
 
-select last_insert_id() from panier;
+SELECT id_commande FROM commandes ORDER BY id_commande DESC;
 
-SELECT TOP 1 * FROM panier ORDER BY ID DESC.
-
+select * from commandes where client_id=8;
+select * from lignes_commandes where commande_id=19;

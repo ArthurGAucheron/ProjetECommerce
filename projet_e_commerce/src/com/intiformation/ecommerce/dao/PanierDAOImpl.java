@@ -212,7 +212,7 @@ public class PanierDAOImpl implements IPanierDAO{
 	@Override
 	public int getIdLastAdd() {
 		try {
-			ps = this.connection.prepareStatement("SELECT * FROM panier ORDER BY id_panier DESC;");
+			ps = this.connection.prepareStatement("SELECT * FROM panier ORDER BY id_panier DESC");
 			
 			
 		

@@ -39,6 +39,7 @@ public class GestionClientBean implements Serializable{
 	 private boolean verifAjout = false;
 	 private Panier newPanier;
 	 private int idClient;
+	 private int idPanier;
 	
 	
 	
@@ -82,14 +83,16 @@ public class GestionClientBean implements Serializable{
 			// création d'un panier au client
 			
 			
-			if (panierService.panierIsExist(idClient)==false) {
+			if (session.getAttribute("id_panier")==null) {
 				
-				newPanier = new Panier(idClient);
-				panierService.ajouter(newPanier);
-			}// end if
+				 panierService.ajouter(newPanier);
+				 idPanier = panierService.getIdLastAdd();
+				 session.setAttribute("id_panier", idPanier);
+				 
+			}
 			
-			session.setAttribute("id_panier",idClient);
 			
+	
 	
 			// -> navigation vers la page principale du site "page-principale.xhtml'
 			return "page-principale.xhtml?faces-redirect=true";

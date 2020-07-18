@@ -1,5 +1,7 @@
 package com.intiformation.ecommerce.dao;
 
+import java.util.List;
+
 import com.intiformation.ecommerce.modeles.Commande;
 
 /**
@@ -10,5 +12,10 @@ import com.intiformation.ecommerce.modeles.Commande;
  *
  */
 public interface ICommandeDAO extends IGeneriqueDAO<Commande>{
+	
+	
+	public int getIdByLastAdd();
+	
+	public List<Commande> getAllByIdClient(int pIdClient);
 	
 }//end interface

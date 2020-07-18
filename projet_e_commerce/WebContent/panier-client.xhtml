@@ -56,6 +56,7 @@
 					</div>
 					
 					<div class="col-5"> <h1>Mon panier</h1></div>
+				
 					
 					
 					
@@ -76,9 +77,19 @@
 			
 			</div>			
 		</div>
-		</div>		
+		<p:messages showDetail="true" infoStyle="color: green;" fatalStyle="color: red;"/>
+			<c:if test="#{gestionPanier.clientIsConnect()}">
+						<h:link style="color:black; font-size:2em;" outcome="mescommandes"> Consulter mes commandes </h:link>
+					</c:if>
+		</div>
+				
 			<!-- //////////////////////////////////////////// Contenu /////////////////////////////////////////////////////// -->
 				
+				<c:choose>
+					<c:when test="#{gestionPanier.panierVide()}">
+			
+				
+			
 				
 				<div class="container">
 					<br/><br/>
@@ -86,9 +97,9 @@
 					
 					<h:panelGrid columns="2" cellpadding="5" cellspacing="5">
 						<h:outputText style="color: orange;	font-size: 1.5em;font-weight: bold;" value="Prix total du panier : "/>
-						<h:outputText style="color: black;	font-size: 1.5em;font-weight: bold;" value="100€"/>
+						<h:outputText style="color: black;	font-size: 1.5em;font-weight: bold;" value="#{gestionPanier.prixTotal()} €"/>
 						<h:form>
-						<h:commandButton styleClass="btn btn-primary" value="Passer Commande" action="#"></h:commandButton>
+						<h:commandButton styleClass="btn btn-primary" value="Passer Commande" action="#{gestionPanier.commander()}"></h:commandButton>
 						</h:form>
 					</h:panelGrid>
 					
@@ -121,7 +132,9 @@
 								<f:facet name="header">
 									<h:outputText value="Quantité"/>
 								</f:facet>
+							<h:form>
 							<p:spinner  size= "1" value="#{ligneCommande.quantite}"/>
+							</h:form>
 							</h:column>
 							
 							<h:column>
@@ -150,6 +163,11 @@
 			
 			</h:dataTable></div>				
 		</div>
-		
+				
+				</c:when>
+					<c:otherwise>
+						<h1>Panier Vide</h1>
+					</c:otherwise>
+				</c:choose>	
 	</h:body>
 </html>

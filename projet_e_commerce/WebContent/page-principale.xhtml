@@ -105,7 +105,6 @@
 				<div class="container">
 					<br/><br/>
 					<p:outputLabel value="#{pagePrincipaleBean.nomCategorie}" style="font-size : 2em;"></p:outputLabel>
-					
 					<!-- Début du modèle à répéter -->
 					<ui:repeat var="produit" value="#{pagePrincipaleBean.listeProduits(pagePrincipaleBean.nomCategorie, pagePrincipaleBean.motCle)}">
 	
@@ -132,9 +131,12 @@
 									<h:outputLabel for="qteproduit" value="Chosir une quantité"></h:outputLabel>
 									<br></br>
 									
-						
-									<p:spinner id="qteproduit" min="1" max="#{produit.quantite}" 
-									value="#{gestionPanier.quantite}"   valueChangeListener="#{gestionPanier.quantite}"  required="true" requiredMessage="quantité obligatoire"/>
+									<p:spinner id='qteproduit' min='1' max='#{produit.quantite}' 
+									value='#{gestionPanier.quantite}'   required='true' requiredMessage='quantité obligatoire'/>
+									
+								
+									
+									
 									
 									
 									<br></br>
@@ -155,7 +157,10 @@
 					</div>	
 			</ui:repeat>
 			<!-- Fin  du modèle à répéter -->	
-			
+				
+				
+				
+				
 				</div>
 				
 			

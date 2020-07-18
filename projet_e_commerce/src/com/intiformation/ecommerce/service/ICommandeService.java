@@ -1,5 +1,7 @@
 package com.intiformation.ecommerce.service;
 
+import java.util.List;
+
 import com.intiformation.ecommerce.modeles.Commande;
 
 /**
@@ -9,5 +11,9 @@ import com.intiformation.ecommerce.modeles.Commande;
  *
  */
 public interface ICommandeService extends IGeneriqueService<Commande>{
+	
+	public int getIdByLastAdd();
+	
+	public List<Commande> getAllByIdCLient (int pIdClient);
 
 }//end interface

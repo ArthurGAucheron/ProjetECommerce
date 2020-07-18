@@ -1,5 +1,6 @@
 package com.intiformation.ecommerce.modeles;
 
+
 import java.sql.Date;
 
 /**
