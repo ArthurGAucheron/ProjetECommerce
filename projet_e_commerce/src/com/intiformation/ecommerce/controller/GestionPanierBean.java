@@ -116,8 +116,6 @@ public class GestionPanierBean implements Serializable {
 			} // end else
 		} // end else
 
-		System.out.println("Quantité demander " + quantite);
-
 	}// end ajouter produit
 
 	/**

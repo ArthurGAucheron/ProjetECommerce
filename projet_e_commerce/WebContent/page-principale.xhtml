@@ -127,16 +127,16 @@
 									<h:outputLabel value="Description du produit : #{produit.description}" styleClass="descriptifProduit"></h:outputLabel> <br></br>
 									
 								<br></br>
-								
-									<h:outputLabel for="qteproduit" value="Chosir une quantité"></h:outputLabel>
-									<br></br>
-									
-									<p:spinner id='qteproduit' min='1' max='#{produit.quantite}' 
-									value='#{gestionPanier.quantite}'   required='true' requiredMessage='quantité obligatoire'/>
-									
-								
-									
-									
+													
+							<h:outputLabel for="ajaxspinner" value="Chosir une quantité" />
+					        <p:outputPanel>
+					                   <p:spinner id="ajaxspinner" value="#{gestionPanier.quantite}" min="1" max="#{produit.quantite}">
+					                    <p:ajax update="ajaxspinnervalue" process="@this" />
+					               </p:spinner>
+					               <h:inputHidden id="ajaxspinnervalue" value="#{gestionPanier.quantite}"/>
+							</p:outputPanel>
+														
+														
 									
 									
 									<br></br>
