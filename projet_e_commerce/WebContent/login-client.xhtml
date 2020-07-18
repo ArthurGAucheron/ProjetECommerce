@@ -26,7 +26,7 @@
 
 	<div class="container-fluid">
 	
-		<div class="row container" id="row-header">
+		<div class="row" id="row-header">
 			<div class="col-12">
 			<i class="pi pi-arrow-circle-left" style="font-size: 2em"></i>
 			<h:link outcome="page-principale.xhtml" value=" Retour vers la page principale" style="color:white; font-style:italic; padding-bottom:10px;"></h:link>
@@ -67,7 +67,7 @@
 					
 					<br></br>
 					
-					<p:commandButton update="panel msgs" class="btn btn-dark" action="#{gestionClientBean.connecterClient()}" value="Se Connecter" />
+					<h:commandButton update="panel msgs" class="btn btn-dark" action="#{gestionClientBean.connecterClient()}" value="Se Connecter" />
 					
 			</h:form>
 		  </div>
