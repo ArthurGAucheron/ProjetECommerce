@@ -10,7 +10,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.servlet.http.HttpSession;
 
-import com.intiformation.ecommerce.modeles.Categorie;
 import com.intiformation.ecommerce.modeles.Utilisateur;
 import com.intiformation.ecommerce.service.IUtilisateurService;
 import com.intiformation.ecommerce.service.UtilisateurServiceImpl;

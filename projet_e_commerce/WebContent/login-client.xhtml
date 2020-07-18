@@ -12,6 +12,8 @@
 		
 		<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
 		
+		<h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />	
+		
 		<h:outputStylesheet library="css" name="mon-style.css" target="body" ></h:outputStylesheet>
 		
 		<style>
@@ -23,27 +25,35 @@
 <h:body> 
 
 	<div class="container-fluid">
-		<div class="row" id="row-header">
+	
+		<div class="row container" id="row-header">
 			<div class="col-12">
-				<br></br>
-				<br></br>
-			</div>
-			
+			<i class="pi pi-arrow-circle-left" style="font-size: 2em"></i>
+			<h:link outcome="page-principale.xhtml" value=" Retour vers la page principale" style="color:white; font-style:italic; padding-bottom:10px;"></h:link>
+			</div>			
 		</div>
+		
 			 <p:messages id="msgs" globalOnly="true" layout="table" showDetail="true"/>
 		
 			<div class="row justify-content-md-center">
+			
 			 <h:form>
-						<h:panelGrid columns="1" cellpadding="2" cellspacing="5" width="100%">
+			 
+			 <br/><br/>
+		
+			 			<p:outputLabel><span style="font-size: 2em; font-weight: bold;">S'identifier</span></p:outputLabel>
+			 					 
+						<h:panelGrid id="panel" columns="3" cellpadding="2" cellspacing="5" width="100%">
 						
-						<p:outputLabel><span style="font-size: 2em; font-weight: bold;">S'identifier</span></p:outputLabel>
 						
 						
 						<p:outputLabel for="idLogin" value="Adresse e-mail : " />
 						
-						<p:inputText id="idLogin" required="true" requiredMessage="Identifiant obligatoire" value="#{gestionClientBean.emailClient}"/>
+						<p:inputText id="idLogin" required="true" requiredMessage="Identifiant obligatoire" value="#{gestionClientBean.emailClient}" validatorMessage="Entrez un e-mail">
+							<f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]"></f:validateRegex>
+						</p:inputText>
 						
-						<p:message for="idLogin" display="icon"/>
+						<p:message for="idLogin"/>
 						
 						
 						
@@ -51,20 +61,18 @@
 						
 						<p:password id="idMdp" required="true" requiredMessage="Mot de passe obligatoire" value="#{gestionClientBean.passWordClient1}"/>
 						
-						<p:message for="idMdp" display="icon"/>
-						
-						<p:commandButton class="btn btn-dark" action="#{gestionClientBean.connecterClient()}" value="Se Connecter" />
-			
+						<p:message for="idMdp"/>
+									
 					</h:panelGrid>
+					
+					<br></br>
+					
+					<p:commandButton update="panel msgs" class="btn btn-dark" action="#{gestionClientBean.connecterClient()}" value="Se Connecter" />
+					
 			</h:form>
 		  </div>
 			
-			<div class="row justify-content-md-center">
-			<h:messages globalOnly="true" layout="table" showDetail="true"   fatalClass="error" infoClasse="message"/>
-			</div>
-		
-		  
-		  
+	  
 		  <br/><br/>
 		  <br/><br/>
 		  <div class="row justify-content-md-center">
