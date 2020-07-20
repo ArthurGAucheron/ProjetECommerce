@@ -31,24 +31,23 @@ public class PagePrincipaleBean implements Serializable {
 
 	private IProduitService produitService;
 	private List<Produit> listeProduits;
-	
+	private List<Produit> listeProduitsSelection;
+
 	private IClientService clientService;
 
 	private int nombreProduit;
-	
 
 	private String motCle = null;
 
 	private boolean etatSession;
-	
+
 	public PagePrincipaleBean() {
 
 		categorieService = new CategorieServiceImpl();
 
 		produitService = new ProduitServiceImpl();
-		
-		clientService = new  ClientServiceImpl();
-		
+
+		clientService = new ClientServiceImpl();
 
 	}// end ctor
 
@@ -72,7 +71,6 @@ public class PagePrincipaleBean implements Serializable {
 		for (Categorie categorie : listeCategorie) {
 
 			listeNomCategorie.add(categorie.getNomCategorie());
-		
 
 		} // end for
 
@@ -84,9 +82,8 @@ public class PagePrincipaleBean implements Serializable {
 
 	public List<Produit> listeProduits(String nomCategorie, String motCle) {
 
-		
-
 		listeProduits = new ArrayList<>();
+		listeProduitsSelection = new ArrayList<>();
 
 		if ((motCle.isEmpty() || motCle.equals(""))) {
 
@@ -94,27 +91,43 @@ public class PagePrincipaleBean implements Serializable {
 
 				listeProduits = produitService.findAll();
 
-			
-			
+				for (Produit produit : listeProduits) {
+
+					if (produit.isSelectionne() == true) {
+
+						listeProduitsSelection.add(produit);
+					}
+				}
+
 			} else {
 
 				int idCategorie = categorieService.getIdByName(nomCategorie);
-
-				
-				
 				listeProduits = produitService.findProduitsByIDCategorie(idCategorie);
 
-				
-				
+				for (Produit produit : listeProduits) {
+
+					if (produit.isSelectionne() == true) {
+
+						listeProduitsSelection.add(produit);
+					}
+				}
+
 			} // end else
 
-		}else {
-			
-			listeProduits=produitService.findProduitsByMotCle(motCle);
-			
+		} else {
+
+			listeProduits = produitService.findProduitsByMotCle(motCle);
+			for (Produit produit : listeProduits) {
+
+				if (produit.isSelectionne() == true) {
+
+					listeProduitsSelection.add(produit);
+				}
+			}
+
 		}
 
-		return listeProduits;
+		return listeProduitsSelection;
 
 	}// end listeProduits()
 
@@ -143,43 +156,34 @@ public class PagePrincipaleBean implements Serializable {
 		return "page-principale.xhtml?faces-redirect=true";
 
 	}// end refresh
-	
+
 	public boolean clientIsConnect() {
-		
-	
+
 		FacesContext contexJSF = FacesContext.getCurrentInstance();
-		
+
 		HttpSession session = (HttpSession) contexJSF.getExternalContext().getSession(false);
 
-		
-		if (session.getAttribute("id_client") !=null) {
+		if (session.getAttribute("id_client") != null) {
 			return true;
-		}else {
-			
+		} else {
+
 			return false;
 		}
 	}// end clienIsConnect()
-	
-	
+
 	public String infosClient() {
-		
-        FacesContext contexJSF = FacesContext.getCurrentInstance();
-		
+
+		FacesContext contexJSF = FacesContext.getCurrentInstance();
+
 		HttpSession session = (HttpSession) contexJSF.getExternalContext().getSession(false);
-		
+
 		int idClient = (int) session.getAttribute("id_client");
-		
+
 		return clientService.findById(idClient).getNomClient();
 	}
-		
-	
-		
-	
 
-	
-	
-	
-	/////////////////////////////// GETTERS/SETTERS	/////////////////////////////// ////////////////////////////////////////////
+	/////////////////////////////// GETTERS/SETTERS ///////////////////////////////
+	/////////////////////////////// ////////////////////////////////////////////
 	public String getNomCategorie() {
 		return nomCategorie;
 	}
@@ -204,7 +208,6 @@ public class PagePrincipaleBean implements Serializable {
 		this.motCle = motCle;
 	}
 
-
 	public boolean isEtatSession() {
 		return etatSession;
 	}
@@ -220,8 +223,5 @@ public class PagePrincipaleBean implements Serializable {
 	public void setListeProduits(List<Produit> listeProduits) {
 		this.listeProduits = listeProduits;
 	}
-
-	
-	
 
 }// end class
